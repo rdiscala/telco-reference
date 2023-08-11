@@ -39,7 +39,7 @@ spec:
     nodes:
       - hostName: openshift-master-0.ecore.lab.eng.tlv2.redhat.com
         role: "master"
-        bmcAddress: redfish-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:4E:9C"
@@ -141,7 +141,7 @@ spec:
       #
       - hostName: openshift-master-1.ecore.lab.eng.tlv2.redhat.com
         role: "master"
-        bmcAddress: redfish-virtualmedia://10.46.61.245:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.245:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:4E:E4"
@@ -243,7 +243,7 @@ spec:
       #
       - hostName: openshift-master-2.ecore.lab.eng.tlv2.redhat.com
         role: "master"
-        bmcAddress: redfish-virtualmedia://10.46.61.246:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.246:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:1F:60"
@@ -345,7 +345,7 @@ spec:
       #
       - hostName: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
         role: "worker"
-        bmcAddress: redfish-virtualmedia://10.46.61.247:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.247:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:5E:A4"
@@ -447,7 +447,7 @@ spec:
       #
       - hostName: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
         role: "worker"
-        bmcAddress: redfish-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:5E:28"
@@ -549,7 +549,7 @@ spec:
       #
       - hostName: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
         role: "worker"
-        bmcAddress: redfish-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "5C:BA:2C:27:6E:E4"
@@ -681,7 +681,7 @@ spec:
       #
       - hostName: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
         role: "worker"
-        bmcAddress: redfish-virtualmedia://10.46.61.243:443/redfish/v1/Systems/1
+        bmcAddress: ilo5-virtualmedia://10.46.61.243:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "5C:BA:2C:27:6E:4E"
