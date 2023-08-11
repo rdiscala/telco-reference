@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - bmc-credentials.yaml
   - pull-secret.yaml
-  - ocp-verison.yaml
+  - ocp-version.yaml
