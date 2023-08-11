@@ -43,7 +43,7 @@ spec:
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:4E:9C"
-        bootMode: "UEFI"
+        #bootMode: "UEFI"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -145,7 +145,7 @@ spec:
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:4E:E4"
-        bootMode: "UEFI"
+        #bootMode: "UEFI"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -247,7 +247,7 @@ spec:
         bmcCredentialsName:
           name: bmc-secret-nodes
         bootMACAddress: "B4:7A:F1:C9:1F:60"
-        bootMode: "UEFI"
+        #bootMode: "UEFI"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
