@@ -80,26 +80,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.20
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -118,6 +98,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.20
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -182,26 +182,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.21
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -220,6 +200,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.21
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -284,26 +284,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.22
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -322,6 +302,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.22
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -386,26 +386,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.23
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -424,6 +404,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.23
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -488,26 +488,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.24
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -526,6 +506,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.24
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -594,26 +594,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.25
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -632,6 +612,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.25
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
@@ -726,26 +726,6 @@ spec:
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: bond0.354
-                description: baremetal network
-                type: vlan
-                state: up
-                wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
-                vlan:
-                  base-iface: bond0
-                  id: 354
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  address:
-                  - ip: 10.46.187.26
-                    prefix-length: 26
-                ipv6:
-                  enabled: false
-                  dhcp: false
-                  autoconf: false
               - name: bond0
                 description: base bonded interface
                 type: bond
@@ -764,6 +744,26 @@ spec:
                   port:
                   - ens1f0
                   - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.26
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
