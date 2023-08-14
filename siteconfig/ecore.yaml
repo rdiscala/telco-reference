@@ -33,109 +33,109 @@ spec:
     serviceNetwork:
       - "172.30.0.0/16"
     apiVIP: 10.46.187.10
-    ingressVIP: 10.46.187.10
+    ingressVIP: 10.46.187.11
     additionalNTPSources:
       - registry.ecore.lab.eng.tlv2.redhat.com
     nodes:
-      #- hostName: openshift-master-0.ecore.lab.eng.tlv2.redhat.com
-      #  role: "master"
-      #  bmcAddress: ilo5-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
-      #  bmcCredentialsName:
-      #    name: bmc-secret-nodes
-      #  bootMACAddress: "B4:7A:F1:C9:4E:9C"
-      #  #bootMode: "UEFI"
-      #  rootDeviceHints:
-      #    deviceName: /dev/sdb
-      #  nodeNetwork:
-      #    interfaces:
-      #      - name: eno1
-      #        macAddress: "b4:7a:f1:c9:4e:9c"
-      #      - name: ens1f0
-      #        macAddress: "3c:fd:fe:b4:a6:70"
-      #      - name: ens1f1
-      #        macAddress: "3c:fd:fe:b4:a6:71"
-      #      - name: ens2f0
-      #        macAddress: "3c:fd:fe:b6:c0:84"
-      #      - name: ens2f1
-      #        macAddress: "3c:fd:fe:b6:c0:85"
-      #    config:
-      #      dns-resolver:
-      #        config:
-      #          server:
-      #          - 10.47.242.10
-      #      routes:
-      #        config:
-      #        - destination: 0.0.0.0/0
-      #          next-hop-address: 10.46.187.62
-      #          next-hop-interface: bond0.354
-      #      interfaces:
-      #        - name: eno1
-      #          description: provisioning interface
-      #          type: ethernet
-      #          state: down
-      #          mac-address: b4:7a:f1:c9:4e:9c
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #        - name: bond0.354
-      #          description: baremetal network
-      #          type: vlan
-      #          state: up
-      #          wait-ip: ipv4
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          #mtu: 9000
-      #          vlan:
-      #            base-iface: bond0
-      #            id: 354
-      #          ipv4:
-      #            enabled: true
-      #            dhcp: false
-      #            address:
-      #            - ip: 10.46.187.20
-      #              prefix-length: 26
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #            autoconf: false
-      #        - name: bond0
-      #          description: base bonded interface
-      #          type: bond0
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          #mtu: 9000
-      #          state: up
-      #          ipv4:
-      #            enabled: false
-      #          ipv6:
-      #            enabled: false
-      #          link-aggregation:
-      #            mode: 802.3ad
-      #            options:
-      #              miimon: "100"
-      #              lacp_rate: slow
-      #            port:
-      #            - ens1f0
-      #            - ens1f1
-      #        - name: bond1
-      #          description: base bonded interface
-      #          type: bond1
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          #mtu: 9000
-      #          state: up
-      #          ipv4:
-      #            enabled: false
-      #          ipv6:
-      #            enabled: false
-      #          link-aggregation:
-      #            mode: 802.3ad
-      #            options:
-      #              miimon: "100"
-      #              lacp_rate: slow
-      #            port:
-      #            - ens2f0
-      #            - ens2f1
+      - hostName: openshift-master-0.ecore.lab.eng.tlv2.redhat.com
+        role: "master"
+        bmcAddress: ilo5-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
+        bmcCredentialsName:
+          name: bmc-secret-nodes
+        bootMACAddress: "B4:7A:F1:C9:4E:9C"
+        #bootMode: "UEFI"
+        rootDeviceHints:
+          deviceName: /dev/sdb
+        nodeNetwork:
+          interfaces:
+            - name: eno1
+              macAddress: "b4:7a:f1:c9:4e:9c"
+            - name: ens1f0
+              macAddress: "3c:fd:fe:b4:a6:70"
+            - name: ens1f1
+              macAddress: "3c:fd:fe:b4:a6:71"
+            - name: ens2f0
+              macAddress: "3c:fd:fe:b6:c0:84"
+            - name: ens2f1
+              macAddress: "3c:fd:fe:b6:c0:85"
+          config:
+            dns-resolver:
+              config:
+                server:
+                - 10.47.242.10
+            routes:
+              config:
+              - destination: 0.0.0.0/0
+                next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+            interfaces:
+              - name: eno1
+                description: provisioning interface
+                type: ethernet
+                state: down
+                mac-address: b4:7a:f1:c9:4e:9c
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.20
+                    prefix-length: 26
+                ipv6:
+                  enabled: false
+                  dhcp: false
+                  autoconf: false
+              - name: bond0
+                description: base bonded interface
+                type: bond0
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                state: up
+                ipv4:
+                  enabled: false
+                ipv6:
+                  enabled: false
+                link-aggregation:
+                  mode: 802.3ad
+                  options:
+                    miimon: "100"
+                    lacp_rate: slow
+                  port:
+                  - ens1f0
+                  - ens1f1
+              - name: bond1
+                description: base bonded interface
+                type: bond1
+                # NOTE(yprokule): test with Jumbo frames later
+                #mtu: 9000
+                state: up
+                ipv4:
+                  enabled: false
+                ipv6:
+                  enabled: false
+                link-aggregation:
+                  mode: 802.3ad
+                  options:
+                    miimon: "100"
+                    lacp_rate: slow
+                  port:
+                  - ens2f0
+                  - ens2f1
       #
       # delimeter for better readability
       #
