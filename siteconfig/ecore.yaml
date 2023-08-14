@@ -102,7 +102,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -120,7 +120,7 @@ spec:
                   - ens1f1
               - name: bond1
                 description: base bonded interface
-                type: bond1
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -204,7 +204,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -222,7 +222,7 @@ spec:
                   - ens1f1
               - name: bond1
                 description: base bonded interface
-                type: bond1
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -306,7 +306,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -324,7 +324,7 @@ spec:
                   - ens1f1
               - name: bond1
                 description: base bonded interface
-                type: bond1
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -408,7 +408,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -426,7 +426,7 @@ spec:
                   - ens1f1
               - name: bond1
                 description: base bonded interface
-                type: bond1
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -510,7 +510,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -528,7 +528,7 @@ spec:
                   - ens1f1
               - name: bond1
                 description: base bonded interface
-                type: bond1
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -616,7 +616,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
@@ -748,7 +748,7 @@ spec:
                   autoconf: false
               - name: bond0
                 description: base bonded interface
-                type: bond0
+                type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
