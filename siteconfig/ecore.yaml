@@ -379,7 +379,7 @@ spec:
                 description: provisioning interface
                 type: ethernet
                 state: down
-                mac-address: b4:7a:f1:c9:1f:60
+                mac-address: b4:7a:f1:c9:5e:a4
                 ipv4:
                   enabled: false
                   dhcp: false
@@ -719,7 +719,7 @@ spec:
                 description: provisioning interface
                 type: ethernet
                 state: down
-                mac-address: 5c:ba:2c:27:6e:e4
+                mac-address: 5c:ba:2c:27:6e:4e
                 ipv4:
                   enabled: false
                   dhcp: false
