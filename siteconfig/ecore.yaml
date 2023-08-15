@@ -69,6 +69,34 @@ spec:
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
             interfaces:
+              - name: ens1f0.354
+                description: vlan interface advertised via LLDP
+                type: vlan
+                state: down
+                mac-address: 3c:fd:fe:b4:a6:70
+                vlan:
+                  base-iface: ens1f0
+                  id: 354
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: ens1f1.354
+                description: vlan interface advertised via LLDP
+                type: vlan
+                state: down
+                mac-address: 3c:fd:fe:b4:a6:71
+                vlan:
+                  base-iface: ens1f1
+                  id: 354
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
               - name: eno1
                 description: provisioning interface
                 type: ethernet
@@ -171,6 +199,34 @@ spec:
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
             interfaces:
+              - name: ens1f0.354
+                description: VLAN interface discovered via LLDP
+                type: vlan
+                state: down
+                mac-address: 3c:fd:fe:af:7c:30
+                vlan:
+                  base-iface: ens1f0
+                  id: 354
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: ens1f1.354
+                description: VLAN interface discovered via LLDP
+                type: vlan
+                state: down
+                mac-address: 3c:fd:fe:af:7c:31
+                vlan:
+                  base-iface: ens1f1
+                  id: 354
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
               - name: eno1
                 description: provisioning interface
                 type: ethernet
