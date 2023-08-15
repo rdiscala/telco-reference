@@ -73,7 +73,6 @@ spec:
                 description: vlan interface advertised via LLDP
                 type: vlan
                 state: down
-                mac-address: 3c:fd:fe:b4:a6:70
                 vlan:
                   base-iface: ens1f0
                   id: 354
@@ -87,7 +86,6 @@ spec:
                 description: vlan interface advertised via LLDP
                 type: vlan
                 state: down
-                mac-address: 3c:fd:fe:b4:a6:71
                 vlan:
                   base-iface: ens1f1
                   id: 354
@@ -202,8 +200,7 @@ spec:
               - name: ens1f0.354
                 description: VLAN interface discovered via LLDP
                 type: vlan
-                state: down
-                mac-address: 3c:fd:fe:af:7c:30
+                state: absent
                 vlan:
                   base-iface: ens1f0
                   id: 354
@@ -216,8 +213,7 @@ spec:
               - name: ens1f1.354
                 description: VLAN interface discovered via LLDP
                 type: vlan
-                state: down
-                mac-address: 3c:fd:fe:af:7c:31
+                state: absent
                 vlan:
                   base-iface: ens1f1
                   id: 354
