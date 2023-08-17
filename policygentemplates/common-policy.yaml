@@ -31,7 +31,7 @@ spec:
         source: redhat-operators-disconnected
         installPlanApproval: "Automatic"
     - fileName: SriovOperatorConfig.yaml
-      policyName: "sriov-operator-policy"
+      policyName: "sriov-operator-policy-config"
       spec:
         configDaemonNodeSelector:
           node-role.kubernetes.io/ht100gb: ""
