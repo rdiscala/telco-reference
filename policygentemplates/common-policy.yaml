@@ -19,6 +19,7 @@ spec:
       spec:
         displayName: Red Hat Operators Catalog
         image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.14
+    # install and configure SR-IOV operator
     - fileName: SriovSubscriptionNS.yaml
       policyName: "sriov-operator-policy"
     - fileName: SriovSubscriptionOperGroup.yaml
@@ -34,6 +35,20 @@ spec:
       spec:
         configDaemonNodeSelector:
           node-role.kubernetes.io/ht100gb: ""
+    # install and configure MetalLB operator
+    - fileName: metallb/ns.yaml
+      policyName: "metallb-operator-policy"
+    - fileName: metallb/operatorGroup.yaml
+      policyName: "metallb-operator-policy"
+    - fileName: metallb/subscription.yaml
+      policyName: "metallb-operator-policy"
+      spec:
+        channel: "stable"
+        source: redhat-operators-disconnected
+        installPlanApproval: "Automatic"
+    - fileName: metallb/instance.yaml
+      policyName: "metallb-operator-policy"
+    # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
       metadata:
