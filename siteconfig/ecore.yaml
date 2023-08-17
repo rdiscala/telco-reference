@@ -148,7 +148,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.70
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.356
                 description: This is lb-signaling VLAN
                 type: vlan
@@ -166,7 +166,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.130
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.357
                 description: This is lb-intersite VLAN
                 type: vlan
@@ -184,7 +184,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.200
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -202,7 +202,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.5
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -336,7 +336,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.71
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.356
                 description: This is lb-signaling VLAN
                 type: vlan
@@ -354,7 +354,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.131
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.357
                 description: This is lb-intersite VLAN
                 type: vlan
@@ -372,7 +372,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.201
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -390,7 +390,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.6
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -524,7 +524,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.72
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.356
                 description: This is lb-signaling VLAN
                 type: vlan
@@ -542,7 +542,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.132
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.357
                 description: This is lb-intersite VLAN
                 type: vlan
@@ -560,7 +560,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.202
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -578,7 +578,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.7
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -712,7 +712,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.73
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.356
                 description: This is lb-signaling VLAN
                 type: vlan
@@ -730,7 +730,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.133
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.357
                 description: This is lb-intersite VLAN
                 type: vlan
@@ -748,7 +748,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.203
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -766,7 +766,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.8
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -900,7 +900,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.74
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.356
                 description: This is lb-signaling VLAN
                 type: vlan
@@ -918,7 +918,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.134
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.357
                 description: This is lb-intersite VLAN
                 type: vlan
@@ -936,7 +936,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.204
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -954,7 +954,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.9
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -1092,7 +1092,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.75
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -1110,7 +1110,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.10
-                    prefix_length: 26
+                    prefix-length: 26
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
@@ -1273,7 +1273,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.187.76
-                    prefix_length: 26
+                    prefix-length: 26
               - name: bond0.358
                 description: This is lb-oam VLAN
                 type: vlan
@@ -1291,7 +1291,7 @@ spec:
                   auto-dns: false
                   address:
                   - ip: 10.46.188.11
-                    prefix_length: 26
+                    prefix-length: 26
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
