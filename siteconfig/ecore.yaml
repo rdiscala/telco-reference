@@ -68,6 +68,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+               # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -118,12 +131,85 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.70
+                    prefix_length: 26
+              - name: bond0.356
+                description: This is lb-signaling VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 356
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.130
+                    prefix_length: 26
+              - name: bond0.357
+                description: This is lb-intersite VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 357
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.200
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.5
+                    prefix_length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
+                accept-all-mac-addresses: true
                 ipv4:
                   enabled: false
                 ipv6:
@@ -170,6 +256,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -220,12 +319,85 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.71
+                    prefix_length: 26
+              - name: bond0.356
+                description: This is lb-signaling VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 356
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.131
+                    prefix_length: 26
+              - name: bond0.357
+                description: This is lb-intersite VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 357
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.201
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.6
+                    prefix_length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
+                accept-all-mac-addresses: true
                 ipv4:
                   enabled: false
                 ipv6:
@@ -272,6 +444,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -322,12 +507,85 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.72
+                    prefix_length: 26
+              - name: bond0.356
+                description: This is lb-signaling VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 356
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.132
+                    prefix_length: 26
+              - name: bond0.357
+                description: This is lb-intersite VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 357
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.202
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.7
+                    prefix_length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
+                accept-all-mac-addresses: true
                 ipv4:
                   enabled: false
                 ipv6:
@@ -374,6 +632,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -424,12 +695,85 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.73
+                    prefix_length: 26
+              - name: bond0.356
+                description: This is lb-signaling VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 356
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.133
+                    prefix_length: 26
+              - name: bond0.357
+                description: This is lb-intersite VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 357
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.203
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.8
+                    prefix_length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
+                accept-all-mac-addresses: true
                 ipv4:
                   enabled: false
                 ipv6:
@@ -476,6 +820,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -526,12 +883,85 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.74
+                    prefix_length: 26
+              - name: bond0.356
+                description: This is lb-signaling VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 356
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.134
+                    prefix_length: 26
+              - name: bond0.357
+                description: This is lb-intersite VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 357
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.204
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.9
+                    prefix_length: 26
               - name: bond1
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
                 #mtu: 9000
                 state: up
+                accept-all-mac-addresses: true
                 ipv4:
                   enabled: false
                 ipv6:
@@ -582,6 +1012,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -632,10 +1075,46 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.75
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.10
+                    prefix_length: 26
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:61:88
                 ipv4:
                   enabled: false
@@ -646,7 +1125,7 @@ spec:
               - name: ens4f1np1
                 description: HT nic 1 port 2
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:61:89
                 ipv4:
                   enabled: false
@@ -657,7 +1136,7 @@ spec:
               - name: ens5f0np0
                 description: HT nic 2 port 1
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:5e:28
                 ipv4:
                   enabled: false
@@ -668,7 +1147,7 @@ spec:
               - name: ens5f1np1
                 description: HT nic 2 port 2
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:5e:29
                 ipv4:
                   enabled: false
@@ -714,6 +1193,19 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              - destination: 10.9.76.1/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.2/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
+              - destination: 10.9.76.3/32
+                next-hop-interface: bond0.355
+                metric: 400
+                next-hop-address: 10.46.187.126
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -764,10 +1256,46 @@ spec:
                   enabled: false
                   dhcp: false
                   autoconf: false
+              - name: bond0.355
+                description: This is storage VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 355
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.187.76
+                    prefix_length: 26
+              - name: bond0.358
+                description: This is lb-oam VLAN
+                type: vlan
+                state: up
+                vlan:
+                  base-iface: bond0
+                  id: 358
+                ipv6:
+                  auto-dns: false
+                  dhcp: false
+                  enabled: false
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  auto-dns: false
+                  addresses:
+                  - ip: 10.46.188.11
+                    prefix_length: 26
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:62:48
                 ipv4:
                   enabled: false
@@ -778,7 +1306,7 @@ spec:
               - name: ens4f1np1
                 description: HT nic 1 port 2
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:62:49
                 ipv4:
                   enabled: false
@@ -789,7 +1317,7 @@ spec:
               - name: ens5f0np0
                 description: HT nic 2 port 1
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:5d:78
                 ipv4:
                   enabled: false
@@ -800,7 +1328,7 @@ spec:
               - name: ens5f1np1
                 description: HT nic 2 port 2
                 type: ethernet
-                state: down
+                state: up
                 mac-address: 10:70:fd:44:5d:79
                 ipv4:
                   enabled: false
