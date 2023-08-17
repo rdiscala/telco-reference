@@ -48,6 +48,31 @@ spec:
         installPlanApproval: "Automatic"
     - fileName: metallb/instance.yaml
       policyName: "metallb-operator-policy"
+    # label HT nodes
+    - fileName: LabelHTNode.yaml
+      policyName: "label-node"
+      metadata:
+        name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+        labels:
+          node-role.kubernetes.io/standard: ''
+    - fileName: LabelHTNode.yaml
+      policyName: "label-node"
+      metadata:
+        name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+        labels:
+          node-role.kubernetes.io/standard: ''
+    - fileName: LabelHTNode.yaml
+      policyName: "label-node"
+      metadata:
+        name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+        labels:
+          node-role.kubernetes.io/ht100gb: ''
+    - fileName: LabelHTNode.yaml
+      policyName: "label-node"
+      metadata:
+        name: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
+        labels:
+          node-role.kubernetes.io/ht100gb: ''
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
