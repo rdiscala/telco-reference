@@ -55,24 +55,28 @@ spec:
         name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
         labels:
           node-role.kubernetes.io/standard: ''
+          env: "qe"
     - fileName: LabelHTNode.yaml
       policyName: "label-node"
       metadata:
         name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
         labels:
           node-role.kubernetes.io/standard: ''
+          env: "qe"
     - fileName: LabelHTNode.yaml
       policyName: "label-node"
       metadata:
         name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
         labels:
           node-role.kubernetes.io/ht100gb: ''
+          env: "qe"
     - fileName: LabelHTNode.yaml
       policyName: "label-node"
       metadata:
         name: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
         labels:
           node-role.kubernetes.io/ht100gb: ''
+          env: "qe"
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
