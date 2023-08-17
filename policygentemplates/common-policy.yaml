@@ -19,6 +19,21 @@ spec:
       spec:
         displayName: Red Hat Operators Catalog
         image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.14
+    - fileName: SriovSubscriptionNS.yaml
+      policyName: "sriov-operator-policy"
+    - fileName: SriovSubscriptionOperGroup.yaml
+      policyName: "sriov-operator-policy"
+    - fileName: SriovSubscription.yaml
+      policyName: "sriov-operator-policy"
+      spec:
+        channel: "4.14"
+        source: redhat-operators-disconnected
+        installPlanApproval: "Automatic"
+    - fileName: SriovOperatorConfig.yaml
+      policyName: "sriov-operator-policy"
+      spec:
+        configDaemonNodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
       metadata:
