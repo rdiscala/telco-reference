@@ -112,6 +112,25 @@ spec:
       policyName: "odf-operator-configure"
     - fileName: odf/odf-storage-cluster.yaml
       policyName: "odf-operator-configure"
+    # storage classes from ODF
+    - fileName: StorageClass.yaml
+      policyName: "odf-storage-classes"
+      metadata:
+        name: ocs-external-storagecluster-ceph-rbd
+      provisioner: openshift-storage.rbd.csi.ceph.com
+      reclaimPolicy: Delete
+    - fileName: StorageClass.yaml
+      policyName: "odf-storage-classes"
+      metadata:
+        name: ocs-external-storagecluster-cephfs
+      provisioner: openshift-storage.cephfs.csi.ceph.com
+      reclaimPolicy: Delete
+    - fileName: StorageClass.yaml
+      policyName: "odf-storage-classes"
+      metadata:
+        name: openshift-storage.noobaa.io
+      provisioner: "openshift-storage.noobaa.io/obc"
+      reclaimPolicy: Delete
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
