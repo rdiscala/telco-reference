@@ -123,8 +123,9 @@ spec:
       policyName: "odf-storage-classes"
       metadata:
         name: ocs-external-storagecluster-cephfs
-      provisioner: "openshift-storage.cephfs.csi.ceph.com"
-      reclaimPolicy: "Delete"
+      spec:
+        provisioner: "openshift-storage.cephfs.csi.ceph.com"
+        reclaimPolicy: "Delete"
     - fileName: odf/odf-sc-nooba.yaml
       policyName: "odf-storage-classes"
       metadata:
