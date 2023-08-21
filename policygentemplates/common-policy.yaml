@@ -110,7 +110,7 @@ spec:
     # configure ODF operator
     - fileName: odf/external-ceph-secret.yaml
       policyName: "odf-operator-configure"
-    - fileName: odf/odf-storage-cluster.yaml"
+    - fileName: odf/odf-storage-cluster.yaml
       policyName: "odf-operator-configure"
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
