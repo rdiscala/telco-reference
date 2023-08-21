@@ -50,6 +50,17 @@ spec:
         installPlanApproval: "Automatic"
     - fileName: metallb/instance.yaml
       policyName: "metallb-operator-policy"
+    # confgire MetalLB operator
+    - fileName: metallb/bfdProfile
+      policyName: "metallb-operator-config-policy"
+    - fileName: metallb/bgpPeer.yaml
+      policyName: "metallb-operator-config-policy"
+    - fileName: metallb/community.yaml
+      policyName: "metallb-operator-config-policy"
+    - fileName: metallb/ipAddressPool.yaml
+      policyName: "metallb-operator-config-policy"
+    - fileName: metallb/bgpAdvertisement.yaml
+      policyName: "metallb-operator-config-policy"
     # label HT nodes
     - fileName: LabelHTNode.yaml
       policyName: "label-node"
