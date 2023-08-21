@@ -97,7 +97,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -117,7 +117,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
@@ -207,7 +207,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 accept-all-mac-addresses: true
                 ipv4:
@@ -285,7 +285,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -305,7 +305,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
@@ -395,7 +395,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 accept-all-mac-addresses: true
                 ipv4:
@@ -473,7 +473,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -493,7 +493,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
@@ -583,7 +583,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 accept-all-mac-addresses: true
                 ipv4:
@@ -661,7 +661,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -681,7 +681,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
@@ -771,7 +771,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 accept-all-mac-addresses: true
                 ipv4:
@@ -849,7 +849,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -869,7 +869,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
@@ -959,7 +959,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 accept-all-mac-addresses: true
                 ipv4:
@@ -1041,7 +1041,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -1061,7 +1061,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
@@ -1222,7 +1222,7 @@ spec:
                 description: base bonded interface
                 type: bond
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 state: up
                 ipv4:
                   enabled: false
@@ -1242,7 +1242,7 @@ spec:
                 state: up
                 #wait-ip: ipv4
                 # NOTE(yprokule): test with Jumbo frames later
-                #mtu: 9000
+                mtu: 9000
                 vlan:
                   base-iface: bond0
                   id: 354
