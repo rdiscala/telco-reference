@@ -83,6 +83,11 @@ spec:
         labels:
           node-role.kubernetes.io/ht100gb: ''
           env: "qe"
+      spec:
+        taints:
+          - effect: NoSchedule
+            key: sriov
+            value: "true"
     - fileName: LabelHTNode.yaml
       policyName: "label-node"
       metadata:
@@ -90,6 +95,11 @@ spec:
         labels:
           node-role.kubernetes.io/ht100gb: ''
           env: "qe"
+      spec:
+        taints:
+          - effect: NoSchedule
+            key: sriov
+            value: "true"
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
