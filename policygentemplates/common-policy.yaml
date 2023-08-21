@@ -51,7 +51,7 @@ spec:
     - fileName: metallb/instance.yaml
       policyName: "metallb-operator-policy"
     # confgire MetalLB operator
-    - fileName: metallb/bfdProfile
+    - fileName: metallb/bfdProfile.yaml
       policyName: "metallb-operator-config-policy"
     - fileName: metallb/bgpPeer.yaml
       policyName: "metallb-operator-config-policy"
