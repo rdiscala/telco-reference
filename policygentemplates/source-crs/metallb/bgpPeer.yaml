@@ -1,0 +1,24 @@
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: greenpeers
+  namespace: metallb-system
+  annotations:
+    ran.openshift.io/ztp-deploy-wave: "2"
+spec:
+  keepaliveTime: 0s
+  peerAddress: 10.46.188.2
+  peerASN: 65435
+  myASN: 65450
+  holdTime: 3m0s
+  bfdProfile: bfd-profile
+  peerPort: 179
+  nodeSelectors:
+    - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+            - openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
+  passwordSecret: {}
