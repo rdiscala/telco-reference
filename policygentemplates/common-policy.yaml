@@ -100,6 +100,18 @@ spec:
           - effect: NoSchedule
             key: sriov
             value: "true"
+    # install ODF operator
+    - fileName: odf/ns.yaml
+      policyName: "odf-operator-install"
+    - fileName: odf/operatorGroup.yaml
+      policyName: "odf-operator-install"
+    - fileName: odf/subscription.yaml"
+      policyName: "odf-operator-install"
+    # configure ODF operator
+    - fileName: odf/external-ceph-secret.yaml
+      policyName: "odf-operator-configure"
+    - fileName: odf/odf-storage-cluster.yaml"
+      policyName: "odf-operator-configure"
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
