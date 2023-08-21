@@ -113,19 +113,19 @@ spec:
     - fileName: odf/odf-storage-cluster.yaml
       policyName: "odf-operator-configure"
     # storage classes from ODF
-    - fileName: StorageClass.yaml
+    - fileName: odf/odf-storage-class.yaml
       policyName: "odf-storage-classes"
       metadata:
         name: ocs-external-storagecluster-ceph-rbd
       provisioner: openshift-storage.rbd.csi.ceph.com
       reclaimPolicy: Delete
-    - fileName: StorageClass.yaml
+    - fileName: odf/odf-storage-class.yaml
       policyName: "odf-storage-classes"
       metadata:
         name: ocs-external-storagecluster-cephfs
       provisioner: openshift-storage.cephfs.csi.ceph.com
       reclaimPolicy: Delete
-    - fileName: StorageClass.yaml
+    - fileName: odf/odf-storage-class.yaml
       policyName: "odf-storage-classes"
       metadata:
         name: openshift-storage.noobaa.io
