@@ -13,6 +13,14 @@ spec:
     - registry.ecore.lab.eng.tlv2.redhat.com:5000/ocp/release
     source: registry.ci.openshift.org/ocp/release
   - mirrors:
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+    source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+  - mirrors:
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+    source: registry.ci.openshift.org/ocp/release
+  - mirrors:
     - registry.ecore.lab.eng.tlv2.redhat.com:5000
     source: registry.redhat.io
   - mirrors:
