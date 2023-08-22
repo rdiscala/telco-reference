@@ -18,7 +18,7 @@ spec:
       spec:
         channel: "stable-4.14"
         desiredUpdate:
-          force: false
+          force: true
           version: "4.14.0-0.nightly-2023-08-11-055332"
           image: "registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release@sha256:8a5507bf897252cab6d1957d9477bce45e7427f4f798450605d3503aed936594"
       status:
