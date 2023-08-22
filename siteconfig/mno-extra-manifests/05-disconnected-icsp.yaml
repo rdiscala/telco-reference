@@ -1,7 +1,7 @@
 apiVersion: operator.openshift.io/v1alpha1
 kind: ImageContentSourcePolicy
 metadata:
-  name: fec-disconnected-icsp
+  name: rh-disconnected-icsp
 spec:
   repositoryDigestMirrors:
   #- mirrors:
