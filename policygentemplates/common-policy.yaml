@@ -10,8 +10,9 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
-    - fileName: RoutingViaHost.yaml
-      policyName: "config-network"
+    # routingViaHost enabled only during cluster installation?
+    #- fileName: RoutingViaHost.yaml
+    #  policyName: "config-network"
     - fileName: OperatorHub.yaml
       policyName: "disable-operator-hub"
     - fileName: DefaultCatsrc.yaml
