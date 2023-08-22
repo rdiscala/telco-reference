@@ -103,11 +103,11 @@ spec:
             value: "true"
     # install ODF operator
     - fileName: odf/ns.yaml
-      policyName: "odf-operator-install"
+      policyName: "odf-operator"
     - fileName: odf/operatorGroup.yaml
-      policyName: "odf-operator-install"
+      policyName: "odf-operator"
     - fileName: odf/subscription.yaml
-      policyName: "odf-operator-install"
+      policyName: "odf-operator"
     # configure ODF operator
     - fileName: odf/external-ceph-secret.yaml
       policyName: "odf-operator-configure"
