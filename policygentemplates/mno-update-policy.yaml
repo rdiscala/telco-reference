@@ -8,6 +8,7 @@ spec:
   bindingRules:
     site: "ecore"
     zone: "tlv2"
+    updateme: "true"
   #mcp: "master"
   remediationAction: inform
   sourceFiles:
