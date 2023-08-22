@@ -53,15 +53,15 @@ spec:
       policyName: "metallb-operator-policy"
     # confgire MetalLB operator
     - fileName: metallb/bfdProfile.yaml
-      policyName: "metallb-operator-config-policy"
+      policyName: "metallb-operator-policy-config"
     - fileName: metallb/bgpPeer.yaml
-      policyName: "metallb-operator-config-policy"
+      policyName: "metallb-operator-policy-config"
     - fileName: metallb/community.yaml
-      policyName: "metallb-operator-config-policy"
+      policyName: "metallb-operator-policy-config"
     - fileName: metallb/ipAddressPool.yaml
-      policyName: "metallb-operator-config-policy"
+      policyName: "metallb-operator-policy-config"
     - fileName: metallb/bgpAdvertisement.yaml
-      policyName: "metallb-operator-config-policy"
+      policyName: "metallb-operator-policy-config"
     # label HT nodes
     - fileName: LabelHTNode.yaml
       policyName: "label-node"
