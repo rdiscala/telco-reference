@@ -1,0 +1,27 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "mno-upgrade"
+  namespace: "ztp-common"
+spec:
+  bindingRules:
+    site: "ecore"
+    zone: "tlv2"
+  #mcp: "master"
+  remediationAction: inform
+  sourceFiles:
+    - fileName: ClusterVersion.yaml
+      policyName: "version-414-nightly-2023-08-11-055332"
+      metadata:
+        name: version
+      spec:
+        channel: "stable-4.14"
+        desiredUpdate:
+          force: false
+          version: "4.14.0-0.nightly-2023-08-11-055332"
+          image: "registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release@sha256:8a5507bf897252cab6d1957d9477bce45e7427f4f798450605d3503aed936594"
+      status:
+        history:
+          - version: "4.14.0-0.nightly-2023-08-11-055332"
+            state: "Completed"
