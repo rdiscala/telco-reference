@@ -110,9 +110,9 @@ spec:
       policyName: "odf-operator"
     # configure ODF operator
     - fileName: odf/external-ceph-secret.yaml
-      policyName: "odf-operator-configure"
+      policyName: "odf-operator-configure-1"
     - fileName: odf/odf-storage-cluster.yaml
-      policyName: "odf-operator-configure"
+      policyName: "odf-operator-configure-2"
     # storage classes from ODF
     - fileName: odf/odf-sc-ceph-rbd.yaml
       policyName: "odf-storage-classes"
