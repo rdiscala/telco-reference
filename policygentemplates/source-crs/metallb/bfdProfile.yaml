@@ -11,6 +11,6 @@ spec:
   transmitInterval: 100
   detectMultiplier: 3
   echoInterval: 300
-  echoMode: true
+  echoMode: false
   passiveMode: false
   minimumTtl: 254
