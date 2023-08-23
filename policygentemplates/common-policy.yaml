@@ -122,6 +122,15 @@ spec:
       policyName: "odf-storage-classes"
       metadata:
         name: openshift-storage.noobaa.io
+    # install NMState operator
+    - fileName: nmstate/namespace.yaml
+      policyName: "nmstate-operator"
+    - fileName: nmstate/operatorGroup.yaml
+      policyName: "nmstate-operator"
+    - fileName: nmstate/subscription.yaml
+      policyName: "nmstate-operator"
+    - fileName: nmstate/instance.yaml
+      policyName: "nmstate-operator"
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
