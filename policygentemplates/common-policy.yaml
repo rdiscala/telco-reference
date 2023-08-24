@@ -218,3 +218,41 @@ spec:
               mode: 420
               overwrite: true
               path: /etc/modules-load.d/kernel-load.conf
+    # configure socket buffer tunning
+    - fileName: TunedPerformancePatch.yaml
+      policyName: "socket-buffer-tunning"
+      metadata:
+        name: pfcp-socket-size
+      spec:
+        profile:
+        - data: |
+            [main]
+            summary=Description of pfcp-socket-size profile
+            include=openshift-control-plane
+            [sysctl]
+            net.core.rmem_max=8388608
+            net.core.wmem_max=8388608
+            net.core.rmem_default=238860
+            net.core.wmem_default=238860
+            net.ipv6.conf.bond1.accept_ra=0
+          name: pfcp-socket-size-master
+        - data: |
+            [main]
+            summary=Description of pfcp-socket-size profile
+            include=openshift-node
+            [sysctl]
+            net.core.rmem_max=8388608
+            net.core.wmem_max=8388608
+            net.core.rmem_default=238860
+            net.core.wmem_default=238860
+            net.ipv6.conf.bond1.accept_ra=0
+          name: pfcp-socket-size-standard
+        recommend:
+        - match:
+          - label: node-role.kubernetes.io/master
+          priority: 10
+          profile: pfcp-socket-size-master
+        - match:
+          - label: node-role.kubernetes.io/standard
+          priority: 20
+          profile: pfcp-socket-size-standard
