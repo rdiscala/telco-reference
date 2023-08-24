@@ -218,9 +218,39 @@ spec:
               mode: 420
               overwrite: true
               path: /etc/modules-load.d/kernel-load.conf
+    # configure performance profile
+    - fileName: PerformanceProfile.yaml
+      policyName: "post-install-tunning"
+      metadata:
+        name: ht100gb
+        annotations:
+          kubeletconfig.experimental: |
+            {"systemReserved": {"memory": "8Gi"}, "topologyManagerScope": "pod"}
+      spec:
+        cpu:
+          isolated: 1-25,27-51,53-77,79-103
+          reserved: 0,26,52,78
+        hugepages:
+          defaultHugepagesSize: 1G
+          pages:
+          - count: 6
+            node: 0
+            size: 1G
+          - count: 6
+            node: 1
+            size: 1G
+        net:
+          devices:
+          - interfaceName: ens4*
+          - interfaceName: ens5*
+          userLevelNetworking: true
+        nodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
+        numa:
+          topologyPolicy: single-numa-node
     # configure socket buffer tunning
     - fileName: TunedPerformancePatch.yaml
-      policyName: "socket-buffer-tunning"
+      policyName: "post-install-tunning"
       metadata:
         name: pfcp-socket-size
       spec:
