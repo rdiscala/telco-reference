@@ -237,6 +237,37 @@ spec:
         machineConfigPoolSelector:
           matchLabels:
             pools.operator.machineconfiguration.openshift.io/standard: ""
+    # configure SR-IOV Network Node Policy
+    - fileName: SriovNetworkNodePolicy.yaml
+      policyName: "sriov-nnp"
+      metadata:
+        name: sriovleftdpdkmellanox
+      spec:
+        resourceName: "sriovleftdpdkmellanox"
+        nodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
+        mtu: 9000
+        numVfs: 4
+        nicSelector:
+          # consider switching to PCI paths
+          pfNames: ['ens4f0np0', 'ens5f0np0']
+        deviceType: netdevice
+        isRdma: True
+    - fileName: SriovNetworkNodePolicy.yaml
+      policyName: "sriov-nnp"
+      metadata:
+        name: sriovrightdpdkmellanox
+      spec:
+        resourceName: "sriovrightdpdkmellanox"
+        nodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
+        mtu: 9000
+        numVfs: 4
+        nicSelector:
+          # consider switching to PCI paths
+          pfNames: ['ens4f1np1', 'ens5f1np1']
+        deviceType: netdevice
+        isRdma: True
     # configure performance profile
     - fileName: PerformanceProfile.yaml
       policyName: "post-install-tunning"
