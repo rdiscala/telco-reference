@@ -131,6 +131,15 @@ spec:
       policyName: "nmstate-operator"
     - fileName: nmstate/instance.yaml
       policyName: "nmstate-operator"
+    # configure custom Namespaces
+    - fileName: customNamespace.yaml
+      policyName: "custom-namespaces"
+      metadata:
+        name: pcc
+    - fileName: customNamespace.yaml
+      policyName: "custom-namespaces"
+      metadata:
+        name: pcg
     # configure MachineConfigPools
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
