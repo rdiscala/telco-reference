@@ -246,6 +246,27 @@ spec:
         machineConfigPoolSelector:
           matchLabels:
             pools.operator.machineconfiguration.openshift.io/standard: ""
+    # configure MACVLAN networks
+    - fileName: AddAdditionalNetworks.yaml
+      policyName: "configure-macvlan"
+      spec:
+        additionalNetworks:
+        - name: pc-mm-ext
+          namespace: pcc
+          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "pc-mm-ext", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+          type: Raw
+        - name: eric-pc-routing-engine-net0
+          namespace: pcc
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine-net0", "plugins": [ {"type": "macvlan", "master": "bond1", "mode": "private" },{ "type": "tuning", "name": "tuning-arp" }] }'
+          type: Raw
+        - name: eric-pc-vpn-gateway-forwarder-common
+          namespace: pcc
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-vpn-gateway-forwarder-common", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "bridge" }, { "type": "tuning", "name": "tuning-arp" }]}'
+          type: Raw
+        - name: eric-pc-routing-engine
+          namespace: pcg
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }, { "type": "tuning", "name": "tuning-arp" }]}'
+          type: Raw
     # configure SR-IOV Network Node Policy
     - fileName: SriovNetworkNodePolicy.yaml
       policyName: "sriov-nnp"
