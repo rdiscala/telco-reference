@@ -147,6 +147,7 @@ spec:
         name: ht100gb
         labels:
           machineconfiguration.openshift.io/role: ht100gb
+          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
       spec:
         maxUnavailable: 1
         machineConfigSelector:
@@ -166,6 +167,7 @@ spec:
         name: standard
         labels:
           machineconfiguration.openshift.io/role: standard
+          pools.operator.machineconfiguration.openshift.io/standard: ""
       spec:
         maxUnavailable: "90%"
         machineConfigSelector:
