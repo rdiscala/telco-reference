@@ -360,11 +360,15 @@ spec:
             net.ipv6.conf.bond1.accept_ra=0
           name: pfcp-socket-size-standard
         recommend:
-        - match:
+        - machineConfigLabels:
+            machineconfiguration.openshift.io/role: "master"
+          match:
           - label: node-role.kubernetes.io/master
           priority: 10
           profile: pfcp-socket-size-master
-        - match:
+        - machineConfigLabels:
+            machineconfiguration.openshift.io/role: "standard"
+          match:
           - label: node-role.kubernetes.io/standard
           priority: 20
           profile: pfcp-socket-size-standard
