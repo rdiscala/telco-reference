@@ -330,6 +330,8 @@ spec:
           node-role.kubernetes.io/ht100gb: ""
         numa:
           topologyPolicy: single-numa-node
+        machineConfigPoolSelector:
+          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
     # configure socket buffer tunning
     - fileName: TunedPerformancePatch.yaml
       policyName: "post-install-tunning"
