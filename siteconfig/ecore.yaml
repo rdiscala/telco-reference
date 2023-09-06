@@ -7,9 +7,9 @@ metadata:
 spec:
   baseDomain: lab.eng.tlv2.redhat.com
   pullSecretRef:
-    name: pull-secret-ecore
+    name: ecore-pull-secret
   # TODO(yprokule): add resource for 4.14 before deploying
-  clusterImageSetNameRef: "4.14.0-0.nightly-2023-08-28-154013"
+  clusterImageSetNameRef: "4.14.0-0.nightly-2023-09-02-132842"
   sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9hb6iTZJypEmzg4IZ767ze60UGhBWnjPXhovWVB7uKputdLzZhmlo36ifkXr/DTk8NGm47r6kXmz9NAF0pDHa5jX6yJFnhS4z5NY/mzsUX41gwiqBKYHgdp/KE1ylE8mbNon5ZpaaGvb876myjjPjPwWsD8hvXZirA5Q8TfDb/Pvgy1dhVH/uN05Ip1vVsp+bFGMPUJVWVUy/Eby5xW6OJv+FBOQq4nu6tslDZlHYXX2TSGrlW4x0i/oQMpKu/Y8ygAdjWqmAy6UBcho1nNWy15cp0jI5Fhjze171vSWZLAqJY+eFcL2kt/09RnY+MXyY/tIf+qNMyBE2Qltigah'
   clusters:
   - clusterName: ecore
@@ -41,7 +41,7 @@ spec:
         role: "master"
         bmcAddress: ilo5-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:9C"
         #bootMode: "UEFI"
         rootDeviceHints:
@@ -229,7 +229,7 @@ spec:
         role: "master"
         bmcAddress: ilo5-virtualmedia://10.46.61.245:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:E4"
         #bootMode: "UEFI"
         rootDeviceHints:
@@ -417,7 +417,7 @@ spec:
         role: "master"
         bmcAddress: ilo5-virtualmedia://10.46.61.246:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:1F:60"
         #bootMode: "UEFI"
         rootDeviceHints:
@@ -605,7 +605,7 @@ spec:
         role: "worker"
         bmcAddress: ilo5-virtualmedia://10.46.61.247:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:A4"
         bootMode: "UEFI"
         rootDeviceHints:
@@ -793,7 +793,7 @@ spec:
         role: "worker"
         bmcAddress: ilo5-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:28"
         bootMode: "UEFI"
         rootDeviceHints:
@@ -981,7 +981,7 @@ spec:
         role: "worker"
         bmcAddress: ilo5-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:E4"
         bootMode: "UEFI"
         rootDeviceHints:
@@ -1162,7 +1162,7 @@ spec:
         role: "worker"
         bmcAddress: ilo5-virtualmedia://10.46.61.243:443/redfish/v1/Systems/1
         bmcCredentialsName:
-          name: bmc-secret-nodes
+          name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:4E"
         bootMode: "UEFI"
         rootDeviceHints:

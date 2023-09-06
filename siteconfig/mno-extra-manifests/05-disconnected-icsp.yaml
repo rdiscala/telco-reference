@@ -21,23 +21,23 @@ spec:
     - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
     source: registry.ci.openshift.org/ocp/release
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005
     source: registry.redhat.io
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005
     source: registry-proxy.engineering.redhat.com
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005
     source: registry.stage.redhat.io
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000/openshift-qe-optional-operators
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-qe-optional-operators
     source: quay.io/openshift-qe-optional-operators
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000/openshifttest
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshifttest
     source: quay.io/openshifttest
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000/rh-nfv-int
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/rh-nfv-int
     source: quay.io/rh-nfv-int
   - mirrors:
-    - registry.ecore.lab.eng.tlv2.redhat.com:5000/intel
+    - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
     source: registry.connect.redhat.com/intel
