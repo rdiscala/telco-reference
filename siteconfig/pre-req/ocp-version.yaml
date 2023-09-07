@@ -19,3 +19,10 @@ metadata:
   name: 4.14.0-0.nightly-2023-08-28-154013
 spec:
   releaseImage: registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release:4.14.0-0.nightly-2023-08-28-154013
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterImageSet
+metadata:
+  name: 4.14.0-0.nightly-2023-09-02-132842
+spec:
+  releaseImage: registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release:4.14.0-0.nightly-2023-09-02-132842
