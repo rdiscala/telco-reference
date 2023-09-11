@@ -349,6 +349,7 @@ spec:
             net.core.rmem_default=238860
             net.core.wmem_default=238860
             net.ipv6.conf.bond1.accept_ra=0
+            net.ipv4.conf.bond0/355.forwarding=1
           name: pfcp-socket-size-master
         - data: |
             [main]
@@ -360,6 +361,7 @@ spec:
             net.core.rmem_default=238860
             net.core.wmem_default=238860
             net.ipv6.conf.bond1.accept_ra=0
+            net.ipv4.conf.bond0/355.forwarding=1
           name: pfcp-socket-size-standard
         recommend:
         - machineConfigLabels:
