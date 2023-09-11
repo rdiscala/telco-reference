@@ -2,7 +2,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    ran.openshift.io/ztp-deploy-wave: "10"
+    ran.openshift.io/ztp-deploy-wave: "15"
   name: ocs-external-storagecluster-ceph-rbd
 provisioner: openshift-storage.rbd.csi.ceph.com
 reclaimPolicy: Delete
