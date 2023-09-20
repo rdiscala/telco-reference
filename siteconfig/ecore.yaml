@@ -25,15 +25,25 @@ spec:
     # Network range where the MNO nodes are connected
     machineNetwork:
       - cidr: "10.46.187.0/26"
+      - cidr: "2620:52:0:2ebb::0/122"
     # Pod's SDN network range
     clusterNetwork:
       - cidr: "10.128.0.0/14"
         hostPrefix: 23
+      - cidr: "fd01::/48"
+        hostPrefix: 64
     # Services SDN network range
     serviceNetwork:
       - "172.30.0.0/16"
-    apiVIP: 10.46.187.10
-    ingressVIP: 10.46.187.11
+      - "fd02::/112"
+    apiVIP: "10.46.187.10"
+    apiVIPs:
+    - 10.46.187.10
+    - 2620:52:0:2ebb::10
+    ingressVIP: "10.46.187.11"
+    ingressVIPs:
+    - 10.46.187.11
+    - 2620:52:0:2ebb::11
     additionalNTPSources:
       - registry.ecore.lab.eng.tlv2.redhat.com
     nodes:
@@ -67,6 +77,9 @@ spec:
               config:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
                # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
@@ -128,9 +141,12 @@ spec:
                   - ip: 10.46.187.20
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0020
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -141,7 +157,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0050
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -195,7 +214,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0010
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -255,6 +277,9 @@ spec:
               config:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
@@ -316,9 +341,12 @@ spec:
                   - ip: 10.46.187.21
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0021
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -329,7 +357,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0051
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -383,7 +414,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0011
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -443,6 +477,9 @@ spec:
               config:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
@@ -504,9 +541,12 @@ spec:
                   - ip: 10.46.187.22
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0022
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -517,7 +557,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0052
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -571,7 +614,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0012
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -631,6 +677,9 @@ spec:
               config:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
@@ -692,9 +741,12 @@ spec:
                   - ip: 10.46.187.23
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0023
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -705,7 +757,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0053
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -759,7 +814,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0013
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -819,6 +877,9 @@ spec:
               config:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
@@ -880,9 +941,12 @@ spec:
                   - ip: 10.46.187.24
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0024
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -893,7 +957,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0054
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -947,7 +1014,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0014
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -1012,6 +1082,9 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
+                next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
                 next-hop-interface: bond0.355
@@ -1072,9 +1145,12 @@ spec:
                   - ip: 10.46.187.25
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0025
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -1085,7 +1161,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0055
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -1103,7 +1182,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0015
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -1193,6 +1275,9 @@ spec:
               - destination: 0.0.0.0/0
                 next-hop-address: 10.46.187.62
                 next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
+                next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
               - destination: 10.9.76.1/32
                 next-hop-interface: bond0.355
@@ -1253,9 +1338,12 @@ spec:
                   - ip: 10.46.187.26
                     prefix-length: 26
                 ipv6:
-                  enabled: false
+                  enabled: true
                   dhcp: false
                   autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0026
+                    prefix-length: 122
               - name: bond0.355
                 description: This is storage VLAN
                 type: vlan
@@ -1266,7 +1354,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0056
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false
@@ -1284,7 +1375,10 @@ spec:
                 ipv6:
                   auto-dns: false
                   dhcp: false
-                  enabled: false
+                  enabled: true
+                  address:
+                  - ip: 2620:0052:0000:2ebc::0016
+                    prefix-length: 122
                 ipv4:
                   enabled: true
                   dhcp: false

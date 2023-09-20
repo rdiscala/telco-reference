@@ -30,7 +30,7 @@ spec:
     - fileName: SriovSubscription.yaml
       policyName: "sriov-operator-policy"
       spec:
-        channel: "4.14"
+        channel: "stable"
         source: redhat-operators-disconnected
         installPlanApproval: "Automatic"
     - fileName: SriovOperatorConfig.yaml
