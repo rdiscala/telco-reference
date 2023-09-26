@@ -234,7 +234,7 @@ spec:
           storage:
             files:
             - contents:
-                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKY29tbWFuZGtleSAxCmdlbmVyYXRlY29tbWFuZGtleQpub2NsaWVudGxvZwpsb2djaGFuZ2UgMC41CmxvZ2RpciAvdmFyL2xvZy9jaHJvbnk=
+                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
                 verification: {}
               filesystem: root
               group:
@@ -258,7 +258,7 @@ spec:
           storage:
             files:
             - contents:
-                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKY29tbWFuZGtleSAxCmdlbmVyYXRlY29tbWFuZGtleQpub2NsaWVudGxvZwpsb2djaGFuZ2UgMC41CmxvZ2RpciAvdmFyL2xvZy9jaHJvbnk=
+                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
                 verification: {}
               filesystem: root
               group:
