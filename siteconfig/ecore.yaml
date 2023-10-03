@@ -25,7 +25,7 @@ spec:
     # Network range where the MNO nodes are connected
     machineNetwork:
       - cidr: "10.46.187.0/26"
-      - cidr: "2620:52:0:2ebb::0/122"
+      - cidr: "2620:52:0:2ebb::/122"
     # Pod's SDN network range
     clusterNetwork:
       - cidr: "10.128.0.0/14"
