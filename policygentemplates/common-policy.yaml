@@ -159,6 +159,33 @@ spec:
       policyName: "odf-storage-classes"
       metadata:
         name: openshift-storage.noobaa.io
+    # configure Monitoring
+    - fileName: "GenericConfigMap.yaml"
+      policyName: "dedicated-service-monitor"
+      metadata:
+        name: cluster-monitoring-config
+        namespace: openshift-monitoring
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "16"
+      data:
+        config.yaml: |
+          prometheusK8s:
+            dedicatedServiceMonitors:
+              enabled: true
+            retention: 15d
+            volumeClaimTemplate:
+              spec:
+                storageClassName: ocs-external-storagecluster-ceph-rbd
+                resources:
+                  requests:
+                    storage: 100Gi
+          alertmanagerMain:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: ocs-external-storagecluster-ceph-rbd
+                resources:
+                  requests:
+                    storage: 20Gi
     # install NMState operator
     - fileName: nmstate/namespace.yaml
       policyName: "nmstate-operator"
