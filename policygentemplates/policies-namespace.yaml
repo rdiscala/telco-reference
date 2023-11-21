@@ -7,4 +7,14 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: ztp-group
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ztp-site
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: ztp-update

@@ -81,19 +81,8 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # static routes for external CEPH monitoring endpoints
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -147,84 +136,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0020
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0050
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.70
-                    prefix-length: 26
-              - name: bond0.356
-                description: This is lb-signaling VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 356
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.130
-                    prefix-length: 26
-              - name: bond0.357
-                description: This is lb-intersite VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 357
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.200
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0010
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.5
-                    prefix-length: 26
+              # TODO(yprokule): move bond1 to another PGT
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -282,18 +194,7 @@ spec:
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -347,84 +248,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0021
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0051
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.71
-                    prefix-length: 26
-              - name: bond0.356
-                description: This is lb-signaling VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 356
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.131
-                    prefix-length: 26
-              - name: bond0.357
-                description: This is lb-intersite VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 357
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.201
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0011
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.6
-                    prefix-length: 26
+              # TODO(yprokule): move bond1 to another PGT
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -482,18 +306,7 @@ spec:
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -547,84 +360,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0022
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0052
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.72
-                    prefix-length: 26
-              - name: bond0.356
-                description: This is lb-signaling VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 356
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.132
-                    prefix-length: 26
-              - name: bond0.357
-                description: This is lb-intersite VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 357
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.202
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0012
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.7
-                    prefix-length: 26
+              # TODO(yprokule): move bond1 to another PGT
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -682,18 +418,7 @@ spec:
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -747,84 +472,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0023
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0053
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.73
-                    prefix-length: 26
-              - name: bond0.356
-                description: This is lb-signaling VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 356
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.133
-                    prefix-length: 26
-              - name: bond0.357
-                description: This is lb-intersite VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 357
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.203
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0013
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.8
-                    prefix-length: 26
+              # TODO(yprokule): move bond1 to another PGT
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -882,18 +530,7 @@ spec:
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -947,84 +584,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0024
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0054
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.74
-                    prefix-length: 26
-              - name: bond0.356
-                description: This is lb-signaling VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 356
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.134
-                    prefix-length: 26
-              - name: bond0.357
-                description: This is lb-intersite VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 357
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: false
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.204
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0014
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.9
-                    prefix-length: 26
+              # TODO(yprokule): move bond1 to another PGT
               - name: bond1
                 description: base bonded interface
                 type: bond
@@ -1086,18 +646,7 @@ spec:
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -1151,48 +700,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0025
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0055
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.75
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0015
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.10
-                    prefix-length: 26
+              # TODO(yprokule): move this to another PGT
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
@@ -1279,18 +787,7 @@ spec:
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
               # static routes for external CEPH monitoring endpoints
-              - destination: 10.9.76.1/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.2/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
-              - destination: 10.9.76.3/32
-                next-hop-interface: bond0.355
-                metric: 400
-                next-hop-address: 10.46.187.126
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -1344,48 +841,7 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0026
                     prefix-length: 122
-              - name: bond0.355
-                description: This is storage VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 355
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebb::0056
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.187.76
-                    prefix-length: 26
-              - name: bond0.358
-                description: This is lb-oam VLAN
-                type: vlan
-                state: up
-                vlan:
-                  base-iface: bond0
-                  id: 358
-                ipv6:
-                  auto-dns: false
-                  dhcp: false
-                  enabled: true
-                  address:
-                  - ip: 2620:0052:0000:2ebc::0016
-                    prefix-length: 122
-                ipv4:
-                  enabled: true
-                  dhcp: false
-                  auto-dns: false
-                  address:
-                  - ip: 10.46.188.11
-                    prefix-length: 26
+              # TODO(yprokule): move to another PGT
               - name: ens4f0np0
                 description: HT nic 1 port 1
                 type: ethernet
