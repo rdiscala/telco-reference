@@ -4,9 +4,12 @@ kind: Kustomization
 generators:
   - common-policy.yaml
   - mno-update-policy-4.14.rc.2.yml
+  # configure VLAN sub-interfaces on the cluster nodes
   - sites/ecore-tlv2/configure-lb-intersite-vlan.yaml
   - sites/ecore-tlv2/configure-lb-oam-vlan.yaml
   - sites/ecore-tlv2/configure-lb-signaling-vlan.yaml
   - sites/ecore-tlv2/configure-storage-vlan.yaml
+  # configure HT nodes
+  - sites/ecore-tlv2/config-ht-nodes.yaml
 resources:
   - policies-namespace.yaml
