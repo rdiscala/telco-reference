@@ -9,6 +9,8 @@ generators:
   - sites/ecore-tlv2/configure-lb-oam-vlan.yaml
   - sites/ecore-tlv2/configure-lb-signaling-vlan.yaml
   - sites/ecore-tlv2/configure-storage-vlan.yaml
+  # label nodes
+  - sites/ecore-tlv2/label-nodes.yaml
   # configure HT nodes
   - sites/ecore-tlv2/config-ht-nodes.yaml
 resources:
