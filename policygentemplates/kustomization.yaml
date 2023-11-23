@@ -13,5 +13,7 @@ generators:
   - sites/ecore-tlv2/label-nodes.yaml
   # configure HT nodes
   - sites/ecore-tlv2/config-ht-nodes.yaml
+  # configure ODF
+  - sites/ecore-tlv2/deoploy-odf.yaml
 resources:
   - policies-namespace.yaml
