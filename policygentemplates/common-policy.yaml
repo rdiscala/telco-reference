@@ -204,27 +204,6 @@ spec:
       policyName: "custom-namespaces"
       metadata:
         name: pcg
-    # configure MachineConfigPools
-    - fileName: MachineConfigPool.yaml
-      policyName: "config-policy"
-      metadata:
-        name: ht100gb
-        labels:
-          machineconfiguration.openshift.io/role: ht100gb
-          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
-      spec:
-        maxUnavailable: 1
-        machineConfigSelector:
-          matchExpressions:
-            - key: machineconfiguration.openshift.io/role
-              operator: In
-              values:
-                - worker
-                - ht100gb
-        nodeSelector:
-          matchLabels:
-            node-role.kubernetes.io/ht100gb: ""
-        paused: false
     - fileName: MachineConfigPool.yaml
       policyName: "config-policy"
       metadata:
@@ -419,69 +398,6 @@ spec:
           namespace: pcg
           rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }, { "type": "tuning", "name": "tuning-arp" }]}'
           type: Raw
-    # configure SR-IOV Network Node Policy
-    - fileName: SriovNetworkNodePolicy.yaml
-      policyName: "sriov-nnp"
-      metadata:
-        name: sriovleftdpdkmellanox
-      spec:
-        resourceName: "sriovleftdpdkmellanox"
-        nodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
-        mtu: 9000
-        numVfs: 4
-        nicSelector:
-          # consider switching to PCI paths
-          pfNames: ['ens4f0np0', 'ens5f0np0']
-        deviceType: netdevice
-        isRdma: True
-    - fileName: SriovNetworkNodePolicy.yaml
-      policyName: "sriov-nnp"
-      metadata:
-        name: sriovrightdpdkmellanox
-      spec:
-        resourceName: "sriovrightdpdkmellanox"
-        nodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
-        mtu: 9000
-        numVfs: 4
-        nicSelector:
-          # consider switching to PCI paths
-          pfNames: ['ens4f1np1', 'ens5f1np1']
-        deviceType: netdevice
-        isRdma: True
-    # configure performance profile
-    - fileName: PerformanceProfile.yaml
-      policyName: "post-install-tunning"
-      metadata:
-        name: ht100gb
-        annotations:
-          kubeletconfig.experimental: |
-            {"systemReserved": {"memory": "8Gi"}, "topologyManagerScope": "pod"}
-      spec:
-        cpu:
-          isolated: 1-25,27-51,53-77,79-103
-          reserved: 0,26,52,78
-        hugepages:
-          defaultHugepagesSize: 1G
-          pages:
-          - count: 6
-            node: 0
-            size: 1G
-          - count: 6
-            node: 1
-            size: 1G
-        net:
-          devices:
-          - interfaceName: ens4*
-          - interfaceName: ens5*
-          userLevelNetworking: true
-        nodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
-        numa:
-          topologyPolicy: single-numa-node
-        machineConfigPoolSelector:
-          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
     # configure socket buffer tunning
     - fileName: TunedPerformancePatch.yaml
       policyName: "post-install-tunning"

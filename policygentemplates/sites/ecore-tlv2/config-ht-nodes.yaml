@@ -1,0 +1,134 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "ht-worker-config"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    site: "ecore"
+    zone: "tlv2"
+  remediationAction: inform
+  mcp: "ht100gb"
+  sourceFiles:
+    # configure MachineConfigPool ht100gb
+    - fileName: MachineConfigPool.yaml
+      policyName: "config-policy"
+      metadata:
+        name: ht100gb
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+        labels:
+          machineconfiguration.openshift.io/role: ht100gb
+          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
+      spec:
+        maxUnavailable: 1
+        machineConfigSelector:
+          matchExpressions:
+            - key: machineconfiguration.openshift.io/role
+              operator: In
+              values:
+                - worker
+                - ht100gb
+        nodeSelector:
+          matchLabels:
+            node-role.kubernetes.io/ht100gb: ""
+        paused: false
+    # configure SR-IOV Network Node Policy
+    - fileName: SriovNetworkNodePolicy.yaml
+      policyName: "sriov-nnp"
+      metadata:
+        name: sriovleftdpdkmellanox
+      spec:
+        resourceName: "sriovleftdpdkmellanox"
+        nodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
+        mtu: 9000
+        numVfs: 4
+        priority: 99
+        nicSelector:
+          # consider switching to PCI paths
+          pfNames: ['ens4f0np0', 'ens5f0np0']
+        deviceType: netdevice
+        isRdma: True
+    - fileName: SriovNetworkNodePolicy.yaml
+      policyName: "sriov-nnp"
+      metadata:
+        name: sriovrightdpdkmellanox
+      spec:
+        resourceName: "sriovrightdpdkmellanox"
+        nodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
+        mtu: 9000
+        numVfs: 4
+        priority: 99
+        nicSelector:
+          # consider switching to PCI paths
+          pfNames: ['ens4f1np1', 'ens5f1np1']
+        deviceType: netdevice
+        isRdma: True
+    # configure SR-IOV Networks
+    - fileName: SriovNetwork.yaml
+      policyName: config-sriov-network
+      metadata:
+        name: "eric-pc-up-data-plane-net1"
+      spec:
+        capabilities: '{ "ips": true }'
+        ipam: '{}'
+        linkState: auto
+        networkNamespace: pcg
+        resourceName: sriovleftdpdkmellanox
+        trust: "on"
+    - fileName: SriovNetwork.yaml
+      policyName: config-sriov-network
+      metadata:
+        name: "eric-pc-up-data-plane-net2"
+      spec:
+        capabilities: '{ "ips": true }'
+        ipam: '{}'
+        linkState: auto
+        networkNamespace: pcg
+        resourceName: sriovrightdpdkmellanox
+        trust: "on"
+    # configure performance profile
+    - fileName: PerformanceProfile.yaml
+      policyName: "post-install-tunning"
+      # per Konstantino's repo complianceType should be mustonlyhave
+      # https://gitlab.consulting.redhat.com/partner-integration/n62acm/-/blob/master/policies/sites/n62-ocp1/config-ht-nodes.yaml?ref_type=heads
+      # TODO(yprokule): clarify the above
+      # complianceType: mustonlyhave
+      metadata:
+        name: ht100gb
+        annotations:
+          kubeletconfig.experimental: |
+            {"systemReserved": {"memory": "8Gi"}, "topologyManagerScope": "pod"}
+      spec:
+        cpu:
+          isolated: 1-25,27-51,53-77,79-103
+          reserved: 0,26,52,78
+        hugepages:
+          defaultHugepagesSize: 1G
+          pages:
+          - count: 6
+            node: 0
+            size: 1G
+          - count: 6
+            node: 1
+            size: 1G
+        net:
+          devices:
+          - interfaceName: ens4*
+          - interfaceName: ens5*
+          userLevelNetworking: true
+        numa:
+          topologyPolicy: single-numa-node
+        workloadHints:
+          realTime: false
+          highPowerConsumption: false
+          perPodPowerManagement: false
+        realTimeKernel:
+          enabled: false
+        nodeSelector:
+          node-role.kubernetes.io/ht100gb: ""
+        machineConfigPoolSelector:
+          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
