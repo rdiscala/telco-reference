@@ -1,0 +1,36 @@
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "packet-core-validator"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    site: "ecore"
+    zone: "tlv2"
+  sourceFiles:
+    - fileName: validatorCRs/informPacketCOREValidator/MCP.yaml
+      policyName: "packet-core-validator"
+      metadata:
+        name: master
+    - fileName: validatorCRs/informPacketCOREValidator/MCP.yaml
+      policyName: "packet-core-validator"
+      metadata:
+        name: worker
+    - fileName: validatorCRs/informPacketCOREValidator/MCP.yaml
+      policyName: "packet-core-validator"
+      metadata:
+        name: standard
+    - fileName: validatorCRs/informPacketCOREValidator/MCP.yaml
+      policyName: "packet-core-validator"
+      metadata:
+        name: ht100gb
+ #      status:
+ #        configuration:
+ #          source:
+ #            - apiVersion: machineconfiguration.openshift.io/v1
+ #              kind: MachineConfig
+ #              name: 50-performance-ht100gb
+ #            - apiVersion: machineconfiguration.openshift.io/v1
+ #              kind: MachineConfig
+ #              name: 50-nto-ht100gb
+ #
