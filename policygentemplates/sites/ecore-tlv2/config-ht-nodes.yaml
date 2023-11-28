@@ -79,6 +79,7 @@ spec:
         networkNamespace: pcg
         resourceName: sriovleftdpdkmellanox
         trust: "on"
+        vlan: 497
     - fileName: SriovNetwork.yaml
       policyName: config-sriov-network
       metadata:
@@ -90,6 +91,7 @@ spec:
         networkNamespace: pcg
         resourceName: sriovrightdpdkmellanox
         trust: "on"
+        vlan: 497
     # configure performance profile
     - fileName: PerformanceProfile.yaml
       policyName: "post-install-tunning"
