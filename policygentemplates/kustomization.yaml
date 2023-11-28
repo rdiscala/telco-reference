@@ -15,5 +15,7 @@ generators:
   - sites/ecore-tlv2/config-ht-nodes.yaml
   # configure ODF
   - sites/ecore-tlv2/deoploy-odf.yaml
+  # cluster validation
+  - sites/ecore-tlv2/packet-core-validator.yaml
 resources:
   - policies-namespace.yaml
