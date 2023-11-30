@@ -49,56 +49,9 @@ spec:
         channel: "stable"
         source: redhat-operators-disconnected
         installPlanApproval: "Automatic"
-    # confgire MetalLB operator
-    - fileName: metallb/instance.yaml
-      policyName: "metallb-operator-policy-config"
-    - fileName: metallb/bfdProfile.yaml
-      policyName: "metallb-operator-policy-config"
-    - fileName: metallb/bgpPeer.yaml
-      policyName: "metallb-operator-policy-config"
-      spec:
-        keepaliveTime: 0s
-        peerAddress: 10.46.188.2
-        peerASN: 65435
-        myASN: 65450
-        holdTime: 3m0s
-        bfdProfile: bfd-profile
-        peerPort: 179
-        nodeSelectors:
-          - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                  - openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
-                  - openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
-                  - openshift-master-0.ecore.lab.eng.tlv2.redhat.com
-                  - openshift-master-1.ecore.lab.eng.tlv2.redhat.com
-                  - openshift-master-2.ecore.lab.eng.tlv2.redhat.com
-    - fileName: metallb/community.yaml
-      policyName: "metallb-operator-policy-config"
-      spec:
-        communities:
-          - name: greenc
-            value: '7003:008'
-    - fileName: metallb/ipAddressPool.yaml
-      policyName: "metallb-operator-policy-config"
-      spec:
-        autoAssign: false
-        # in ecore setup(registry.ecore.lab.eng.tlv2.redhat.com)
-        # this is LB-OAM vlan
-        addresses:
-          - 10.46.188.20/32
-          - 10.46.188.21/32
-          - 10.46.188.22/32
-    - fileName: metallb/bgpAdvertisement.yaml
-      policyName: "metallb-operator-policy-config"
-      spec:
-        communities:
-          - greenc
-        ipAddressPools:
-          - greenips
-        peers:
-          - greenpeers
+    #
+    # confgire MetalLB operator moved to a site folder
+    #
     # configure Monitoring
     - fileName: "GenericConfigMap.yaml"
       policyName: "dedicated-service-monitor"

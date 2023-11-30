@@ -1,0 +1,63 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "networks-qe"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    site: "ecore"
+    zone: "tlv2"
+  remediationAction: inform
+  sourceFiles:
+    - fileName: metallb/instance.yaml
+      policyName: "config-metallb"
+      spec:
+        logLevel: debug
+    - fileName: metallb/bfdProfile.yaml
+      policyName: "config-metallb"
+    - fileName: metallb/bgpPeer.yaml
+      policyName: "config-metallb"
+      spec:
+        keepaliveTime: 0s
+        peerAddress: 10.46.188.2
+        peerASN: 65435
+        myASN: 65450
+        holdTime: 3m0s
+        bfdProfile: bfd-profile
+        peerPort: 179
+        nodeSelectors:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+                  - openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+                  - openshift-master-0.ecore.lab.eng.tlv2.redhat.com
+                  - openshift-master-1.ecore.lab.eng.tlv2.redhat.com
+                  - openshift-master-2.ecore.lab.eng.tlv2.redhat.com
+    - fileName: metallb/community.yaml
+      policyName: "config-metallb"
+      spec:
+        communities:
+          - name: greenc
+            value: '7003:008'
+    - fileName: metallb/bgpAdvertisement.yaml
+      policyName: "config-metallb"
+      spec:
+        communities:
+          - greenc
+        ipAddressPools:
+          - greenips
+        peers:
+          - greenpeers
+    - fileName: metallb/ipAddressPool.yaml
+      policyName: "config-metallb"
+      spec:
+        autoAssign: false
+        # in ecore setup(registry.ecore.lab.eng.tlv2.redhat.com)
+        # this is LB-OAM vlan
+        addresses:
+          - 10.46.188.20/32
+          - 10.46.188.21/32
+          - 10.46.188.22/32
