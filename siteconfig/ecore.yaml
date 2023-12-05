@@ -390,6 +390,12 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:A4"
         bootMode: "UEFI"
+        nodeLabels:
+          node-role.kubernetes.io/standard: ''
+          env: "qe"
+          # acm-policy-labels-workaround: enabled
+          pcc-mm-pod: controller
+          pcc-sm-pod: non-controller
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -502,6 +508,12 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:28"
         bootMode: "UEFI"
+        nodeLabels:
+          node-role.kubernetes.io/standard: ''
+          env: "qe"
+          # acm-policy-labels-workaround: enabled
+          pcc-mm-pod: controller
+          pcc-sm-pod: non-controller
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -614,6 +626,9 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:E4"
         bootMode: "UEFI"
+        nodeLabels:
+          node-role.kubernetes.io/ht100gb: ''
+          env: "qe"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -755,6 +770,9 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:4E"
         bootMode: "UEFI"
+        nodeLabels:
+          node-role.kubernetes.io/ht100gb: ''
+          env: "qe"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
