@@ -10,46 +10,19 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
-    # label HT nodes
     - fileName: LabelHTNode.yaml
-      policyName: "label-node"
-      metadata:
-        name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
-        labels:
-          node-role.kubernetes.io/standard: ''
-          env: "qe"
-          # acm-policy-labels-workaround: enabled
-          pcc-mm-pod: controller
-          pcc-sm-pod: non-controller
-    - fileName: LabelHTNode.yaml
-      policyName: "label-node"
-      metadata:
-        name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
-        labels:
-          node-role.kubernetes.io/standard: ''
-          env: "qe"
-          # acm-policy-labels-workaround: enabled
-          pcc-mm-pod: controller
-          pcc-sm-pod: non-controller
-    - fileName: LabelHTNode.yaml
-      policyName: "label-node"
+      policyName: "taint-node"
       metadata:
         name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
-        labels:
-          node-role.kubernetes.io/ht100gb: ''
-          env: "qe"
       spec:
         taints:
           - effect: NoSchedule
             key: sriov
             value: "true"
     - fileName: LabelHTNode.yaml
-      policyName: "label-node"
+      policyName: "taint-node"
       metadata:
         name: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
-        labels:
-          node-role.kubernetes.io/ht100gb: ''
-          env: "qe"
       spec:
         taints:
           - effect: NoSchedule
