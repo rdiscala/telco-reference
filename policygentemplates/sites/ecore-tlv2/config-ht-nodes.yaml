@@ -11,29 +11,9 @@ spec:
   remediationAction: inform
   mcp: "ht100gb"
   sourceFiles:
-    # configure MachineConfigPool ht100gb
-    - fileName: MachineConfigPool.yaml
-      policyName: "config-policy"
-      metadata:
-        name: ht100gb
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-        labels:
-          machineconfiguration.openshift.io/role: ht100gb
-          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
-      spec:
-        maxUnavailable: 1
-        machineConfigSelector:
-          matchExpressions:
-            - key: machineconfiguration.openshift.io/role
-              operator: In
-              values:
-                - worker
-                - ht100gb
-        nodeSelector:
-          matchLabels:
-            node-role.kubernetes.io/ht100gb: ""
-        paused: false
+    #
+    # configure MachineConfigPool ht100gb moved to extra-manifests
+    #
     # configure SR-IOV Network Node Policy
     - fileName: SriovNetworkNodePolicy.yaml
       policyName: "sriov-nnp"

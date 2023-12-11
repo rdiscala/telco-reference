@@ -97,26 +97,9 @@ spec:
       policyName: "custom-namespaces"
       metadata:
         name: pcg
-    - fileName: MachineConfigPool.yaml
-      policyName: "config-policy"
-      metadata:
-        name: standard
-        labels:
-          machineconfiguration.openshift.io/role: standard
-          pools.operator.machineconfiguration.openshift.io/standard: ""
-      spec:
-        maxUnavailable: "90%"
-        machineConfigSelector:
-          matchExpressions:
-            - key: machineconfiguration.openshift.io/role
-              operator: In
-              values:
-                - worker
-                - standard
-        nodeSelector:
-          matchLabels:
-            node-role.kubernetes.io/standard: ""
-        paused: false
+    #
+    # 'standard' MCP creation moved to extra-manifests
+    #
     # configure Chronyd for control-plane nodes in disconnected setup
     - fileName: MachineConfigGeneric.yaml
       policyName: "config-policy"
