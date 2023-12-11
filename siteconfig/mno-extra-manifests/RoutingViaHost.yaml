@@ -16,4 +16,5 @@ spec:
     ovnKubernetesConfig:
       mtu: 8900
       gatewayConfig:
+        ipForwarding: "Global"
         routingViaHost: true
