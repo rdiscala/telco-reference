@@ -117,44 +117,6 @@ spec:
           matchLabels:
             node-role.kubernetes.io/standard: ""
         paused: false
-    # configure IP forwarding on control-plane nodes
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        name: 45-enable-forwarding-master
-        labels:
-          machineconfiguration.openshift.io/role: master
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,IyBOZWVkZWQgYnkgdGhlIE9wZW5TaGlmdC4gRm9yIG1vcmUgZGV0YWlscyBzZWUKIyBodHRwczovL2lzc3Vlcy5yZWRoYXQuY29tL2Jyb3dzZS9PQ1BCVUdTLTE2MDUxCm5ldC5pcHY0LmNvbmYuYm9uZDAvMzU1LmZvcndhcmRpbmcgPSAxCm5ldC5pcHY0LmNvbmYuYm9uZDAvMzU4LmZvcndhcmRpbmcgPSAxCg==
-              mode: 420
-              overwrite: true
-              path: /etc/sysctl.d/qe-forwarding.conf
-    # configure IP forwarding on standard nodes
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        name: 45-enable-forwarding-standard
-        labels:
-          machineconfiguration.openshift.io/role: standard
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,IyBOZWVkZWQgYnkgdGhlIE9wZW5TaGlmdC4gRm9yIG1vcmUgZGV0YWlscyBzZWUKIyBodHRwczovL2lzc3Vlcy5yZWRoYXQuY29tL2Jyb3dzZS9PQ1BCVUdTLTE2MDUxCm5ldC5pcHY0LmNvbmYuYm9uZDAvMzU1LmZvcndhcmRpbmcgPSAxCm5ldC5pcHY0LmNvbmYuYm9uZDAvMzU4LmZvcndhcmRpbmcgPSAxCg==
-              mode: 420
-              overwrite: true
-              path: /etc/sysctl.d/qe-forwarding.conf
     # configure Chronyd for control-plane nodes in disconnected setup
     - fileName: MachineConfigGeneric.yaml
       policyName: "config-policy"
