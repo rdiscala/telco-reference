@@ -14,7 +14,7 @@ generators:
   # configure HT nodes
   - sites/ecore-tlv2/config-ht-nodes.yaml
   # configure bond1 interface
-  - sides/ecore-tlv2/configure-bond1.yaml
+  - sites/ecore-tlv2/configure-bond1.yaml
   # configure MetalLB
   - sites/ecore-tlv2/config-metallb-networks.yaml
   # configure ODF
