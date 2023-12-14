@@ -135,26 +135,6 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0020
                     prefix-length: 122
-              # TODO(yprokule): move bond1 to another PGT
-              - name: bond1
-                description: base bonded interface
-                type: bond
-                # NOTE(yprokule): test with Jumbo frames later
-                mtu: 9000
-                state: up
-                accept-all-mac-addresses: true
-                ipv4:
-                  enabled: false
-                ipv6:
-                  enabled: false
-                link-aggregation:
-                  mode: 802.3ad
-                  options:
-                    miimon: "100"
-                    lacp_rate: slow
-                  port:
-                  - ens2f0
-                  - ens2f1
       #
       # delimeter for better readability
       #
@@ -247,26 +227,6 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0021
                     prefix-length: 122
-              # TODO(yprokule): move bond1 to another PGT
-              - name: bond1
-                description: base bonded interface
-                type: bond
-                # NOTE(yprokule): test with Jumbo frames later
-                mtu: 9000
-                state: up
-                accept-all-mac-addresses: true
-                ipv4:
-                  enabled: false
-                ipv6:
-                  enabled: false
-                link-aggregation:
-                  mode: 802.3ad
-                  options:
-                    miimon: "100"
-                    lacp_rate: slow
-                  port:
-                  - ens2f0
-                  - ens2f1
       #
       # delimeter for better readability
       #
@@ -359,26 +319,6 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0022
                     prefix-length: 122
-              # TODO(yprokule): move bond1 to another PGT
-              - name: bond1
-                description: base bonded interface
-                type: bond
-                # NOTE(yprokule): test with Jumbo frames later
-                mtu: 9000
-                state: up
-                accept-all-mac-addresses: true
-                ipv4:
-                  enabled: false
-                ipv6:
-                  enabled: false
-                link-aggregation:
-                  mode: 802.3ad
-                  options:
-                    miimon: "100"
-                    lacp_rate: slow
-                  port:
-                  - ens2f0
-                  - ens2f1
       #
       # delimeter for better readability
       #
@@ -477,26 +417,6 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0023
                     prefix-length: 122
-              # TODO(yprokule): move bond1 to another PGT
-              - name: bond1
-                description: base bonded interface
-                type: bond
-                # NOTE(yprokule): test with Jumbo frames later
-                mtu: 9000
-                state: up
-                accept-all-mac-addresses: true
-                ipv4:
-                  enabled: false
-                ipv6:
-                  enabled: false
-                link-aggregation:
-                  mode: 802.3ad
-                  options:
-                    miimon: "100"
-                    lacp_rate: slow
-                  port:
-                  - ens2f0
-                  - ens2f1
       #
       # delimeter for better readability
       #
@@ -595,26 +515,6 @@ spec:
                   address:
                   - ip: 2620:0052:0000:2ebb::0024
                     prefix-length: 122
-              # TODO(yprokule): move bond1 to another PGT
-              - name: bond1
-                description: base bonded interface
-                type: bond
-                # NOTE(yprokule): test with Jumbo frames later
-                mtu: 9000
-                state: up
-                accept-all-mac-addresses: true
-                ipv4:
-                  enabled: false
-                ipv6:
-                  enabled: false
-                link-aggregation:
-                  mode: 802.3ad
-                  options:
-                    miimon: "100"
-                    lacp_rate: slow
-                  port:
-                  - ens2f0
-                  - ens2f1
       #
       # delimeter for better readability
       #
