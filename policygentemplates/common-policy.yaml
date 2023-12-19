@@ -21,7 +21,7 @@ spec:
           name: redhat-operators-disconnected
       spec:
         displayName: Red Hat Operators Catalog
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.14
+        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.15
     # install and configure SR-IOV operator
     - fileName: SriovSubscriptionNS.yaml
       policyName: "sriov-operator-policy"
