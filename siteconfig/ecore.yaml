@@ -420,245 +420,245 @@ spec:
       #
       # delimeter for better readability
       #
-      #- hostName: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
-      #  role: "worker"
-      #  bmcAddress: ilo5-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
-      #  bmcCredentialsName:
-      #    name: ecore-bmc-secret
-      #  bootMACAddress: "B4:7A:F1:C9:5E:28"
-      #  bootMode: "UEFI"
-      #  nodeLabels:
-      #    node-role.kubernetes.io/standard: ''
-      #    env: "qe"
-      #    # acm-policy-labels-workaround: enabled
-      #    pcc-mm-pod: controller
-      #    pcc-sm-pod: non-controller
-      #  rootDeviceHints:
-      #    deviceName: /dev/sdb
-      #  nodeNetwork:
-      #    interfaces:
-      #      - name: eno1
-      #        macAddress: "b4:7a:f1:c9:5e:28"
-      #      - name: ens1f0
-      #        macAddress: "3c:fd:fe:b6:c4:c0"
-      #      - name: ens1f1
-      #        macAddress: "3c:fd:fe:b6:c4:c1"
-      #      - name: ens2f0
-      #        macAddress: "3c:fd:fe:b4:a7:48"
-      #      - name: ens2f1
-      #        macAddress: "3c:fd:fe:b4:a7:49"
-      #    config:
-      #      dns-resolver:
-      #        config:
-      #          server:
-      #          - 10.47.242.10
-      #      routes:
-      #        config:
-      #        - destination: 0.0.0.0/0
-      #          next-hop-address: 10.46.187.62
-      #          next-hop-interface: bond0.354
-      #        - destination: ::0/0
-      #          next-hop-address: 2620:0052:0000:2ebb::003d
-      #          next-hop-interface: bond0.354
-      #        # static routes for external CEPH monitoring endpoints
-      #        # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
-      #      interfaces:
-      #        - name: eno1
-      #          description: provisioning interface
-      #          type: ethernet
-      #          state: down
-      #          mac-address: b4:7a:f1:c9:5e:28
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #        - name: bond0
-      #          description: base bonded interface
-      #          type: bond
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          mtu: 9000
-      #          state: up
-      #          ipv4:
-      #            enabled: false
-      #          ipv6:
-      #            enabled: false
-      #          link-aggregation:
-      #            mode: 802.3ad
-      #            options:
-      #              miimon: "100"
-      #              lacp_rate: slow
-      #            port:
-      #            - ens1f0
-      #            - ens1f1
-      #        - name: bond0.354
-      #          description: baremetal network
-      #          type: vlan
-      #          state: up
-      #          #wait-ip: ipv4
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          mtu: 9000
-      #          vlan:
-      #            base-iface: bond0
-      #            id: 354
-      #          ipv4:
-      #            enabled: true
-      #            dhcp: false
-      #            address:
-      #            - ip: 10.46.187.24
-      #              prefix-length: 26
-      #          ipv6:
-      #            enabled: true
-      #            dhcp: false
-      #            autoconf: false
-      #            address:
-      #            - ip: 2620:0052:0000:2ebb::0024
-      #              prefix-length: 122
+      - hostName: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+        role: "worker"
+        bmcAddress: ilo5-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
+        bmcCredentialsName:
+          name: ecore-bmc-secret
+        bootMACAddress: "B4:7A:F1:C9:5E:28"
+        bootMode: "UEFI"
+        nodeLabels:
+          node-role.kubernetes.io/standard: ''
+          env: "qe"
+          # acm-policy-labels-workaround: enabled
+          pcc-mm-pod: controller
+          pcc-sm-pod: non-controller
+        rootDeviceHints:
+          deviceName: /dev/sdb
+        nodeNetwork:
+          interfaces:
+            - name: eno1
+              macAddress: "b4:7a:f1:c9:5e:28"
+            - name: ens1f0
+              macAddress: "3c:fd:fe:b6:c4:c0"
+            - name: ens1f1
+              macAddress: "3c:fd:fe:b6:c4:c1"
+            - name: ens2f0
+              macAddress: "3c:fd:fe:b4:a7:48"
+            - name: ens2f1
+              macAddress: "3c:fd:fe:b4:a7:49"
+          config:
+            dns-resolver:
+              config:
+                server:
+                - 10.47.242.10
+            routes:
+              config:
+              - destination: 0.0.0.0/0
+                next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
+                next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
+            interfaces:
+              - name: eno1
+                description: provisioning interface
+                type: ethernet
+                state: down
+                mac-address: b4:7a:f1:c9:5e:28
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: bond0
+                description: base bonded interface
+                type: bond
+                # NOTE(yprokule): test with Jumbo frames later
+                mtu: 9000
+                state: up
+                ipv4:
+                  enabled: false
+                ipv6:
+                  enabled: false
+                link-aggregation:
+                  mode: 802.3ad
+                  options:
+                    miimon: "100"
+                    lacp_rate: slow
+                  port:
+                  - ens1f0
+                  - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.24
+                    prefix-length: 26
+                ipv6:
+                  enabled: true
+                  dhcp: false
+                  autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0024
+                    prefix-length: 122
       #
       # delimeter for better readability
       #
-      #- hostName: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
-      #  role: "worker"
-      #  bmcAddress: ilo5-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
-      #  bmcCredentialsName:
-      #    name: ecore-bmc-secret
-      #  bootMACAddress: "5C:BA:2C:27:6E:E4"
-      #  bootMode: "UEFI"
-      #  nodeLabels:
-      #    node-role.kubernetes.io/ht100gb: ''
-      #    env: "qe"
-      #  rootDeviceHints:
-      #    deviceName: /dev/sdb
-      #  nodeNetwork:
-      #    interfaces:
-      #      - name: eno1
-      #        macAddress: "5c:ba:2c:27:6e:e4"
-      #      - name: ens1f0
-      #        macAddress: "3c:fd:fe:b6:c8:d0"
-      #      - name: ens1f1
-      #        macAddress: "3c:fd:fe:b6:c8:d1"
-      #      - name: ens4f0np0
-      #        macAddress: "10:70:fd:44:61:88"
-      #      - name: ens4f1np1
-      #        macAddress: "10:70:fd:44:61:89"
-      #      - name: ens5f0np0
-      #        macAddress: "10:70:fd:44:5e:28"
-      #      - name: ens5f1np1
-      #        macAddress: "10:70:fd:44:5e:29"
-      #    config:
-      #      dns-resolver:
-      #        config:
-      #          server:
-      #          - 10.47.242.10
-      #      routes:
-      #        config:
-      #        - destination: 0.0.0.0/0
-      #          next-hop-address: 10.46.187.62
-      #          next-hop-interface: bond0.354
-      #        - destination: ::0/0
-      #          next-hop-address: 2620:0052:0000:2ebb::003d
-      #          next-hop-interface: bond0.354
-      #        # static routes for external CEPH monitoring endpoints
-      #        # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
-      #      interfaces:
-      #        - name: eno1
-      #          description: provisioning interface
-      #          type: ethernet
-      #          state: down
-      #          mac-address: 5c:ba:2c:27:6e:e4
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #        - name: bond0
-      #          description: base bonded interface
-      #          type: bond
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          mtu: 9000
-      #          state: up
-      #          ipv4:
-      #            enabled: false
-      #          ipv6:
-      #            enabled: false
-      #          link-aggregation:
-      #            mode: 802.3ad
-      #            options:
-      #              miimon: "100"
-      #              lacp_rate: slow
-      #            port:
-      #            - ens1f0
-      #            - ens1f1
-      #        - name: bond0.354
-      #          description: baremetal network
-      #          type: vlan
-      #          state: up
-      #          #wait-ip: ipv4
-      #          # NOTE(yprokule): test with Jumbo frames later
-      #          mtu: 9000
-      #          vlan:
-      #            base-iface: bond0
-      #            id: 354
-      #          ipv4:
-      #            enabled: true
-      #            dhcp: false
-      #            address:
-      #            - ip: 10.46.187.25
-      #              prefix-length: 26
-      #          ipv6:
-      #            enabled: true
-      #            dhcp: false
-      #            autoconf: false
-      #            address:
-      #            - ip: 2620:0052:0000:2ebb::0025
-      #              prefix-length: 122
-      #        # TODO(yprokule): move this to another PGT
-      #        - name: ens4f0np0
-      #          description: HT nic 1 port 1
-      #          type: ethernet
-      #          state: up
-      #          mac-address: 10:70:fd:44:61:88
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #        - name: ens4f1np1
-      #          description: HT nic 1 port 2
-      #          type: ethernet
-      #          state: up
-      #          mac-address: 10:70:fd:44:61:89
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #        - name: ens5f0np0
-      #          description: HT nic 2 port 1
-      #          type: ethernet
-      #          state: up
-      #          mac-address: 10:70:fd:44:5e:28
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
-      #        - name: ens5f1np1
-      #          description: HT nic 2 port 2
-      #          type: ethernet
-      #          state: up
-      #          mac-address: 10:70:fd:44:5e:29
-      #          ipv4:
-      #            enabled: false
-      #            dhcp: false
-      #          ipv6:
-      #            enabled: false
-      #            dhcp: false
+      - hostName: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+        role: "worker"
+        bmcAddress: ilo5-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
+        bmcCredentialsName:
+          name: ecore-bmc-secret
+        bootMACAddress: "5C:BA:2C:27:6E:E4"
+        bootMode: "UEFI"
+        nodeLabels:
+          node-role.kubernetes.io/ht100gb: ''
+          env: "qe"
+        rootDeviceHints:
+          deviceName: /dev/sdb
+        nodeNetwork:
+          interfaces:
+            - name: eno1
+              macAddress: "5c:ba:2c:27:6e:e4"
+            - name: ens1f0
+              macAddress: "3c:fd:fe:b6:c8:d0"
+            - name: ens1f1
+              macAddress: "3c:fd:fe:b6:c8:d1"
+            - name: ens4f0np0
+              macAddress: "10:70:fd:44:61:88"
+            - name: ens4f1np1
+              macAddress: "10:70:fd:44:61:89"
+            - name: ens5f0np0
+              macAddress: "10:70:fd:44:5e:28"
+            - name: ens5f1np1
+              macAddress: "10:70:fd:44:5e:29"
+          config:
+            dns-resolver:
+              config:
+                server:
+                - 10.47.242.10
+            routes:
+              config:
+              - destination: 0.0.0.0/0
+                next-hop-address: 10.46.187.62
+                next-hop-interface: bond0.354
+              - destination: ::0/0
+                next-hop-address: 2620:0052:0000:2ebb::003d
+                next-hop-interface: bond0.354
+              # static routes for external CEPH monitoring endpoints
+              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
+            interfaces:
+              - name: eno1
+                description: provisioning interface
+                type: ethernet
+                state: down
+                mac-address: 5c:ba:2c:27:6e:e4
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: bond0
+                description: base bonded interface
+                type: bond
+                # NOTE(yprokule): test with Jumbo frames later
+                mtu: 9000
+                state: up
+                ipv4:
+                  enabled: false
+                ipv6:
+                  enabled: false
+                link-aggregation:
+                  mode: 802.3ad
+                  options:
+                    miimon: "100"
+                    lacp_rate: slow
+                  port:
+                  - ens1f0
+                  - ens1f1
+              - name: bond0.354
+                description: baremetal network
+                type: vlan
+                state: up
+                #wait-ip: ipv4
+                # NOTE(yprokule): test with Jumbo frames later
+                mtu: 9000
+                vlan:
+                  base-iface: bond0
+                  id: 354
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                  - ip: 10.46.187.25
+                    prefix-length: 26
+                ipv6:
+                  enabled: true
+                  dhcp: false
+                  autoconf: false
+                  address:
+                  - ip: 2620:0052:0000:2ebb::0025
+                    prefix-length: 122
+              # TODO(yprokule): move this to another PGT
+              - name: ens4f0np0
+                description: HT nic 1 port 1
+                type: ethernet
+                state: up
+                mac-address: 10:70:fd:44:61:88
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: ens4f1np1
+                description: HT nic 1 port 2
+                type: ethernet
+                state: up
+                mac-address: 10:70:fd:44:61:89
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: ens5f0np0
+                description: HT nic 2 port 1
+                type: ethernet
+                state: up
+                mac-address: 10:70:fd:44:5e:28
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
+              - name: ens5f1np1
+                description: HT nic 2 port 2
+                type: ethernet
+                state: up
+                mac-address: 10:70:fd:44:5e:29
+                ipv4:
+                  enabled: false
+                  dhcp: false
+                ipv6:
+                  enabled: false
+                  dhcp: false
       #
       # delimeter for better readability
       #
