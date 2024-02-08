@@ -120,6 +120,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -212,6 +213,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -304,6 +306,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -402,6 +405,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -500,6 +504,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -599,6 +604,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -743,6 +749,7 @@ spec:
                 # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
+                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
