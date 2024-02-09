@@ -7,11 +7,8 @@ metadata:
   annotations:
     ran.openshift.io/ztp-deploy-wave: "10"
 spec:
-  keepaliveTime: 0s
   peerAddress:
   peerASN:
   myASN:
-  holdTime: 3m0s
-  bfdProfile: bfd-profile
-  peerPort: 179
-  passwordSecret: {}
+  routerID:
+  bfdProfile:
