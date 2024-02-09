@@ -32,12 +32,21 @@ spec:
       spec:
         channel: "stable"
         source: redhat-operators-disconnected
-        installPlanApproval: "Automatic"
     - fileName: SriovOperatorConfig.yaml
       policyName: "sriov-operator-policy-config"
       spec:
         configDaemonNodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
+          node-role.kubernetes.io/worker: ""
+    # install and configure Logging
+    - fileName: ClusterLogNS.yaml
+      policyName: "cluster-logging-op"
+    - fileName: ClusterLogOperGroup.yaml
+      policyName: "cluster-logging-op"
+    - fileName: ClusterLogSubscription.yaml
+      policyName: "cluster-logging-op"
+    # NOTE(yprokule): ClusterLogging instance by default uses wave 10
+    - fileName: ClusterLogging.yaml
+      policyName: "cluster-logging-configure"
     # install and configure MetalLB operator
     - fileName: metallb/ns.yaml
       policyName: "metallb-operator-policy"
@@ -124,6 +133,32 @@ spec:
               path: /etc/chrony.conf
               user:
                 name: root
+    #
+    # Configuration for Rootless Pods(fromRDS)
+    #
+    - fileName: MachineConfigGeneric.yaml
+      policyName: "rootless-pods"
+      metadata:
+        name: 99-worker-setsebool
+        labels:
+          machineconfiguration.openshift.io/role: worker
+      spec:
+        systemd:
+          units:
+            - contents: |
+                [Unit]
+                Description=Set SELinux boolean for tap cni plugin
+                Before=kubelet.service
+
+                [Service]
+                Type=oneshot
+                ExecStart=/sbin/setsebool container_use_devices=on
+                RemainAfterExit=true
+
+                [Install]
+                WantedBy=multi-user.target graphical.target
+              enabled: true
+              name: setsebool.service
     # configure Chronyd for non control-plane nodes in disconnected setup
     - fileName: MachineConfigGeneric.yaml
       policyName: "config-policy"
@@ -278,6 +313,8 @@ spec:
           - label: node-role.kubernetes.io/standard
           priority: 20
           profile: pfcp-socket-size-standard
+    #
+    # TODO(YPROKULE): check if schedulable control-plane is part of RDS
     # configure schedulable masters
-    - fileName: "MastersSchedulable.yaml"
-      policyName: "config-cluster"
+    #- fileName: "MastersSchedulable.yaml"
+    #  policyName: "config-cluster"
