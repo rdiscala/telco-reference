@@ -121,7 +121,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -211,7 +210,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -301,7 +299,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -393,7 +390,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -485,7 +481,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -581,7 +576,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
@@ -722,7 +716,6 @@ spec:
                 state: up
                 mtu: 9000
                 vlan:
-                  reorder-headers: true
                   base-iface: bond0
                   id: 354
                 ipv4:
