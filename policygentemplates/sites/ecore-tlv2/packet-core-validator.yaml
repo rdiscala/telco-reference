@@ -8,6 +8,8 @@ spec:
     site: "ecore"
     zone: "tlv2"
   sourceFiles:
+    - fileName: validatorCRs/informPacketCOREValidator/SRIOV.yaml
+      policyName: "packet-core-validator"
     - fileName: validatorCRs/informPacketCOREValidator/MCP.yaml
       policyName: "packet-core-validator"
       metadata:
@@ -24,13 +26,12 @@ spec:
       policyName: "packet-core-validator"
       metadata:
         name: ht100gb
- #      status:
- #        configuration:
- #          source:
- #            - apiVersion: machineconfiguration.openshift.io/v1
- #              kind: MachineConfig
- #              name: 50-performance-ht100gb
- #            - apiVersion: machineconfiguration.openshift.io/v1
- #              kind: MachineConfig
- #              name: 50-nto-ht100gb
- #
+      status:
+         configuration:
+           source:
+             - apiVersion: machineconfiguration.openshift.io/v1
+               kind: MachineConfig
+               name: 50-performance-ht100gb
+             - apiVersion: machineconfiguration.openshift.io/v1
+               kind: MachineConfig
+               name: 50-nto-ht100gb

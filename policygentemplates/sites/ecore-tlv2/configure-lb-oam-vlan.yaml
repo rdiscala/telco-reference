@@ -11,9 +11,9 @@ spec:
   remediationAction: inform
   sourceFiles:
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-master-0-lb-oam-vlan-interface
+        name: for-master-0-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -44,9 +44,9 @@ spec:
                 id: 358
     # master-0 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-master-1-lb-oam-vlan-interface
+        name: for-master-1-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -77,9 +77,9 @@ spec:
                 id: 358
     # master-1 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-master-2-lb-oam-vlan-interface
+        name: for-master-2-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -110,9 +110,9 @@ spec:
                 id: 358
     # master-2 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-worker-0-lb-oam-vlan-interface
+        name: for-worker-0-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -143,9 +143,9 @@ spec:
                 id: 358
     # worker-0 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-worker-1-lb-oam-vlan-interface
+        name: for-worker-1-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -176,9 +176,9 @@ spec:
                 id: 358
     # worker-1 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-worker-2-lb-oam-vlan-interface
+        name: for-worker-2-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -209,9 +209,9 @@ spec:
                 id: 358
     # worker-2 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-oam-vlan-interface"
+      policyName: "add-lb-oam-vlan"
       metadata:
-        name: openshift-worker-3-lb-oam-vlan-interface
+        name: for-worker-3-oam
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:

@@ -4,6 +4,7 @@ kind: Kustomization
 generators:
   - common-policy.yaml
   - mno-update-policy-4.14.rc.2.yml
+  - sites/ecore-tlv2/optimize-ztp-done.yaml
   # configure VLAN sub-interfaces on the cluster nodes
   - sites/ecore-tlv2/configure-lb-intersite-vlan.yaml
   - sites/ecore-tlv2/configure-lb-oam-vlan.yaml
@@ -21,5 +22,9 @@ generators:
   - sites/ecore-tlv2/deoploy-odf.yaml
   # cluster validation
   - sites/ecore-tlv2/packet-core-validator.yaml
+  # configure schedulable masters
+  - sites/ecore-tlv2/config-masters.yaml
+  # configure non HT nodes
+  - group/n65/config-noht-nodes.yaml
 resources:
   - policies-namespace.yaml

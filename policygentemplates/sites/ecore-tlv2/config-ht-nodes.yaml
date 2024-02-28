@@ -13,7 +13,26 @@ spec:
   sourceFiles:
     #
     # configure MachineConfigPool ht100gb moved to extra-manifests
+    # but also present in policies/TS-1.6/sites/n65-ocp1/config-ht-nodes.yaml
     #
+    - fileName: MachineConfigPool.yaml
+      policyName: config-nodes-mcp
+      metadata:
+        name: ht100gb
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+        labels:
+          machineconfiguration.openshift.io/role: ht100gb
+          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
+      spec:
+        machineConfigSelector:
+          matchExpressions:
+            - key: machineconfiguration.openshift.io/role
+              operator: In
+              values: [worker, ht100gb]
+        nodeSelector:
+          matchLabels:
+            node-role.kubernetes.io/ht100gb: ""
     # configure SR-IOV Network Node Policy
     - fileName: SriovNetworkNodePolicy.yaml
       policyName: "sriov-nnp"
@@ -51,38 +70,37 @@ spec:
     - fileName: SriovNetwork.yaml
       policyName: config-sriov-network
       metadata:
-        name: "eric-pc-up-data-plane-net1"
+        name: "sriov-net-one"
       spec:
         capabilities: '{ "ips": true }'
         ipam: '{}'
         linkState: auto
-        networkNamespace: pcg
+        networkNamespace: rds-sriov-wlkd
         resourceName: sriovleftdpdkmellanox
         trust: "on"
     - fileName: SriovNetwork.yaml
       policyName: config-sriov-network
       metadata:
-        name: "eric-pc-up-data-plane-net2"
+        name: "sriov-net-two"
       spec:
         capabilities: '{ "ips": true }'
         ipam: '{}'
         linkState: auto
-        networkNamespace: pcg
+        networkNamespace: rds-sriov-wlkd
         resourceName: sriovrightdpdkmellanox
         trust: "on"
     # configure performance profile
     - fileName: PerformanceProfile.yaml
       policyName: "post-install-tunning"
-      # per Konstantino's repo complianceType should be mustonlyhave
-      # https://gitlab.consulting.redhat.com/partner-integration/n62acm/-/blob/master/policies/sites/n62-ocp1/config-ht-nodes.yaml?ref_type=heads
-      # TODO(yprokule): clarify the above
-      # complianceType: mustonlyhave
+      complianceType: mustonlyhave
       metadata:
         name: ht100gb
         annotations:
+          # Some pods want the kernel stack to ignore IPv6 router Advertisement.
           kubeletconfig.experimental: |
-            {"systemReserved": {"memory": "8Gi"}, "topologyManagerScope": "pod", "allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
+            {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
       spec:
+        additionalKernelArgs: []
         cpu:
           isolated: 1-25,27-51,53-77,79-103
           reserved: 0,26,52,78
@@ -90,12 +108,12 @@ spec:
         hugepages:
           defaultHugepagesSize: 1G
           pages:
-          - count: 6
+          - size: 1G
+            count: 6
             node: 0
-            size: 1G
-          - count: 6
+          - size: 1G
+            count: 6
             node: 1
-            size: 1G
         machineConfigPoolSelector:
           pools.operator.machineconfiguration.openshift.io/ht100gb: ""
         nodeSelector:
@@ -108,5 +126,9 @@ spec:
           enabled: false
         numa:
           topologyPolicy: single-numa-node
+        # TODO(yprokule): check usage of `net` directive
         net:
-          userLevelNetworking: false
+          devices:
+          - interfaceName: ens4*
+          - interfaceName: ens5*
+          userLevelNetworking: true

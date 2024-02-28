@@ -10,7 +10,3 @@ spec:
   communities:
   ipAddressPools:
   peers:
-  # below lines come from RDS
-  aggregationLength: 32
-  aggregationLengthV6: 128
-  localPref: 100

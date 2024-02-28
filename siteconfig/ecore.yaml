@@ -24,6 +24,7 @@ spec:
       group-du-ecore: ""
       site: "ecore"
       zone: "tlv2"
+      group: "n65"
     # Network range where the MNO nodes are connected
     machineNetwork:
       - cidr: "10.46.187.0/26"
@@ -55,7 +56,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:9C"
-        #bootMode: "UEFI"
+        bootMode: "UEFI"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -100,7 +101,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -119,8 +119,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true
@@ -148,7 +146,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:E4"
-        #bootMode: "UEFI"
+        bootMode: "UEFI"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -193,7 +191,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -212,8 +209,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true
@@ -241,7 +236,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:1F:60"
-        #bootMode: "UEFI"
+        bootMode: "UEFI"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -286,7 +281,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -305,8 +299,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true
@@ -337,10 +329,6 @@ spec:
         bootMode: "UEFI"
         nodeLabels:
           node-role.kubernetes.io/standard: ''
-          env: "qe"
-          # acm-policy-labels-workaround: enabled
-          pcc-mm-pod: controller
-          pcc-sm-pod: non-controller
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -385,7 +373,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -404,8 +391,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true
@@ -436,10 +421,6 @@ spec:
         bootMode: "UEFI"
         nodeLabels:
           node-role.kubernetes.io/standard: ''
-          env: "qe"
-          # acm-policy-labels-workaround: enabled
-          pcc-mm-pod: controller
-          pcc-sm-pod: non-controller
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -484,7 +465,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -503,8 +483,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true
@@ -535,7 +513,6 @@ spec:
         bootMode: "UEFI"
         nodeLabels:
           node-role.kubernetes.io/ht100gb: ''
-          env: "qe"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -584,7 +561,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -603,8 +579,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true
@@ -680,7 +654,6 @@ spec:
         bootMode: "UEFI"
         nodeLabels:
           node-role.kubernetes.io/ht100gb: ''
-          env: "qe"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -729,7 +702,6 @@ spec:
               - name: bond0
                 description: base bonded interface
                 type: bond
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 state: up
                 ipv4:
@@ -748,8 +720,6 @@ spec:
                 description: baremetal network
                 type: vlan
                 state: up
-                #wait-ip: ipv4
-                # NOTE(yprokule): test with Jumbo frames later
                 mtu: 9000
                 vlan:
                   reorder-headers: true

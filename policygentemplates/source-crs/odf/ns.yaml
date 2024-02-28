@@ -5,6 +5,6 @@ metadata:
   name: openshift-storage
   annotations:
     workload.openshift.io/allowed: management
-    ran.openshift.io/ztp-deploy-wave: "2"
+    ran.openshift.io/ztp-deploy-wave: "8"
   labels:
     openshift.io/cluster-monitoring: "true"

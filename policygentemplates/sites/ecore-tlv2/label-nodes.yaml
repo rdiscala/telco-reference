@@ -10,21 +10,37 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
-    - fileName: LabelHTNode.yaml
-      policyName: "taint-node"
+    - fileName: LabelNode.yaml
+      policyName: pcc-label
+      metadata:
+        name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+        labels:
+          acm-policy-labels-workaround: enabled
+          pcc-mm-pod: non-controller
+          pcc-sm-pod: non-controller
+      spec: {}
+    - fileName: LabelNode.yaml
+      policyName: pcc-label
+      metadata:
+        name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+        labels:
+          acm-policy-labels-workaround: enabled
+          pcc-mm-pod: non-controller
+          pcc-sm-pod: non-controller
+      spec: {}
+    - fileName: LabelNode.yaml
+      policyName: pcc-label
       metadata:
         name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
-      spec:
-        taints:
-          - effect: NoSchedule
-            key: sriov
-            value: "true"
-    - fileName: LabelHTNode.yaml
-      policyName: "taint-node"
+        labels:
+          node-role.kubernetes.io/ht100gb: ""
+          acm-policy-labels-workaround: enabled
+          type: high-throughput
+    - fileName: LabelNode.yaml
+      policyName: pcc-label
       metadata:
         name: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
-      spec:
-        taints:
-          - effect: NoSchedule
-            key: sriov
-            value: "true"
+        labels:
+          node-role.kubernetes.io/ht100gb: ""
+          acm-policy-labels-workaround: enabled
+          type: high-throughput

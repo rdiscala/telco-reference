@@ -1,0 +1,16 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "config-masters"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    site: "ecore"
+    zone: "tlv2"
+  sourceFiles:
+    - fileName: "MastersSchedulable.yaml"
+      policyName: "config-cluster"
+      spec:
+        mastersSchedulable: false
+

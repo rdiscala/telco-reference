@@ -1,0 +1,149 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "standardworker"
+  namespace: "ztp-group"
+spec:
+  bindingRules:
+    group: "n65"
+    site: "ecore"
+    zone: "tlv2"
+  remediationAction: inform
+  sourceFiles:
+    - fileName: MachineConfigPool.yaml
+      policyName: config-nodes-mcp
+      metadata:
+        name: standard
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+        labels:
+          machineconfiguration.openshift.io/role: standard
+          pools.operator.machineconfiguration.openshift.io/standard: ""
+      spec:
+        machineConfigSelector:
+          matchExpressions:
+            - key: machineconfiguration.openshift.io/role
+              operator: In
+              values: [worker, standard]
+        nodeSelector:
+          matchLabels:
+            node-role.kubernetes.io/standard: ""
+    # configure system reserved memory
+    - fileName: system-reserved-memory.yaml
+      policyName: "post-install-tunning"
+      metadata:
+        name: autosizing-master
+      spec:
+        autoSizingReserved: true
+        machineConfigPoolSelector:
+          matchLabels:
+            pools.operator.machineconfiguration.openshift.io/master: ""
+    # configure Chronyd for control-plane nodes in disconnected setup
+    - fileName: MachineConfigGeneric.yaml
+      policyName: "config-mc"
+      complianceType: mustonlyhave
+      metadata:
+        name: 98-master-etc-chrony-conf
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
+        labels:
+          machineconfiguration.openshift.io/role: master
+      spec:
+        config:
+          # Release info found in https://github.com/coreos/butane/releases
+          ignition:
+            version: 3.2.0
+          storage:
+            files:
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMS5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMi5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2sxLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2syLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2suY29ycC5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
+                verification: {}
+              filesystem: root
+              group:
+                name: root
+              mode: 420
+              path: /etc/chrony.conf
+              user:
+                name: root
+    # configure Chronyd for non control-plane nodes in disconnected setup
+    - fileName: MachineConfigGeneric.yaml
+      policyName: "config-mc"
+      complianceType: mustonlyhave
+      metadata:
+        name: 98-worker-etc-chrony-conf
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
+        labels:
+          machineconfiguration.openshift.io/role: worker
+      spec:
+        config:
+          # Release info found in https://github.com/coreos/butane/releases
+          ignition:
+            version: 3.2.0
+          storage:
+            files:
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMS5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMi5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2sxLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2syLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2suY29ycC5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
+                verification: {}
+              filesystem: root
+              group:
+                name: root
+              mode: 420
+              path: /etc/chrony.conf
+              user:
+                name: root
+    # configure extra kernel modules on control-plane nodes
+    - fileName: MachineConfigGeneric.yaml
+      policyName: "config-mc"
+      complianceType: mustonlyhave
+      metadata:
+        name: 40-load-kernel-modules-master
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
+        labels:
+          machineconfiguration.openshift.io/role: master
+      spec:
+        config:
+          # Release info found in https://github.com/coreos/butane/releases
+          ignition:
+            version: 3.2.0
+          storage:
+            files:
+            - contents:
+                source: data:,
+              mode: 420
+              overwrite: true
+              path: /etc/modprobe.d/kernel-blacklist.conf
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCmlwNl90YWJsZXMKaXA2dF9SRUpFQ1QKaXA2dGFibGVfZmlsdGVyCmlwNnRhYmxlX21hbmdsZQppcHRhYmxlX2ZpbHRlcgppcHRhYmxlX21hbmdsZQppcHRhYmxlX25hdAp4dF9tdWx0aXBvcnQKeHRfb3duZXIKeHRfUkVESVJFQ1QKeHRfc3RhdGlzdGljCnh0X1RDUE1TUwp4dF91MzI=
+              mode: 420
+              overwrite: true
+              path: /etc/modules-load.d/kernel-load.conf
+    # configure extra kernel modules on worker nodes
+    - fileName: MachineConfigGeneric.yaml
+      policyName: "config-mc"
+      complianceType: mustonlyhave
+      metadata:
+        name: 40-load-kernel-modules-worker
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
+        labels:
+          machineconfiguration.openshift.io/role: worker
+      spec:
+        config:
+          # Release info found in https://github.com/coreos/butane/releases
+          ignition:
+            version: 3.2.0
+          storage:
+            files:
+            - contents:
+                source: data:,
+              mode: 420
+              overwrite: true
+              path: /etc/modprobe.d/kernel-blacklist.conf
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCmlwNl90YWJsZXMKaXA2dF9SRUpFQ1QKaXA2dGFibGVfZmlsdGVyCmlwNnRhYmxlX21hbmdsZQppcHRhYmxlX2ZpbHRlcgppcHRhYmxlX21hbmdsZQppcHRhYmxlX25hdAp4dF9tdWx0aXBvcnQKeHRfb3duZXIKeHRfUkVESVJFQ1QKeHRfc3RhdGlzdGljCnh0X1RDUE1TUwp4dF91MzI=
+              mode: 420
+              overwrite: true
+              path: /etc/modules-load.d/kernel-load.conf

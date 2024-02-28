@@ -5,12 +5,12 @@ metadata:
   name: odf-operator
   namespace: openshift-storage
   annotations:
-    ran.openshift.io/ztp-deploy-wave: "2"
+    ran.openshift.io/ztp-deploy-wave: "8"
 spec:
   channel: "stable-4.14"
+  installPlanApproval: Manual
   name: odf-operator
   source: redhat-operators-disconnected
   sourceNamespace: openshift-marketplace
-  installPlanApproval: Automatic
 status:
   state: AtLatestKnown

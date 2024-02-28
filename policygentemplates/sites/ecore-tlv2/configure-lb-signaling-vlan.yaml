@@ -11,9 +11,9 @@ spec:
   remediationAction: inform
   sourceFiles:
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-signaling-vlan-interface"
+      policyName: "add-lb-signaling-vlan"
       metadata:
-        name: openshift-master-0-lb-signaling-vlan-interface
+        name: for-master-0-signaling
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -41,9 +41,9 @@ spec:
                 id: 356
     # master-0 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-signaling-vlan-interface"
+      policyName: "add-lb-signaling-vlan"
       metadata:
-        name: openshift-master-1-lb-signaling-vlan-interface
+        name: for-master-1-signaling
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -71,9 +71,9 @@ spec:
                 id: 356
     # master-1 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-signaling-vlan-interface"
+      policyName: "add-lb-signaling-vlan"
       metadata:
-        name: openshift-master-2-lb-signaling-vlan-interface
+        name: for-master-2-signaling
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -101,9 +101,9 @@ spec:
                 id: 356
     # master-2 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-signaling-vlan-interface"
+      policyName: "add-lb-signaling-vlan"
       metadata:
-        name: openshift-worker-0-lb-signaling-vlan-interface
+        name: for-worker-0-signaling
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:
@@ -131,9 +131,9 @@ spec:
                 id: 356
     # worker-0 end ^^^
     - fileName: nmstate/nodeNetworkConfigurationPolicy.yaml
-      policyName: "add-lb-signaling-vlan-interface"
+      policyName: "add-lb-signaling-vlan"
       metadata:
-        name: openshift-worker-1-lb-signaling-vlan-interface
+        name: for-worker-1-signaling
       annotations:
         ran.openshift.io/ztp-deploy-wave: "10"
       spec:

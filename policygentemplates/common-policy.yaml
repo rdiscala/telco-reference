@@ -10,9 +10,8 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
-    # routingViaHost enabled only during cluster installation?
-    #- fileName: RoutingViaHost.yaml
-    #  policyName: "config-network"
+    - fileName: RoutingViaHost.yaml
+      policyName: "config-network"
     - fileName: OperatorHub.yaml
       policyName: "disable-operator-hub"
     - fileName: DefaultCatsrc.yaml
@@ -20,47 +19,149 @@ spec:
       metadata:
           name: redhat-operators-disconnected
       spec:
-        displayName: Red Hat Operators Catalog
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.15
+        displayName: Red Hat Disconnected Operators Catalog
+        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.14
+        publisher: Red Hat
+        sourceType: grpc
+    #
+    # configure ICSP
+    #
+    - fileName: DisconnectedICSP.yaml
+      policyName: "config-policy"
+      spec:
+        repositoryDigestMirrors:
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+            source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+            source: registry.ci.openshift.org/ocp/release
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005
+            source: registry.redhat.io
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005
+            source: registry-proxy.engineering.redhat.com
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005
+            source: registry.stage.redhat.io
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-qe-optional-operators
+            source: quay.io/openshift-qe-optional-operators
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshifttest
+            source: quay.io/openshifttest
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/rh-nfv-int
+            source: quay.io/rh-nfv-int
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
+            source: registry.connect.redhat.com/intel
+          - mirrors:
+            - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
+            source: quay.io/openshift-release-dev/ocp-release-nightly
+    #
     # install and configure SR-IOV operator
+    #
     - fileName: SriovSubscriptionNS.yaml
-      policyName: "sriov-operator-policy"
+      policyName: "install-operators-sriov"
     - fileName: SriovSubscriptionOperGroup.yaml
-      policyName: "sriov-operator-policy"
+      policyName: "install-operators-sriov"
     - fileName: SriovSubscription.yaml
-      policyName: "sriov-operator-policy"
+      policyName: "install-operators-sriov"
       spec:
         channel: "stable"
         source: redhat-operators-disconnected
+        installPlanApproval: "Automatic"
     - fileName: SriovOperatorConfig.yaml
-      policyName: "sriov-operator-policy-config"
+      policyName: "config-operators-sriov"
       spec:
         configDaemonNodeSelector:
           node-role.kubernetes.io/worker: ""
+    #
+    # install and configure MetalLB operator
+    # MetalLB operator configuration moved to a site folder
+    #
+    - fileName: metallb/ns.yaml
+      policyName: "install-operators"
+    - fileName: metallb/operatorGroup.yaml
+      policyName: "install-operators"
+    - fileName: metallb/subscription.yaml
+      policyName: "install-operators"
+      spec:
+        channel: "stable"
+        source: redhat-operators-disconnected
+        installPlanApproval: "Automatic"
+    #
+    # install and configure NROP
+    #
+    - fileName: scheduling/NROPSubscriptionNS.yaml
+      policyName: "install-operators"
+    - fileName: scheduling/NROPSubscriptionOperGroup.yaml
+      policyName: "install-operators"
+    - fileName: scheduling/NROPSubscription.yaml
+      policyName: "install-operators"
+    - fileName: scheduling/nrop.yaml
+      policyName: "install-operators"
+    - fileName: scheduling/nrop-scheduling.yaml
+      policyName: "install-operators"
+      spec:
+        #cacheResyncPeriod: "0"
+        # Image spec should be the latest for the release
+        imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.14.0"
+    #
+    # install NMState operator
+    #
+    - fileName: nmstate/namespace.yaml
+      policyName: "install-operators"
+    - fileName: nmstate/operatorGroup.yaml
+      policyName: "install-operators"
+    - fileName: nmstate/subscription.yaml
+      policyName: "install-operators"
+    - fileName: nmstate/instance.yaml
+      policyName: "install-operators"
+    #
     # install and configure Logging
+    #
     - fileName: ClusterLogNS.yaml
       policyName: "cluster-logging-op"
     - fileName: ClusterLogOperGroup.yaml
       policyName: "cluster-logging-op"
     - fileName: ClusterLogSubscription.yaml
       policyName: "cluster-logging-op"
+      spec:
+        source: redhat-operators-disconnected
+        installPlanApproval: Automatic
     # NOTE(yprokule): ClusterLogging instance by default uses wave 10
+    #               : thefore dedicated policy
     - fileName: ClusterLogging.yaml
       policyName: "cluster-logging-configure"
-    # install and configure MetalLB operator
-    - fileName: metallb/ns.yaml
-      policyName: "metallb-operator-policy"
-    - fileName: metallb/operatorGroup.yaml
-      policyName: "metallb-operator-policy"
-    - fileName: metallb/subscription.yaml
-      policyName: "metallb-operator-policy"
+    # NOTE(yprokule): ClusterLogForwarder.yaml has to be added
+    #               : after central server for logs is available
+    - fileName: ClusterLogForwarder.yaml
+      policyName: "config-policy-configure"
       spec:
-        channel: "stable"
-        source: redhat-operators-disconnected
-        installPlanApproval: "Automatic"
-    #
-    # confgire MetalLB operator moved to a site folder
-    #
+        outputs:
+          - type: "kafka"
+            name: kafka-open
+            # use FQDN when DNS entries for IPv4 and IPv6 are in place
+            # only IPv4 IP address works
+            #  url: tcp://vran-qe-kafka.lab.eng.rdu2.redhat.com:9092/vran-qe
+            url: tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe
+        pipelines:
+          - inputRefs:
+              - audit
+              - infrastructure
+            labels:
+              label1: test1
+              label2: test2
+              label3: test3
+              rds: core
+            name: all-to-default
+            outputRefs:
+              - kafka-open
     # configure Monitoring
     - fileName: "GenericConfigMap.yaml"
       policyName: "dedicated-service-monitor"
@@ -88,51 +189,36 @@ spec:
                 resources:
                   requests:
                     storage: 20Gi
-    # install NMState operator
-    - fileName: nmstate/namespace.yaml
-      policyName: "nmstate-operator"
-    - fileName: nmstate/operatorGroup.yaml
-      policyName: "nmstate-operator"
-    - fileName: nmstate/subscription.yaml
-      policyName: "nmstate-operator"
-    - fileName: nmstate/instance.yaml
-      policyName: "nmstate-operator"
     # configure custom Namespaces
     - fileName: customNamespace.yaml
       policyName: "custom-namespaces"
       metadata:
-        name: pcc
+        name: rds-macvlan-wlkd
     - fileName: customNamespace.yaml
       policyName: "custom-namespaces"
       metadata:
-        name: pcg
-    #
-    # 'standard' MCP creation moved to extra-manifests
-    #
-    # configure Chronyd for control-plane nodes in disconnected setup
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        name: 98-master-etc-chrony-conf
-        labels:
-          machineconfiguration.openshift.io/role: master
+        name: rds-sriov-wlkd
+    # configure MACVLAN networks
+    - fileName: AddAdditionalNetworks.yaml
+      policyName: "configure-macvlan"
       spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMS5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMi5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2sxLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2syLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2suY29ycC5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
-                verification: {}
-              filesystem: root
-              group:
-                name: root
-              mode: 420
-              path: /etc/chrony.conf
-              user:
-                name: root
+        additionalNetworks:
+        - name: pc-mm-ext
+          namespace: rds-macvlan-wlkd
+          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "pc-mm-ext", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+          type: Raw
+        - name: eric-pc-routing-engine-net0
+          namespace: rds-macvlan-wlkd
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine-net0", "plugins": [ {"type": "macvlan", "master": "bond1", "mode": "private" },{ "type": "tuning", "name": "tuning-arp" }] }'
+          type: Raw
+        - name: eric-pc-vpn-gateway-forwarder-common
+          namespace: rds-macvlan-wlkd
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-vpn-gateway-forwarder-common", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "bridge" }, { "type": "tuning", "name": "tuning-arp" }]}'
+          type: Raw
+        - name: eric-pc-routing-engine
+          namespace: rds-sriov-wlkd
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }, { "type": "tuning", "name": "tuning-arp" }]}'
+          type: Raw
     #
     # Configuration for Rootless Pods(fromRDS)
     #
@@ -140,181 +226,27 @@ spec:
       policyName: "rootless-pods"
       metadata:
         name: 99-worker-setsebool
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
         labels:
           machineconfiguration.openshift.io/role: worker
       spec:
-        systemd:
-          units:
-            - contents: |
-                [Unit]
-                Description=Set SELinux boolean for tap cni plugin
-                Before=kubelet.service
+        config:
+          ignition:
+            version: 3.2.0
+          systemd:
+            units:
+              - contents: |
+                  [Unit]
+                  Description=Set SELinux boolean for tap cni plugin
+                  Before=kubelet.service
 
-                [Service]
-                Type=oneshot
-                ExecStart=/sbin/setsebool container_use_devices=on
-                RemainAfterExit=true
+                  [Service]
+                  Type=oneshot
+                  ExecStart=/sbin/setsebool container_use_devices=on
+                  RemainAfterExit=true
 
-                [Install]
-                WantedBy=multi-user.target graphical.target
-              enabled: true
-              name: setsebool.service
-    # configure Chronyd for non control-plane nodes in disconnected setup
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        name: 98-worker-etc-chrony-conf
-        labels:
-          machineconfiguration.openshift.io/role: worker
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMS5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMi5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2sxLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2syLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2suY29ycC5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
-                verification: {}
-              filesystem: root
-              group:
-                name: root
-              mode: 420
-              path: /etc/chrony.conf
-              user:
-                name: root
-    # configure extra kernel modules on control-plane nodes
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        name: 40-load-kernel-modules-master
-        labels:
-          machineconfiguration.openshift.io/role: master
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:,
-              mode: 420
-              overwrite: true
-              path: /etc/modprobe.d/kernel-blacklist.conf
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCmlwNl90YWJsZXMKaXA2dF9SRUpFQ1QKaXA2dGFibGVfZmlsdGVyCmlwNnRhYmxlX21hbmdsZQppcHRhYmxlX2ZpbHRlcgppcHRhYmxlX21hbmdsZQppcHRhYmxlX25hdAp4dF9tdWx0aXBvcnQKeHRfb3duZXIKeHRfUkVESVJFQ1QKeHRfc3RhdGlzdGljCnh0X1RDUE1TUwp4dF91MzI=
-              mode: 420
-              overwrite: true
-              path: /etc/modules-load.d/kernel-load.conf
-    # configure extra kernel modules on worker nodes
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        name: 40-load-kernel-modules-worker
-        labels:
-          machineconfiguration.openshift.io/role: worker
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:,
-              mode: 420
-              overwrite: true
-              path: /etc/modprobe.d/kernel-blacklist.conf
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCmlwNl90YWJsZXMKaXA2dF9SRUpFQ1QKaXA2dGFibGVfZmlsdGVyCmlwNnRhYmxlX21hbmdsZQppcHRhYmxlX2ZpbHRlcgppcHRhYmxlX21hbmdsZQppcHRhYmxlX25hdAp4dF9tdWx0aXBvcnQKeHRfb3duZXIKeHRfUkVESVJFQ1QKeHRfc3RhdGlzdGljCnh0X1RDUE1TUwp4dF91MzI=
-              mode: 420
-              overwrite: true
-              path: /etc/modules-load.d/kernel-load.conf
-    # configure system reserved memory
-    - fileName: system-reserved-memory.yaml
-      policyName: "post-install-tunning"
-      metadata:
-        name: autosizing-master
-      spec:
-        autoSizingReserved: true
-        machineConfigPoolSelector:
-          matchLabels:
-            pools.operator.machineconfiguration.openshift.io/master: ""
-    - fileName: system-reserved-memory.yaml
-      policyName: "post-install-tunning"
-      metadata:
-        name: autosizing-standard
-      spec:
-        autoSizingReserved: true
-        machineConfigPoolSelector:
-          matchLabels:
-            pools.operator.machineconfiguration.openshift.io/standard: ""
-    # configure MACVLAN networks
-    - fileName: AddAdditionalNetworks.yaml
-      policyName: "configure-macvlan"
-      spec:
-        additionalNetworks:
-        - name: pc-mm-ext
-          namespace: pcc
-          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "pc-mm-ext", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
-          type: Raw
-        - name: eric-pc-routing-engine-net0
-          namespace: pcc
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine-net0", "plugins": [ {"type": "macvlan", "master": "bond1", "mode": "private" },{ "type": "tuning", "name": "tuning-arp" }] }'
-          type: Raw
-        - name: eric-pc-vpn-gateway-forwarder-common
-          namespace: pcc
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-vpn-gateway-forwarder-common", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "bridge" }, { "type": "tuning", "name": "tuning-arp" }]}'
-          type: Raw
-        - name: eric-pc-routing-engine
-          namespace: pcg
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }, { "type": "tuning", "name": "tuning-arp" }]}'
-          type: Raw
-    # configure socket buffer tunning
-    - fileName: TunedPerformancePatch.yaml
-      policyName: "post-install-tunning"
-      metadata:
-        name: pfcp-socket-size
-      spec:
-        profile:
-        - data: |
-            [main]
-            summary=Description of pfcp-socket-size profile
-            include=openshift-control-plane
-            [sysctl]
-            net.core.rmem_max=8388608
-            net.core.wmem_max=8388608
-            net.core.rmem_default=238860
-            net.core.wmem_default=238860
-            net.ipv6.conf.bond1.accept_ra=0
-          name: pfcp-socket-size-master
-        - data: |
-            [main]
-            summary=Description of pfcp-socket-size profile
-            include=openshift-node
-            [sysctl]
-            net.core.rmem_max=8388608
-            net.core.wmem_max=8388608
-            net.core.rmem_default=238860
-            net.core.wmem_default=238860
-            net.ipv6.conf.bond1.accept_ra=0
-          name: pfcp-socket-size-standard
-        recommend:
-        - machineConfigLabels:
-            machineconfiguration.openshift.io/role: "master"
-          match:
-          - label: node-role.kubernetes.io/master
-          priority: 10
-          profile: pfcp-socket-size-master
-        - machineConfigLabels:
-            machineconfiguration.openshift.io/role: "standard"
-          match:
-          - label: node-role.kubernetes.io/standard
-          priority: 20
-          profile: pfcp-socket-size-standard
-    #
-    # TODO(YPROKULE): check if schedulable control-plane is part of RDS
-    # configure schedulable masters
-    #- fileName: "MastersSchedulable.yaml"
-    #  policyName: "config-cluster"
+                  [Install]
+                  WantedBy=multi-user.target graphical.target
+                enabled: true
+                name: setsebool.service
