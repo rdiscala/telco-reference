@@ -110,7 +110,7 @@ spec:
       spec:
         #cacheResyncPeriod: "0"
         # Image spec should be the latest for the release
-        imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.14.0"
+        imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.15.0"
     #
     # install NMState operator
     #
