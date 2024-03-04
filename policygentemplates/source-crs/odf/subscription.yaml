@@ -7,10 +7,10 @@ metadata:
   annotations:
     ran.openshift.io/ztp-deploy-wave: "8"
 spec:
-  channel: "stable-4.14"
+  channel: "stable-4.15"
   installPlanApproval: Manual
   name: odf-operator
-  source: redhat-operators-disconnected
+  source: redhat-odf-disconnected
   sourceNamespace: openshift-marketplace
 status:
   state: AtLatestKnown

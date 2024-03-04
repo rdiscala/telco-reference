@@ -24,6 +24,18 @@ spec:
         publisher: Red Hat
         sourceType: grpc
     #
+    # Dedicated CatalogSource for 4.15 ODF operator
+    #
+    - fileName: DefaultCatsrc.yaml
+      policyName: "config-policy"
+      metadata:
+          name: redhat-odf-disconnected
+      spec:
+        displayName: Red Hat ODF Disconnected Operators Catalog
+        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators-odf:v4.15
+        publisher: Red Hat
+        sourceType: grpc
+    #
     # configure ICSP
     #
     - fileName: DisconnectedICSP.yaml
