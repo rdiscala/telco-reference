@@ -14,7 +14,6 @@ spec:
   - clusterName: ecore
     extraManifests:
       searchPaths:
-        - extra-manifest/
         - mno-extra-manifests/
     networkType: "OVNKubernetes"
     ignitionConfigOverride: '{"ignition": {"version":"3.2.0"},"passwd": {"users": [{"groups": ["sudo"],"name": "core","passwordHash":"$6$E0dnxLH4UZAg1WSf$OaihmegAp5/MqHTprEBJAlf9e6p.lKhT2w3rn09uYlQ99Z6jwOw9qst4wictonF7KugFFCEQUGQwF2knPhrpy/"}]}}'
