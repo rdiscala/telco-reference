@@ -10,7 +10,7 @@ spec:
   channel: "stable-4.15"
   installPlanApproval: Manual
   name: odf-operator
-  source: redhat-odf-disconnected
+  source: redhat-operators-disconnected
   sourceNamespace: openshift-marketplace
 status:
   state: AtLatestKnown
