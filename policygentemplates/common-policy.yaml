@@ -185,8 +185,6 @@ spec:
       data:
         config.yaml: |
           prometheusK8s:
-            dedicatedServiceMonitors:
-              enabled: true
             retention: 15d
             volumeClaimTemplate:
               spec:

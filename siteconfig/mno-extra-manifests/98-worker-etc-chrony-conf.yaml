@@ -1,0 +1,31 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  creationTimestamp: null
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 98-worker-etc-chrony-conf
+spec:
+  config:
+    ignition:
+      config: {}
+      security:
+        tls: {}
+      timeouts: {}
+      version: 3.2.0
+    networkd: {}
+    passwd: {}
+    storage:
+      files:
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,c2VydmVyIHJlZ2lzdHJ5LmVjb3JlLmxhYi5lbmcudGx2Mi5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMS5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgbnRwMi5udHAtMDAxLnByb2QuaWFkMi5kYy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2sxLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2syLmJvcy5yZWRoYXQuY29tIGlidXJzdApzZXJ2ZXIgY2xvY2suY29ycC5yZWRoYXQuY29tIGlidXJzdApzdHJhdHVtd2VpZ2h0IDAKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdApydGNzeW5jCm1ha2VzdGVwIDEwIDMKYmluZGNtZGFkZHJlc3MgMTI3LjAuMC4xCmJpbmRjbWRhZGRyZXNzIDo6MQprZXlmaWxlIC9ldGMvY2hyb255LmtleXMKbm9jbGllbnRsb2cKbG9nY2hhbmdlIDAuNQpsb2dkaXIgL3Zhci9sb2cvY2hyb255Cg==
+          verification: {}
+        filesystem: root
+        group:
+          name: root
+        mode: 420
+        path: /etc/chrony.conf
+        user:
+          name: root
+    systemd: {}
+  osImageURL: ""
