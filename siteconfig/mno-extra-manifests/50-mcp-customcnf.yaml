@@ -2,10 +2,10 @@
 apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfigPool
 metadata:
-  name: ht100gb
+  name: customcnf
   labels:
-    machineconfiguration.openshift.io/role: ht100gb
-    pools.operator.machineconfiguration.openshift.io/ht100gb: ""
+    machineconfiguration.openshift.io/role: customcnf
+    pools.operator.machineconfiguration.openshift.io/customcnf: ""
 spec:
   # TODO(yprokule): revise it later
   maxUnavailable: 90%
@@ -15,8 +15,8 @@ spec:
         operator: In
         values:
           - worker
-          - ht100gb
+          - customcnf
   nodeSelector:
     matchLabels:
-      node-role.kubernetes.io/ht100gb: ""
+      node-role.kubernetes.io/customcnf: ""
   paused: false

@@ -504,7 +504,7 @@ spec:
         bootMACAddress: "5C:BA:2C:27:6E:E4"
         bootMode: "UEFI"
         nodeLabels:
-          node-role.kubernetes.io/ht100gb: ''
+          node-role.kubernetes.io/customcnf: ''
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -644,7 +644,7 @@ spec:
         bootMACAddress: "5C:BA:2C:27:6E:4E"
         bootMode: "UEFI"
         nodeLabels:
-          node-role.kubernetes.io/ht100gb: ''
+          node-role.kubernetes.io/customcnf: ''
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:

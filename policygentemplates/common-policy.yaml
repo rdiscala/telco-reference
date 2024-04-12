@@ -213,21 +213,13 @@ spec:
       policyName: "configure-macvlan"
       spec:
         additionalNetworks:
-        - name: pc-mm-ext
+        - name: mc-vlan-one
           namespace: rds-macvlan-wlkd
-          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "pc-mm-ext", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
           type: Raw
-        - name: eric-pc-routing-engine-net0
+        - name: mc-vlan-two
           namespace: rds-macvlan-wlkd
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine-net0", "plugins": [ {"type": "macvlan", "master": "bond1", "mode": "private" },{ "type": "tuning", "name": "tuning-arp" }] }'
-          type: Raw
-        - name: eric-pc-vpn-gateway-forwarder-common
-          namespace: rds-macvlan-wlkd
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-vpn-gateway-forwarder-common", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "bridge" }, { "type": "tuning", "name": "tuning-arp" }]}'
-          type: Raw
-        - name: eric-pc-routing-engine
-          namespace: rds-sriov-wlkd
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "eric-pc-routing-engine", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }, { "type": "tuning", "name": "tuning-arp" }]}'
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
           type: Raw
     #
     # Configuration for Rootless Pods(fromRDS)

@@ -25,13 +25,13 @@ spec:
     - fileName: validatorCRs/informPacketCOREValidator/MCP.yaml
       policyName: "packet-core-validator"
       metadata:
-        name: ht100gb
+        name: customcnf
       status:
          configuration:
            source:
              - apiVersion: machineconfiguration.openshift.io/v1
                kind: MachineConfig
-               name: 50-performance-ht100gb
+               name: 50-performance-customcnf
              - apiVersion: machineconfiguration.openshift.io/v1
                kind: MachineConfig
-               name: 50-nto-ht100gb
+               name: 50-nto-customcnf

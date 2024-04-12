@@ -9,30 +9,30 @@ spec:
     site: "ecore"
     zone: "tlv2"
   remediationAction: inform
-  mcp: "ht100gb"
+  mcp: "customcnf"
   sourceFiles:
     #
-    # configure MachineConfigPool ht100gb moved to extra-manifests
+    # configure MachineConfigPool customcnf moved to extra-manifests
     # but also present in policies/TS-1.6/sites/n65-ocp1/config-ht-nodes.yaml
     #
     - fileName: MachineConfigPool.yaml
       policyName: config-nodes-mcp
       metadata:
-        name: ht100gb
+        name: customcnf
         annotations:
           ran.openshift.io/ztp-deploy-wave: "2"
         labels:
-          machineconfiguration.openshift.io/role: ht100gb
-          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
+          machineconfiguration.openshift.io/role: customcnf
+          pools.operator.machineconfiguration.openshift.io/customcnf: ""
       spec:
         machineConfigSelector:
           matchExpressions:
             - key: machineconfiguration.openshift.io/role
               operator: In
-              values: [worker, ht100gb]
+              values: [worker, customcnf]
         nodeSelector:
           matchLabels:
-            node-role.kubernetes.io/ht100gb: ""
+            node-role.kubernetes.io/customcnf: ""
     # configure SR-IOV Network Node Policy
     - fileName: SriovNetworkNodePolicy.yaml
       policyName: "sriov-nnp"
@@ -41,7 +41,7 @@ spec:
       spec:
         resourceName: "sriovleftdpdkmellanox"
         nodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
+          node-role.kubernetes.io/customcnf: ""
         mtu: 9000
         numVfs: 4
         priority: 99
@@ -57,7 +57,7 @@ spec:
       spec:
         resourceName: "sriovrightdpdkmellanox"
         nodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
+          node-role.kubernetes.io/customcnf: ""
         mtu: 9000
         numVfs: 4
         priority: 99
@@ -94,7 +94,7 @@ spec:
       policyName: "post-install-tunning"
       complianceType: mustonlyhave
       metadata:
-        name: ht100gb
+        name: customcnf
         annotations:
           # this is needed for CGroupsV2 testing
           performance.openshift.io/ignore-cgroups-version: "true"
@@ -117,9 +117,9 @@ spec:
             count: 6
             node: 1
         machineConfigPoolSelector:
-          pools.operator.machineconfiguration.openshift.io/ht100gb: ""
+          pools.operator.machineconfiguration.openshift.io/customcnf: ""
         nodeSelector:
-          node-role.kubernetes.io/ht100gb: ""
+          node-role.kubernetes.io/customcnf: ""
         workloadHints:
           realTime: false
           highPowerConsumption: false

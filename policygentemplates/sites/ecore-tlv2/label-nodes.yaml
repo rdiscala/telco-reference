@@ -33,7 +33,7 @@ spec:
       metadata:
         name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
         labels:
-          node-role.kubernetes.io/ht100gb: ""
+          node-role.kubernetes.io/customcnf: ""
           acm-policy-labels-workaround: enabled
           type: high-throughput
     - fileName: LabelNode.yaml
@@ -41,6 +41,6 @@ spec:
       metadata:
         name: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
         labels:
-          node-role.kubernetes.io/ht100gb: ""
+          node-role.kubernetes.io/customcnf: ""
           acm-policy-labels-workaround: enabled
           type: high-throughput
