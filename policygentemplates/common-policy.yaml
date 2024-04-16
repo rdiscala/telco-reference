@@ -20,11 +20,11 @@ spec:
           name: redhat-operators-disconnected
       spec:
         displayName: Red Hat Disconnected Operators Catalog
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.15
+        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.16
         publisher: Red Hat
         sourceType: grpc
     #
-    # Dedicated CatalogSource for 4.15 ODF operator
+    # Dedicated CatalogSource for 4.16 ODF operator
     #
     - fileName: DefaultCatsrc.yaml
       policyName: "config-policy"
@@ -32,7 +32,7 @@ spec:
           name: redhat-odf-disconnected
       spec:
         displayName: Red Hat ODF Disconnected Operators Catalog
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators-odf:v4.15
+        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators-odf:v4.16
         publisher: Red Hat
         sourceType: grpc
     #
@@ -122,7 +122,7 @@ spec:
       spec:
         #cacheResyncPeriod: "0"
         # Image spec should be the latest for the release
-        imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.15.0"
+        imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.16.0"
     #
     # install NMState operator
     #
