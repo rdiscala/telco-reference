@@ -16,8 +16,8 @@ spec:
         name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
         labels:
           acm-policy-labels-workaround: enabled
-          pcc-mm-pod: non-controller
-          pcc-sm-pod: non-controller
+          rds-label-one: rds-core-one
+          rds-label-two: rds-core-two
       spec: {}
     - fileName: LabelNode.yaml
       policyName: pcc-label
@@ -25,8 +25,8 @@ spec:
         name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
         labels:
           acm-policy-labels-workaround: enabled
-          pcc-mm-pod: non-controller
-          pcc-sm-pod: non-controller
+          rds-label-one: rds-core-one
+          rds-label-two: rds-core-two
       spec: {}
     - fileName: LabelNode.yaml
       policyName: pcc-label
@@ -35,7 +35,7 @@ spec:
         labels:
           node-role.kubernetes.io/customcnf: ""
           acm-policy-labels-workaround: enabled
-          type: high-throughput
+          type: powerful
     - fileName: LabelNode.yaml
       policyName: pcc-label
       metadata:
@@ -43,4 +43,4 @@ spec:
         labels:
           node-role.kubernetes.io/customcnf: ""
           acm-policy-labels-workaround: enabled
-          type: high-throughput
+          type: powerful
