@@ -13,7 +13,6 @@ spec:
   sourceFiles:
     #
     # configure MachineConfigPool customcnf moved to extra-manifests
-    # but also present in policies/TS-1.6/sites/n65-ocp1/config-ht-nodes.yaml
     #
     - fileName: MachineConfigPool.yaml
       policyName: config-nodes-mcp
@@ -34,10 +33,12 @@ spec:
           matchLabels:
             node-role.kubernetes.io/customcnf: ""
     # configure SR-IOV Network Node Policy
-    - fileName: SriovNetworkNodePolicy.yaml
+    - fileName: required/networking/sriov/sriovNetworkNodePolicy.yaml
       policyName: "sriov-nnp"
       metadata:
         name: sriovleftdpdkmellanox
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "100"
       spec:
         resourceName: "sriovleftdpdkmellanox"
         nodeSelector:
@@ -50,10 +51,12 @@ spec:
           pfNames: ['ens4f0np0', 'ens5f0np0']
         deviceType: netdevice
         isRdma: True
-    - fileName: SriovNetworkNodePolicy.yaml
+    - fileName: required/networking/sriov/sriovNetworkNodePolicy.yaml
       policyName: "sriov-nnp"
       metadata:
         name: sriovrightdpdkmellanox
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "100"
       spec:
         resourceName: "sriovrightdpdkmellanox"
         nodeSelector:
@@ -67,10 +70,12 @@ spec:
         deviceType: netdevice
         isRdma: True
     # configure SR-IOV Networks
-    - fileName: SriovNetwork.yaml
+    - fileName: required/networking/sriov/sriovNetwork.yaml
       policyName: config-sriov-network
       metadata:
         name: "sriov-net-one"
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "100"
       spec:
         capabilities: '{ "ips": true }'
         ipam: '{}'
@@ -78,10 +83,12 @@ spec:
         networkNamespace: rds-sriov-wlkd
         resourceName: sriovleftdpdkmellanox
         trust: "on"
-    - fileName: SriovNetwork.yaml
+    - fileName: required/networking/sriov/sriovNetwork.yaml
       policyName: config-sriov-network
       metadata:
         name: "sriov-net-two"
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "100"
       spec:
         capabilities: '{ "ips": true }'
         ipam: '{}'
@@ -90,12 +97,13 @@ spec:
         resourceName: sriovrightdpdkmellanox
         trust: "on"
     # configure performance profile
-    - fileName: PerformanceProfile.yaml
+    - fileName: required/performance/PerformanceProfile.yaml
       policyName: "post-install-tunning"
       complianceType: mustonlyhave
       metadata:
         name: customcnf
         annotations:
+          ran.openshift.io/ztp-deploy-wave: "10"
           # this is needed for CGroupsV2 testing
           performance.openshift.io/ignore-cgroups-version: "true"
           # Some pods want the kernel stack to ignore IPv6 router Advertisement.

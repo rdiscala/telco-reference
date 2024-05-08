@@ -10,36 +10,55 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
-    - fileName: RoutingViaHost.yaml
+    - fileName: required/networking/Network.yaml
       policyName: "config-network"
-    - fileName: OperatorHub.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "1"
+      spec:
+        defaultNetwork:
+          ovnKubernetesConfig:
+            mtu: 8900
+            gatewayConfig:
+              ipForwarding: "Global"
+              routingViaHost: true
+        additionalNetworks:
+        - name: mc-vlan-one
+          namespace: rds-macvlan-wlkd
+          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+          type: Raw
+        - name: mc-vlan-two
+          namespace: rds-macvlan-wlkd
+          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
+          type: Raw
+
+    - fileName: required/other/operator-hub.yaml
       policyName: "disable-operator-hub"
-    - fileName: DefaultCatsrc.yaml
+      complianceType: mustonlyhave
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "1"
+
+    - fileName: required/other/catalog-source.yaml
       policyName: "config-policy"
       metadata:
-          name: redhat-operators-disconnected
+        name: redhat-operators-disconnected
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "1"
       spec:
         displayName: Red Hat Disconnected Operators Catalog
         image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.16
         publisher: Red Hat
         sourceType: grpc
-    #
-    # Dedicated CatalogSource for 4.16 ODF operator
-    #
-    - fileName: DefaultCatsrc.yaml
-      policyName: "config-policy"
-      metadata:
-          name: redhat-odf-disconnected
-      spec:
-        displayName: Red Hat ODF Disconnected Operators Catalog
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators-odf:v4.16
-        publisher: Red Hat
-        sourceType: grpc
+
     #
     # configure ICSP
     #
-    - fileName: DisconnectedICSP.yaml
+    - fileName: required/other/icsp.yaml
       policyName: "config-policy"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "1"
       spec:
         repositoryDigestMirrors:
           - mirrors:
@@ -77,31 +96,49 @@ spec:
     #
     # install and configure SR-IOV operator
     #
-    - fileName: SriovSubscriptionNS.yaml
+    - fileName: required/networking/sriov/SriovSubscriptionNS.yaml
       policyName: "install-operators-sriov"
-    - fileName: SriovSubscriptionOperGroup.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/sriov/SriovSubscriptionOperGroup.yaml
       policyName: "install-operators-sriov"
-    - fileName: SriovSubscription.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/sriov/SriovSubscription.yaml
       policyName: "install-operators-sriov"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
       spec:
         channel: "stable"
         source: redhat-operators-disconnected
         installPlanApproval: "Automatic"
-    - fileName: SriovOperatorConfig.yaml
+    - fileName: required/networking/sriov/SriovOperatorConfig.yaml
       policyName: "config-operators-sriov"
-      spec:
-        configDaemonNodeSelector:
-          node-role.kubernetes.io/worker: ""
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "10"
     #
     # install and configure MetalLB operator
     # MetalLB operator configuration moved to a site folder
     #
-    - fileName: metallb/ns.yaml
+    - fileName: required/networking/metallb/metallbNS.yaml
       policyName: "install-operators"
-    - fileName: metallb/operatorGroup.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/metallb/metallbOperGroup.yaml
       policyName: "install-operators"
-    - fileName: metallb/subscription.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/metallb/metallbSubscription.yaml
       policyName: "install-operators"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
       spec:
         channel: "stable"
         source: redhat-operators-disconnected
@@ -109,16 +146,34 @@ spec:
     #
     # install and configure NROP
     #
-    - fileName: scheduling/NROPSubscriptionNS.yaml
+    - fileName: required/scheduling/NROPSubscriptionNS.yaml
       policyName: "install-operators"
-    - fileName: scheduling/NROPSubscriptionOperGroup.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/scheduling/NROPSubscriptionOperGroup.yaml
       policyName: "install-operators"
-    - fileName: scheduling/NROPSubscription.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/scheduling/NROPSubscription.yaml
       policyName: "install-operators"
-    - fileName: scheduling/nrop.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+      spec:
+        channel: "4.16"
+        source: redhat-operators-disconnected
+    - fileName: required/scheduling/nrop.yaml
       policyName: "install-operators"
-    - fileName: scheduling/nrop-scheduling.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/scheduling/sched.yaml
       policyName: "install-operators"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
       spec:
         #cacheResyncPeriod: "0"
         # Image spec should be the latest for the release
@@ -126,34 +181,66 @@ spec:
     #
     # install NMState operator
     #
-    - fileName: nmstate/namespace.yaml
+    - fileName: required/networking/NMStateNS.yaml
       policyName: "install-operators"
-    - fileName: nmstate/operatorGroup.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/NMStateOperGroup.yaml
       policyName: "install-operators"
-    - fileName: nmstate/subscription.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/NMStateSubscription.yaml
       policyName: "install-operators"
-    - fileName: nmstate/instance.yaml
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: required/networking/NMState.yaml
       policyName: "install-operators"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+
     #
     # install and configure Logging
     #
-    - fileName: ClusterLogNS.yaml
-      policyName: "cluster-logging-op"
-    - fileName: ClusterLogOperGroup.yaml
-      policyName: "cluster-logging-op"
-    - fileName: ClusterLogSubscription.yaml
-      policyName: "cluster-logging-op"
+    - fileName: optional/logging/ClusterLogNS.yaml
+      policyName: "install-operators"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: optional/logging/ClusterLogOperGroup.yaml
+      policyName: "install-operators"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+    - fileName: optional/logging/ClusterLogSubscription.yaml
+      policyName: "install-operators"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
       spec:
         source: redhat-operators-disconnected
         installPlanApproval: Automatic
     # NOTE(yprokule): ClusterLogging instance by default uses wave 10
     #               : thefore dedicated policy
-    - fileName: ClusterLogging.yaml
-      policyName: "cluster-logging-configure"
+    #               : trying to use same wave
+    - fileName: optional/logging/ClusterLogging.yaml
+      policyName: "install-operators"
+      #policyName: "cluster-logging-configure"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
     # NOTE(yprokule): ClusterLogForwarder.yaml has to be added
     #               : after central server for logs is available
-    - fileName: ClusterLogForwarder.yaml
-      policyName: "config-policy-configure"
+    #               : trying to use same wave
+    - fileName: optional/logging/ClusterLogForwarder.yaml
+      policyName: "install-operators"
+      #policyName: "config-policy-configure"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
       spec:
         outputs:
           - type: "kafka"
@@ -175,30 +262,13 @@ spec:
             outputRefs:
               - kafka-open
     # configure Monitoring
-    - fileName: "GenericConfigMap.yaml"
+    - fileName: optional/other/monitoring-config-cm.yaml
       policyName: "dedicated-service-monitor"
       metadata:
         name: cluster-monitoring-config
         namespace: openshift-monitoring
         annotations:
           ran.openshift.io/ztp-deploy-wave: "16"
-      data:
-        config.yaml: |
-          prometheusK8s:
-            retention: 15d
-            volumeClaimTemplate:
-              spec:
-                storageClassName: ocs-external-storagecluster-ceph-rbd
-                resources:
-                  requests:
-                    storage: 100Gi
-          alertmanagerMain:
-            volumeClaimTemplate:
-              spec:
-                storageClassName: ocs-external-storagecluster-ceph-rbd
-                resources:
-                  requests:
-                    storage: 20Gi
     # configure custom Namespaces
     - fileName: customNamespace.yaml
       policyName: "custom-namespaces"
@@ -209,46 +279,23 @@ spec:
       metadata:
         name: rds-sriov-wlkd
     # configure MACVLAN networks
-    - fileName: AddAdditionalNetworks.yaml
-      policyName: "configure-macvlan"
-      spec:
-        additionalNetworks:
-        - name: mc-vlan-one
-          namespace: rds-macvlan-wlkd
-          rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
-          type: Raw
-        - name: mc-vlan-two
-          namespace: rds-macvlan-wlkd
-          rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
-          type: Raw
+    #- fileName: AddAdditionalNetworks.yaml
+    #  policyName: "configure-macvlan"
+    #  spec:
+    #    additionalNetworks:
+    #    - name: mc-vlan-one
+    #      namespace: rds-macvlan-wlkd
+    #      rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+    #      type: Raw
+    #    - name: mc-vlan-two
+    #      namespace: rds-macvlan-wlkd
+    #      rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
+    #      type: Raw
     #
     # Configuration for Rootless Pods(fromRDS)
     #
-    - fileName: MachineConfigGeneric.yaml
+    - fileName: optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
       policyName: "rootless-pods"
       metadata:
-        name: 99-worker-setsebool
         annotations:
           ran.openshift.io/ztp-deploy-wave: "4"
-        labels:
-          machineconfiguration.openshift.io/role: worker
-      spec:
-        config:
-          ignition:
-            version: 3.2.0
-          systemd:
-            units:
-              - contents: |
-                  [Unit]
-                  Description=Set SELinux boolean for tap cni plugin
-                  Before=kubelet.service
-
-                  [Service]
-                  Type=oneshot
-                  ExecStart=/sbin/setsebool container_use_devices=on
-                  RemainAfterExit=true
-
-                  [Install]
-                  WantedBy=multi-user.target graphical.target
-                enabled: true
-                name: setsebool.service

@@ -11,6 +11,7 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
+    # NOTE: move to "customer" directory
     - fileName: MachineConfigPool.yaml
       policyName: config-nodes-mcp
       metadata:
@@ -30,16 +31,13 @@ spec:
           matchLabels:
             node-role.kubernetes.io/standard: ""
     # configure system reserved memory
-    - fileName: system-reserved-memory.yaml
+    - fileName: optional/tuning/control-plane-system-reserved.yaml
       policyName: "post-install-tunning"
       metadata:
-        name: autosizing-master
-      spec:
-        autoSizingReserved: true
-        machineConfigPoolSelector:
-          matchLabels:
-            pools.operator.machineconfiguration.openshift.io/master: ""
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
     # configure Chronyd for control-plane nodes in disconnected setup
+    # NOTE: move to "customer" directory
     - fileName: MachineConfigGeneric.yaml
       policyName: "config-mc"
       complianceType: mustonlyhave
@@ -94,56 +92,14 @@ spec:
               user:
                 name: root
     # configure extra kernel modules on control-plane nodes
-    - fileName: MachineConfigGeneric.yaml
+    - fileName: optional/other/control-plane-load-kernel-modules.yaml
       policyName: "config-mc"
-      complianceType: mustonlyhave
       metadata:
-        name: 40-load-kernel-modules-master
         annotations:
           ran.openshift.io/ztp-deploy-wave: "4"
-        labels:
-          machineconfiguration.openshift.io/role: master
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:,
-              mode: 420
-              overwrite: true
-              path: /etc/modprobe.d/kernel-blacklist.conf
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCmlwNl90YWJsZXMKaXA2dF9SRUpFQ1QKaXA2dGFibGVfZmlsdGVyCmlwNnRhYmxlX21hbmdsZQppcHRhYmxlX2ZpbHRlcgppcHRhYmxlX21hbmdsZQppcHRhYmxlX25hdAp4dF9tdWx0aXBvcnQKeHRfb3duZXIKeHRfUkVESVJFQ1QKeHRfc3RhdGlzdGljCnh0X1RDUE1TUwp4dF91MzI=
-              mode: 420
-              overwrite: true
-              path: /etc/modules-load.d/kernel-load.conf
     # configure extra kernel modules on worker nodes
-    - fileName: MachineConfigGeneric.yaml
+    - fileName: optional/other/worker-load-kernel-modules.yaml
       policyName: "config-mc"
-      complianceType: mustonlyhave
       metadata:
-        name: 40-load-kernel-modules-worker
         annotations:
           ran.openshift.io/ztp-deploy-wave: "4"
-        labels:
-          machineconfiguration.openshift.io/role: worker
-      spec:
-        config:
-          # Release info found in https://github.com/coreos/butane/releases
-          ignition:
-            version: 3.2.0
-          storage:
-            files:
-            - contents:
-                source: data:,
-              mode: 420
-              overwrite: true
-              path: /etc/modprobe.d/kernel-blacklist.conf
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCmlwNl90YWJsZXMKaXA2dF9SRUpFQ1QKaXA2dGFibGVfZmlsdGVyCmlwNnRhYmxlX21hbmdsZQppcHRhYmxlX2ZpbHRlcgppcHRhYmxlX21hbmdsZQppcHRhYmxlX25hdAp4dF9tdWx0aXBvcnQKeHRfb3duZXIKeHRfUkVESVJFQ1QKeHRfc3RhdGlzdGljCnh0X1RDUE1TUwp4dF91MzI=
-              mode: 420
-              overwrite: true
-              path: /etc/modules-load.d/kernel-load.conf
