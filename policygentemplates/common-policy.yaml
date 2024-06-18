@@ -278,6 +278,10 @@ spec:
       policyName: "custom-namespaces"
       metadata:
         name: rds-sriov-wlkd
+    - fileName: customNamespace.yaml
+      policyName: "custom-namespaces"
+      metadata:
+        name: rds-nrop-wlkd
     # configure MACVLAN networks
     #- fileName: AddAdditionalNetworks.yaml
     #  policyName: "configure-macvlan"
