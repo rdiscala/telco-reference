@@ -12,13 +12,13 @@ data:
       dedicatedServiceMonitors:
         enabled: true
     prometheusK8s:
-      retention: 15d
+      retention: 1d
       volumeClaimTemplate:
         spec:
           storageClassName: ocs-external-storagecluster-ceph-rbd
           resources:
             requests:
-              storage: 100Gi
+              storage: 10Gi
     alertmanagerMain:
       volumeClaimTemplate:
         spec:
