@@ -169,6 +169,12 @@ spec:
       metadata:
         annotations:
           ran.openshift.io/ztp-deploy-wave: "2"
+      spec:
+        nodeGroups:
+        - machineConfigPoolSelector:
+            matchLabels:
+              # This label must match the pool(s) you want to run NUMA-aligned workloads
+              pools.operator.machineconfiguration.openshift.io/customcnf: ""
     - fileName: required/scheduling/sched.yaml
       policyName: "install-operators"
       metadata:
@@ -269,6 +275,23 @@ spec:
         namespace: openshift-monitoring
         annotations:
           ran.openshift.io/ztp-deploy-wave: "16"
+      data:
+        config.yaml: |
+          prometheusK8s:
+            retention: 1d
+            volumeClaimTemplate:
+              spec:
+                storageClassName: ocs-external-storagecluster-ceph-rbd
+                resources:
+                  requests:
+                    storage: 10Gi
+          alertmanagerMain:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: ocs-external-storagecluster-ceph-rbd
+                resources:
+                  requests:
+                    storage: 20Gi
     # configure custom Namespaces
     - fileName: customNamespace.yaml
       policyName: "custom-namespaces"
