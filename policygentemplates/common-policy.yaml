@@ -318,24 +318,26 @@ spec:
       policyName: "custom-namespaces"
       metadata:
         name: rds-nrop-wlkd
-    # configure MACVLAN networks
-    #- fileName: AddAdditionalNetworks.yaml
-    #  policyName: "configure-macvlan"
-    #  spec:
-    #    additionalNetworks:
-    #    - name: mc-vlan-one
-    #      namespace: rds-macvlan-wlkd
-    #      rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
-    #      type: Raw
-    #    - name: mc-vlan-two
-    #      namespace: rds-macvlan-wlkd
-    #      rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
-    #      type: Raw
     #
     # Configuration for Rootless Pods(fromRDS)
     #
     - fileName: optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
       policyName: "rootless-pods"
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
+
+    #
+    # Enable KDump
+    #
+    - fileName: optional/other/06-kdump-master.yaml
+      policyName: enable-kdump
+      metadata:
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "4"
+
+    - fileName: optional/other/06-kdump-worker.yaml
+      policyName: enable-kdump
       metadata:
         annotations:
           ran.openshift.io/ztp-deploy-wave: "4"
