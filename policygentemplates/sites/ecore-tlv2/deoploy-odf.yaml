@@ -10,25 +10,9 @@ spec:
     zone: "tlv2"
   remediationAction: inform
   sourceFiles:
-    # install ODF operator
-    - fileName: required/storage/odf-external/odfNS.yaml
-      policyName: "install-odf-operator"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "8"
-    - fileName: required/storage/odf-external/odfOperGroup.yaml
-      policyName: "install-odf-operator"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "8"
-    - fileName: required/storage/odf-external/odfSubscription.yaml
-      policyName: "install-odf-operator"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "8"
-      spec:
-        channel: "stable-4.17"
+    #
     # configure ODF operator
+    #
     - fileName: required/storage/odf-external/01-rook-ceph-external-cluster-details.secret.yaml
       policyName: "config-odf-operator"
       metadata:
@@ -41,13 +25,3 @@ spec:
       metadata:
         annotations:
           ran.openshift.io/ztp-deploy-wave: "11"
-    # storage classes from ODF
-    # NOT PRESENT in CORE Container
-    # - fileName: required/storage/odf-external/odf-sc-ceph-rbd.yaml
-    #   policyName: "odf-storage-classes"
-    # - fileName: required/storage/odf-external/odf-sc-ceph-fs.yaml
-    #   policyName: "odf-storage-classes"
-    # - fileName: required/storage/odf-external/odf-sc-nooba.yaml
-    #   policyName: "odf-storage-classes"
-    #   metadata:
-    #     name: openshift-storage.noobaa.io

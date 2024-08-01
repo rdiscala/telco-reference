@@ -22,6 +22,7 @@ spec:
       site: "ecore"
       zone: "tlv2"
       group: "n65"
+      version: "4.17"
     # Network range where the MNO nodes are connected
     machineNetwork:
       - cidr: "10.46.187.0/26"

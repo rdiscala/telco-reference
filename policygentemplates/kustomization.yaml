@@ -3,7 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 generators:
   - common-policy.yaml
-  - mno-update-policy-4.16.yml
+  - operators-policy.yaml
+  - mno-update-policy-4.17.yml
   - sites/ecore-tlv2/optimize-ztp-done.yaml
   # configure VLAN sub-interfaces on the cluster nodes
   - sites/ecore-tlv2/configure-lb-intersite-vlan.yaml
@@ -26,5 +27,7 @@ generators:
   - sites/ecore-tlv2/config-masters.yaml
   # configure non HT nodes
   - group/n65/config-noht-nodes.yaml
+  # configure nodes
+  - sites/ecore-tlv2/config-nodes.yaml
 resources:
   - policies-namespace.yaml

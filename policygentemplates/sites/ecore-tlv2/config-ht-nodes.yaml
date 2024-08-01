@@ -12,33 +12,14 @@ spec:
   mcp: "customcnf"
   sourceFiles:
     #
-    # configure MachineConfigPool customcnf moved to extra-manifests
-    #
-    - fileName: MachineConfigPool.yaml
-      policyName: config-nodes-mcp
-      metadata:
-        name: customcnf
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-        labels:
-          machineconfiguration.openshift.io/role: customcnf
-          pools.operator.machineconfiguration.openshift.io/customcnf: ""
-      spec:
-        machineConfigSelector:
-          matchExpressions:
-            - key: machineconfiguration.openshift.io/role
-              operator: In
-              values: [worker, customcnf]
-        nodeSelector:
-          matchLabels:
-            node-role.kubernetes.io/customcnf: ""
     # configure SR-IOV Network Node Policy
+    #
     - fileName: required/networking/sriov/sriovNetworkNodePolicy.yaml
-      policyName: "sriov-nnp"
+      policyName: "config-sriov-operator"
       metadata:
         name: sriovleftdpdkmellanox
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "100"
+          ran.openshift.io/ztp-deploy-wave: "10"
       spec:
         resourceName: "sriovleftdpdkmellanox"
         nodeSelector:
@@ -52,11 +33,11 @@ spec:
         deviceType: netdevice
         isRdma: True
     - fileName: required/networking/sriov/sriovNetworkNodePolicy.yaml
-      policyName: "sriov-nnp"
+      policyName: "config-sriov-operator"
       metadata:
         name: sriovrightdpdkmellanox
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "100"
+          ran.openshift.io/ztp-deploy-wave: "10"
       spec:
         resourceName: "sriovrightdpdkmellanox"
         nodeSelector:
@@ -69,13 +50,15 @@ spec:
           pfNames: ['ens4f1np1', 'ens5f1np1']
         deviceType: netdevice
         isRdma: True
+    #
     # configure SR-IOV Networks
+    #
     - fileName: required/networking/sriov/sriovNetwork.yaml
-      policyName: config-sriov-network
+      policyName: config-sriov-operator
       metadata:
         name: "sriov-net-one"
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "100"
+          ran.openshift.io/ztp-deploy-wave: "10"
       spec:
         capabilities: '{ "ips": true }'
         ipam: '{}'
@@ -84,11 +67,11 @@ spec:
         resourceName: sriovleftdpdkmellanox
         trust: "on"
     - fileName: required/networking/sriov/sriovNetwork.yaml
-      policyName: config-sriov-network
+      policyName: config-sriov-operator
       metadata:
         name: "sriov-net-two"
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "100"
+          ran.openshift.io/ztp-deploy-wave: "10"
       spec:
         capabilities: '{ "ips": true }'
         ipam: '{}'
@@ -96,7 +79,9 @@ spec:
         networkNamespace: rds-sriov-wlkd
         resourceName: sriovrightdpdkmellanox
         trust: "on"
+    #
     # configure performance profile
+    #
     - fileName: required/performance/PerformanceProfile.yaml
       policyName: "post-install-tunning"
       complianceType: mustonlyhave

@@ -33,35 +33,11 @@ spec:
           type: Raw
 
     - fileName: required/other/operator-hub.yaml
-      policyName: "disable-operator-hub"
+      policyName: "config-policy"
       complianceType: mustonlyhave
       metadata:
         annotations:
           ran.openshift.io/ztp-deploy-wave: "1"
-
-    - fileName: required/other/catalog-source.yaml
-      policyName: "config-policy"
-      metadata:
-        name: redhat-operators-disconnected
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "1"
-      spec:
-        displayName: Red Hat Disconnected Operators Catalog
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.17
-        publisher: Red Hat
-        sourceType: grpc
-
-    - fileName: required/other/catalog-source.yaml
-      policyName: "config-policy"
-      metadata:
-        name: redhat-operators-previous
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "1"
-      spec:
-        displayName: Red Hat 4.16
-        image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.16
-        publisher: Red Hat
-        sourceType: grpc
 
     #
     # configure ICSP
@@ -106,82 +82,21 @@ spec:
             - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
             source: quay.io/openshift-release-dev/ocp-release-nightly
     #
-    # install and configure SR-IOV operator
+    # configure SR-IOV operator
     #
-    - fileName: required/networking/sriov/SriovSubscriptionNS.yaml
-      policyName: "install-operators-sriov"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/networking/sriov/SriovSubscriptionOperGroup.yaml
-      policyName: "install-operators-sriov"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/networking/sriov/SriovSubscription.yaml
-      policyName: "install-operators-sriov"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-      spec:
-        channel: "stable"
-        source: redhat-operators-disconnected
-        installPlanApproval: "Automatic"
     - fileName: required/networking/sriov/SriovOperatorConfig.yaml
-      policyName: "config-operators-sriov"
+      policyName: "config-operators"
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "10"
-    #
-    # install and configure MetalLB operator
-    # MetalLB operator configuration moved to a site folder
-    #
-    - fileName: required/networking/metallb/metallbNS.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/networking/metallb/metallbOperGroup.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/networking/metallb/metallbSubscription.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-      spec:
-        channel: "stable"
-        source: redhat-operators-previous
-        installPlanApproval: "Automatic"
+          ran.openshift.io/ztp-deploy-wave: "3"
     #
     # install and configure NROP
     #
-    - fileName: required/scheduling/NROPSubscriptionNS.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/scheduling/NROPSubscriptionOperGroup.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/scheduling/NROPSubscription.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-      spec:
-        # TODO: update when 4.17 version is available
-        channel: "4.16"
-        source: redhat-operators-disconnected
     - fileName: required/scheduling/nrop.yaml
-      policyName: "install-operators"
+      policyName: "config-operators"
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
+          ran.openshift.io/ztp-deploy-wave: "3"
       spec:
         nodeGroups:
         - machineConfigPoolSelector:
@@ -189,105 +104,69 @@ spec:
               # This label must match the pool(s) you want to run NUMA-aligned workloads
               pools.operator.machineconfiguration.openshift.io/customcnf: ""
     - fileName: required/scheduling/sched.yaml
-      policyName: "install-operators"
+      policyName: "config-operators"
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
+          ran.openshift.io/ztp-deploy-wave: "3"
       spec:
         #cacheResyncPeriod: "0"
         # Image spec should be the latest for the release
         imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.17.0"
     #
-    # install NMState operator
+    # initialize NMState operator
     #
-    - fileName: required/networking/NMStateNS.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/networking/NMStateOperGroup.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: required/networking/NMStateSubscription.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
     - fileName: required/networking/NMState.yaml
-      policyName: "install-operators"
+      policyName: "config-operators"
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
+          ran.openshift.io/ztp-deploy-wave: "3"
 
     #
     # install and configure Logging
     #
-    - fileName: optional/logging/ClusterLogNS.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: optional/logging/ClusterLogOperGroup.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-    - fileName: optional/logging/ClusterLogSubscription.yaml
-      policyName: "install-operators"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-      spec:
-        source: redhat-operators-disconnected
-        installPlanApproval: Automatic
-    # NOTE(yprokule): ClusterLogging instance by default uses wave 10
-    #               : thefore dedicated policy
-    #               : trying to use same wave
-    - fileName: optional/logging/ClusterLogging.yaml
-      policyName: "install-operators"
-      #policyName: "cluster-logging-configure"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
+    #- fileName: optional/logging/ClusterLogging.yaml
+    #  policyName: "config-operators"
+    #  metadata:
+    #    annotations:
+    #      ran.openshift.io/ztp-deploy-wave: "3"
     # NOTE(yprokule): ClusterLogForwarder.yaml has to be added
     #               : after central server for logs is available
     #               : trying to use same wave
-    - fileName: optional/logging/ClusterLogForwarder.yaml
-      policyName: "install-operators"
-      #policyName: "config-policy-configure"
-      metadata:
-        annotations:
-          ran.openshift.io/ztp-deploy-wave: "2"
-      spec:
-        outputs:
-          - type: "kafka"
-            name: kafka-open
-            # use FQDN when DNS entries for IPv4 and IPv6 are in place
-            # only IPv4 IP address works
-            #  url: tcp://vran-qe-kafka.lab.eng.rdu2.redhat.com:9092/vran-qe
-            url: tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe
-        pipelines:
-          - inputRefs:
-              - audit
-              - infrastructure
-            labels:
-              label1: test1
-              label2: test2
-              label3: test3
-              rds: core
-            name: all-to-default
-            outputRefs:
-              - kafka-open
+    #- fileName: optional/logging/ClusterLogForwarder.yaml
+    #  policyName: "config-operators"
+    #  metadata:
+    #    annotations:
+    #      ran.openshift.io/ztp-deploy-wave: "3"
+    #  spec:
+    #    outputs:
+    #      - type: "kafka"
+    #        name: kafka-open
+    #        # use FQDN when DNS entries for IPv4 and IPv6 are in place
+    #        # only IPv4 IP address works
+    #        #  url: tcp://vran-qe-kafka.lab.eng.rdu2.redhat.com:9092/vran-qe
+    #        url: tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe
+    #    pipelines:
+    #      - inputRefs:
+    #          - audit
+    #          - infrastructure
+    #        labels:
+    #          label1: test1
+    #          label2: test2
+    #          label3: test3
+    #          rds: core
+    #        name: all-to-default
+    #        outputRefs:
+    #          - kafka-open
+    #
     # configure Monitoring
+    #
     - fileName: optional/other/monitoring-config-cm.yaml
-      policyName: "dedicated-service-monitor"
+      policyName: "config-operators"
       metadata:
         name: cluster-monitoring-config
         namespace: openshift-monitoring
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "16"
+          ran.openshift.io/ztp-deploy-wave: "3"
       data:
         config.yaml: |
           prometheusK8s:
@@ -322,10 +201,10 @@ spec:
     # Configuration for Rootless Pods(fromRDS)
     #
     - fileName: optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
-      policyName: "rootless-pods"
+      policyName: "config-operators"
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "4"
+          ran.openshift.io/ztp-deploy-wave: "3"
 
     #
     # Enable KDump
@@ -334,10 +213,51 @@ spec:
       policyName: enable-kdump
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "4"
+          ran.openshift.io/ztp-deploy-wave: "3"
 
     - fileName: optional/other/06-kdump-worker.yaml
       policyName: enable-kdump
       metadata:
         annotations:
-          ran.openshift.io/ztp-deploy-wave: "4"
+          ran.openshift.io/ztp-deploy-wave: "3"
+
+    #
+    # configure MachineConfigPool customcnf moved to extra-manifests
+    #
+    - fileName: MachineConfigPool.yaml
+      policyName: config-nodes-mcp
+      metadata:
+        name: customcnf
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+        labels:
+          machineconfiguration.openshift.io/role: customcnf
+          pools.operator.machineconfiguration.openshift.io/customcnf: ""
+      spec:
+        machineConfigSelector:
+          matchExpressions:
+            - key: machineconfiguration.openshift.io/role
+              operator: In
+              values: [worker, customcnf]
+        nodeSelector:
+          matchLabels:
+            node-role.kubernetes.io/customcnf: ""
+
+    - fileName: MachineConfigPool.yaml
+      policyName: config-nodes-mcp
+      metadata:
+        name: standard
+        annotations:
+          ran.openshift.io/ztp-deploy-wave: "2"
+        labels:
+          machineconfiguration.openshift.io/role: standard
+          pools.operator.machineconfiguration.openshift.io/standard: ""
+      spec:
+        machineConfigSelector:
+          matchExpressions:
+            - key: machineconfiguration.openshift.io/role
+              operator: In
+              values: [worker, standard]
+        nodeSelector:
+          matchLabels:
+            node-role.kubernetes.io/standard: ""
