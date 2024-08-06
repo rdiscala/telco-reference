@@ -1,0 +1,60 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-label-nodes
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "2"
+policies:
+  - name: label-nodes
+    manifests:
+      - path: source-crs/LabelNode.yaml
+        patches:
+          - metadata:
+              $patch: replace
+              name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+              labels:
+                acm-policy-labels-workaround: enabled
+                rds-label-one: rds-core-one
+                rds-label-two: rds-core-two
+      - path: source-crs/LabelNode.yaml
+        patches:
+          - metadata:
+              $patch: replace
+              name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+              labels:
+                acm-policy-labels-workaround: enabled
+                rds-label-one: rds-core-one
+                rds-label-two: rds-core-two
+      - path: source-crs/LabelNode.yaml
+        patches:
+          - metadata:
+              $patch: replace
+              name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+              labels:
+                node-role.kubernetes.io/customcnf: ""
+                acm-policy-labels-workaround: enabled
+                type: powerful
+      - path: source-crs/LabelNode.yaml
+        patches:
+          - metadata:
+              $patch: replace
+              name: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
+              labels:
+                node-role.kubernetes.io/customcnf: ""
+                acm-policy-labels-workaround: enabled
+                type: powerful

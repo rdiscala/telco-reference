@@ -1,0 +1,130 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-config-ht
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10"
+policies:
+  - name: config-sriov-operator
+    manifests:
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftdpdkmellanox
+            spec:
+              resourceName: "sriovleftdpdkmellanox"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: 9000
+              numVfs: 8
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                pfNames: ['ens4f0np0', 'ens5f0np0']
+              deviceType: netdevice
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightdpdkmellanox
+            spec:
+              resourceName: "sriovrightdpdkmellanox"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: 9000
+              numVfs: 8
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                pfNames: ['ens4f1np1', 'ens5f1np1']
+              deviceType: netdevice
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-net-one"
+            spec:
+              capabilities: '{ "ips": true }'
+              ipam: '{}'
+              linkState: auto
+              networkNamespace: rds-sriov-wlkd
+              resourceName: sriovleftdpdkmellanox
+              trust: "on"
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-net-two"
+            spec:
+              capabilities: '{ "ips": true }'
+              ipam: '{}'
+              linkState: auto
+              networkNamespace: rds-sriov-wlkd
+              resourceName: sriovrightdpdkmellanox
+              trust: "on"
+
+  - name: config-perf-profile
+    manifests:
+      - path: source-crs/required/performance/PerformanceProfile.yaml
+        complianceType: mustonlyhave
+        patches:
+          - metadata:
+              name: customcnf
+              annotations:
+                # this is needed for CGroupsV2 testing
+                performance.openshift.io/ignore-cgroups-version: "true"
+                # Some pods want the kernel stack to ignore IPv6 router Advertisement.
+                kubeletconfig.experimental: |
+                  {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
+            spec:
+              additionalKernelArgs: []
+              cpu:
+                isolated: 1-25,27-51,53-77,79-103
+                reserved: 0,26,52,78
+              globallyDisableIrqLoadBalancing: false
+              hugepages:
+                defaultHugepagesSize: 1G
+                pages:
+                - size: 1G
+                  count: 6
+                  node: 0
+                - size: 1G
+                  count: 6
+                  node: 1
+              machineConfigPoolSelector:
+                $patch: replace
+                pools.operator.machineconfiguration.openshift.io/customcnf: ""
+              nodeSelector:
+                $patch: replace
+                node-role.kubernetes.io/customcnf: ""
+              workloadHints:
+                realTime: false
+                highPowerConsumption: false
+                perPodPowerManagement: true
+              realTimeKernel:
+                enabled: false
+              numa:
+                topologyPolicy: single-numa-node
+              # TODO(yprokule): check usage of `net` directive
+              net:
+                devices:
+                - interfaceName: ens4*
+                - interfaceName: ens5*
+                userLevelNetworking: true

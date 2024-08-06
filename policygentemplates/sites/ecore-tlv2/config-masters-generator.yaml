@@ -1,0 +1,30 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-config-masters
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10"
+policies:
+  - name: unschedulable-masters
+    manifests:
+      - path: source-crs/required/scheduling/Scheduler.yaml
+        patches:
+          - spec:
+              mastersSchedulable: false
+              $patch: replace
+              policy: null

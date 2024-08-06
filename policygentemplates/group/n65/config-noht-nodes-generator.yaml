@@ -1,0 +1,25 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-standard-workers
+policyDefaults:
+  namespace: ztp-group
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "4"
+policies:
+  - name: config-kubelet-masters
+    manifests:
+      - path: source-crs/optional/tuning/control-plane-system-reserved.yaml

@@ -1,0 +1,58 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-core-validator
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10000"
+policies:
+  - name: core-validator
+    manifests:
+      - path: source-crs/validatorCRs/informPacketCOREValidator/SRIOV.yaml
+      - path: source-crs/validatorCRs/informPacketCOREValidator/MCP.yaml
+        patches:
+          - metadata:
+              name: master
+              $patch: replace
+              annotations: null
+      - path: source-crs/validatorCRs/informPacketCOREValidator/MCP.yaml
+        patches:
+          - metadata:
+              name: standard
+              $patch: replace
+              annotations: null
+      - path: source-crs/validatorCRs/informPacketCOREValidator/MCP.yaml
+        patches:
+          - metadata:
+              name: customcnf
+              $patch: replace
+              annotations: null
+            status:
+              configuration:
+                source:
+                  - apiVersion: machineconfiguration.openshift.io/v1
+                    kind: MachineConfig
+                    name: 50-performance-customcnf
+                  - apiVersion: machineconfiguration.openshift.io/v1
+                    kind: MachineConfig
+                    name: 50-nto-customcnf
+      - path: source-crs/validatorCRs/informPacketCOREValidator/MCP.yaml
+        patches:
+          - metadata:
+              name: worker
+              $patch: replace
+              annotations: null

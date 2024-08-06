@@ -2,32 +2,33 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 generators:
-  - common-policy.yaml
-  - operators-policy.yaml
+  - common-policy-generator.yaml
+  - operators-policy-generator.yaml
   - mno-update-policy-4.17.yml
-  - sites/ecore-tlv2/optimize-ztp-done.yaml
+  - sites/ecore-tlv2/optimize-ztp-done-generator.yaml
   # configure VLAN sub-interfaces on the cluster nodes
-  - sites/ecore-tlv2/configure-lb-intersite-vlan.yaml
-  - sites/ecore-tlv2/configure-lb-oam-vlan.yaml
-  - sites/ecore-tlv2/configure-lb-signaling-vlan.yaml
-  - sites/ecore-tlv2/configure-storage-vlan.yaml
+  - sites/ecore-tlv2/configure-lb-intersite-vlan-generator.yaml
+  - sites/ecore-tlv2/configure-lb-oam-vlan-generator.yaml
+  - sites/ecore-tlv2/configure-lb-signaling-vlan-generator.yaml
+  - sites/ecore-tlv2/configure-storage-vlan-generator.yaml
   # label nodes
-  - sites/ecore-tlv2/label-nodes.yaml
+  - sites/ecore-tlv2/label-nodes-generator.yaml
   # configure HT nodes
-  - sites/ecore-tlv2/config-ht-nodes.yaml
+  - sites/ecore-tlv2/config-ht-nodes-generator.yaml
   # configure bond1 interface
-  - sites/ecore-tlv2/configure-bond1.yaml
+  - sites/ecore-tlv2/configure-bond1-generator.yaml
   # configure MetalLB
-  - sites/ecore-tlv2/config-metallb-networks.yaml
+  - sites/ecore-tlv2/config-metallb-networks-generator.yaml
   # configure ODF
-  - sites/ecore-tlv2/deoploy-odf.yaml
+  - sites/ecore-tlv2/configure-odf-generator.yaml
   # cluster validation
-  - sites/ecore-tlv2/packet-core-validator.yaml
+  - sites/ecore-tlv2/packet-core-validator-generator.yaml
   # configure schedulable masters
-  - sites/ecore-tlv2/config-masters.yaml
+  - sites/ecore-tlv2/config-masters-generator.yaml
   # configure non HT nodes
-  - group/n65/config-noht-nodes.yaml
+  - group/n65/config-noht-nodes-generator.yaml
   # configure nodes
-  - sites/ecore-tlv2/config-nodes.yaml
+  - sites/ecore-tlv2/config-nodes-generator.yaml
 resources:
-  - policies-namespace.yaml
+  - resources/policies-namespace.yaml
+  - resources/managedclusterset-bindings.yaml

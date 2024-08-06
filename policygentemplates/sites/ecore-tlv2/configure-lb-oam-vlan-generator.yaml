@@ -1,0 +1,269 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-lb-oam
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10"
+policies:
+  - name: add-lb-oam-vlan
+    manifests:
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-0-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-0.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.5
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0010
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # master-0 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-1-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-1.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.6
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0011
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # master-1 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-2-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-2.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.7
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0012
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # master-2 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-0-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-0.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.8
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0013
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # worker-0 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-1-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-1.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.9
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0014
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # worker-1 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-2-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-2.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.10
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: false
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0015
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # worker-2 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-3-oam
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-3.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.358
+                    description: "This is lb-oam VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.188.11
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebc::0016
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 358
+      # worker-3

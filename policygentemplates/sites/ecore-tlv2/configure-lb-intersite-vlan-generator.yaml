@@ -1,0 +1,184 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-lb-intersite
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10"
+policies:
+  - name: add-lb-intersite
+    manifests:
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-0-intersite
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-0.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.357
+                    description: "This is lb-signaling VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.200
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: false
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 357
+      # master-0 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-1-intersite
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-1.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.357
+                    description: "This is lb-intersite VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.201
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: false
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 357
+      # master-1 end ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-2-intersite
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-2.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.357
+                    description: "This is lb-intersite VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.202
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: false
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 357
+      # master-2 end ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-0-intersite
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-0.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.357
+                    description: "This is lb-intersite VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.203
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: false
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 357
+      # worker-0 ^^^
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-1-intersite
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-1.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.357
+                    description: "This is lb-intersite VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.204
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: false
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 357
+      # worker-1

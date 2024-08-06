@@ -1,0 +1,352 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-storage-vlan
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10"
+policies:
+  - name: add-ceph-vlan
+    manifests:
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-0-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-0.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.70
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0050
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # master-0 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-1-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-1.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.71
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0051
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # master-1 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-master-2-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-master-2.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.72
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0052
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # master-2 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-0-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-0.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.73
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0053
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # worker-0 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-1-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-1.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.74
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0054
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # worker-1 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-2-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-2.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.75
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0055
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # worker-2 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-3-storage
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-3.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                interfaces:
+                  - name: bond0.355
+                    description: "This is storage VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                      - ip: 10.46.187.76
+                        prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      - ip: 2620:0052:0000:2ebb::0056
+                        prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 355
+                routes:
+                  config:
+                    - destination: 10.9.76.1/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.2/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+                    - destination: 10.9.76.3/32
+                      next-hop-interface: bond0.355
+                      metric: 400
+                      next-hop-address: 10.46.187.126
+      # worker-3 ^^^

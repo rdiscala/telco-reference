@@ -1,0 +1,215 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-core-policies
+policyDefaults:
+  namespace: ztp-common
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "1"
+policies:
+  - name: core-config-cluster
+    manifests:
+      - path: source-crs/required/other/operator-hub.yaml
+        complianceType: mustonlyhave
+      - path: source-crs/required/networking/Network.yaml
+        patches:
+        - spec:
+            defaultNetwork:
+              ovnKubernetesConfig:
+                mtu: 8900
+                gatewayConfig:
+                  ipForwarding: "Global"
+                  routingViaHost: true
+            additionalNetworks:
+            - name: mc-vlan-one
+              namespace: rds-macvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+              type: Raw
+            - name: mc-vlan-two
+              namespace: rds-macvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
+              type: Raw
+      - path: source-crs/required/other/icsp.yaml
+        patches:
+        - spec:
+            repositoryDigestMirrors:
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+                source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+                source: registry.ci.openshift.org/ocp/release
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005
+                source: registry.redhat.io
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005
+                source: registry-proxy.engineering.redhat.com
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005
+                source: registry.stage.redhat.io
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-qe-optional-operators
+                source: quay.io/openshift-qe-optional-operators
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshifttest
+                source: quay.io/openshifttest
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/rh-nfv-int
+                source: quay.io/rh-nfv-int
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
+                source: registry.connect.redhat.com/intel
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
+                source: quay.io/openshift-release-dev/ocp-release-nightly
+  - name: core-config-operators
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "3"
+    manifests:
+      - path: source-crs/required/networking/sriov/SriovOperatorConfig.yaml
+      - path: source-crs/required/scheduling/nrop.yaml
+        patches:
+        - spec:
+            nodeGroups:
+            - machineConfigPoolSelector:
+                matchLabels:
+                  # This label must match the pool(s) you want to run NUMA-aligned workloads
+                  pools.operator.machineconfiguration.openshift.io/customcnf: ""
+      - path: source-crs/required/scheduling/sched.yaml
+        patches:
+        - spec:
+            # Image spec should be the latest for the release
+            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.17.0"
+      - path: source-crs/required/networking/NMState.yaml
+      #
+      # A breaking change in 4.17 in ClusterLogging operator requires updated CRs
+      #
+      #- path: source-crs/optional/logging/ClusterLogging.yaml
+      #- path: source-crs/optional/logging/ClusterLogForwarder.yaml
+      #  patches:
+      #  - spec:
+      #      outputs:
+      #        - type: "kafka"
+      #          name: kafka-open
+      #          # use FQDN when DNS entries for IPv4 and IPv6 are in place
+      #          # only IPv4 IP address works
+      #          #  url: tcp://vran-qe-kafka.lab.eng.rdu2.redhat.com:9092/vran-qe
+      #          url: tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe
+      #      pipelines:
+      #        - inputRefs:
+      #            - audit
+      #            - infrastructure
+      #          labels:
+      #            label1: test1
+      #            label2: test2
+      #            label3: test3
+      #            rds: core
+      #          name: all-to-default
+      #          outputRefs:
+      #            - kafka-open
+      - path: source-crs/optional/other/monitoring-config-cm.yaml
+        patches:
+        - data:
+            config.yaml: |
+              prometheusK8s:
+                retention: 1d
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: ocs-external-storagecluster-ceph-rbd
+                    resources:
+                      requests:
+                        storage: 10Gi
+              alertmanagerMain:
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: ocs-external-storagecluster-ceph-rbd
+                    resources:
+                      requests:
+                        storage: 20Gi
+      - path: source-crs/optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
+  #
+  # Configure custom namespaces
+  #
+  - name: core-config-ns
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "3"
+    manifests:
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-macvlan-wlkd
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-sriov-wlkd
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-nrop-wlkd
+  #
+  # Configure KDump on the cluster nodes
+  #
+  - name: configure-kdump
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "3"
+    manifests:
+      - path: source-crs/optional/other/06-kdump-master.yaml
+      - path: source-crs/optional/other/06-kdump-worker.yaml
+
+  #
+  # Configure custom MCPs
+  #
+  - name: config-nodes-mcp
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: 2
+    manifests:
+      - path: source-crs/MachineConfigPool.yaml
+        patches:
+          - metadata:
+              name: customcnf
+              labels:
+                machineconfiguration.openshift.io/role: customcnf
+                pools.operator.machineconfiguration.openshift.io/customcnf: ""
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                  - key: machineconfiguration.openshift.io/role
+                    operator: In
+                    values: [worker, customcnf]
+              nodeSelector:
+                matchLabels:
+                  $patch: replace
+                  node-role.kubernetes.io/customcnf: ""
+      - path: source-crs/MachineConfigPool.yaml
+        patches:
+          - metadata:
+              name: standard
+              labels:
+                machineconfiguration.openshift.io/role: standard
+                pools.operator.machineconfiguration.openshift.io/standard: ""
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                  - key: machineconfiguration.openshift.io/role
+                    operator: In
+                    values: [worker, standard]
+              nodeSelector:
+                matchLabels:
+                  $patch: replace
+                  node-role.kubernetes.io/standard: ""
