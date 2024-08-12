@@ -149,15 +149,15 @@ policies:
             source: redhat-operators-disconnected
             installPlanApproval: Manual
       # udpate ClusterLogging
-      - path: source-crs/optional/logging/ClusterLogSubscription.yaml
-        patches:
-        - metadata:
-            annotations:
-              ran.openshift.io/ztp-deploy-wave: "2"
-          spec:
-            channel: "stable"
-            source: redhat-operators-disconnected
-            installPlanApproval: Manual
+      #- path: source-crs/optional/logging/ClusterLogSubscription.yaml
+      #  patches:
+      #  - metadata:
+      #      annotations:
+      #        ran.openshift.io/ztp-deploy-wave: "2"
+      #    spec:
+      #      channel: "stable"
+      #      source: redhat-operators-disconnected
+      #      installPlanApproval: Manual
   #
   # Perform cluster upgrade
   #
