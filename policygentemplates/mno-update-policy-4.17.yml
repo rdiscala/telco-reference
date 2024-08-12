@@ -13,7 +13,7 @@ policyDefaults:
   remediationAction: "inform"
 policies:
   #
-  # Prepare for update to 4.18
+  # Prepare for update to 4.17
   #
   - name: update-prep-17-catsrc
     manifests:
@@ -75,7 +75,7 @@ policies:
               paused: true
       #
       # Provide admin ack for deprecated API
-      # TODO(yprokule): check if this is needed during 4.17 to 4.18 update.
+      # TODO(yprokule): check if this is needed during 4.17 to 4.17 update.
       #
       #- path: source-crs/GenericConfigMap.yaml
       #  patches:
@@ -96,7 +96,7 @@ policies:
             annotations:
               ran.openshift.io/ztp-deploy-wave: "2"
           spec:
-            channel: "stable-4.18"
+            channel: "stable-4.17"
             source: redhat-operators-disconnected
             installPlanApproval: Manual
       # update SR-IOV
@@ -126,7 +126,7 @@ policies:
             annotations:
               ran.openshift.io/ztp-deploy-wave: "2"
           spec:
-            channel: "4.18"
+            channel: "4.17"
             source: redhat-operators-disconnected
             installPlanApproval: Manual
       - path: source-crs/required/scheduling/sched.yaml
@@ -137,7 +137,7 @@ policies:
           spec:
             #cacheResyncPeriod: "0"
             # Image spec should be the latest for the release
-            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.18.0"
+            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.17.0"
       # update NMState
       - path: source-crs/required/networking/NMStateSubscription.yaml
         patches:
@@ -169,7 +169,7 @@ policies:
             channel: stable-4.17
             upstream: http://registry.ecore.lab.eng.tlv2.redhat.com:8090/yp-graph
             #
-            # TODO: update this when 4.18 builds are ready
+            #
             #
             desiredUpdate:
               version: 4.17.0-ec.3
