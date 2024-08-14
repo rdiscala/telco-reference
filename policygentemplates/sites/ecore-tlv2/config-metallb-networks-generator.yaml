@@ -64,6 +64,30 @@ policies:
               $patch: replace
               routerID: null
 
+      - path: source-crs/required/networking/metallb/bgp-peer.yaml
+        patches:
+          - metadata:
+              name: greenpeers-ipv6
+            spec:
+              keepaliveTime: 0s
+              peerAddress: 2620:52:0:2ebc::5
+              peerASN: 65435
+              myASN: 65450
+              holdTime: 3m0s
+              bfdProfile: bfd-profile
+              peerPort: 179
+              nodeSelectors:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                        - openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
+              $patch: replace
+              routerID: null
+
       - path: source-crs/required/networking/metallb/community.yaml
         patches:
           - spec:
@@ -82,6 +106,7 @@ policies:
                 - greenips
               peers:
                 - greenpeers
+                - greenpeers-ipv6
 
       - path: source-crs/required/networking/metallb/addr-pool.yaml
         patches:
