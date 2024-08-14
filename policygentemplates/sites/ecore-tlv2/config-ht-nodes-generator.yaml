@@ -30,8 +30,8 @@ policies:
               resourceName: "sriovleftdpdkmellanox"
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
-              mtu: 9000
-              numVfs: 8
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
@@ -47,8 +47,8 @@ policies:
               resourceName: "sriovrightdpdkmellanox"
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
-              mtu: 9000
-              numVfs: 8
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
