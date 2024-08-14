@@ -222,7 +222,7 @@ policies:
                       dhcp: false
                       auto-dns: false
                     ipv6:
-                      enabled: false
+                      enabled: true
                       address:
                       - ip: 2620:0052:0000:2ebc::0015
                         prefix-length: 122
