@@ -7,7 +7,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: Replace=true
 data:
-  sriov-nncp-one-mtu: 9000
-  sriov-nncp-two-mtu: 9000
-  sriov-nncp-one-num-vfs: 10
-  sriov-nncp-two-num-vfs: 10
+  sriov-nncp-one-mtu: '9000'
+  sriov-nncp-two-mtu: '9000'
+  sriov-nncp-one-num-vfs: '10'
+  sriov-nncp-two-num-vfs: '10'
