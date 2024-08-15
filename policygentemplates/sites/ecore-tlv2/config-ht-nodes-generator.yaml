@@ -35,7 +35,8 @@ policies:
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
-                pfNames: ['ens4f0np0', 'ens5f0np0']
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-1-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
               isRdma: True
 
@@ -52,7 +53,8 @@ policies:
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
-                pfNames: ['ens4f1np1', 'ens5f1np1']
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-2-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
               isRdma: True
 
@@ -96,8 +98,8 @@ policies:
             spec:
               additionalKernelArgs: []
               cpu:
-                isolated: 1-25,27-51,53-77,79-103
-                reserved: 0,26,52,78
+                isolated: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-isolated-cpu" .ManagedClusterName) | toLiteral hub}}'
+                reserved: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-reserved-cpu" .ManagedClusterName) | toLiteral hub}}'
               globallyDisableIrqLoadBalancing: false
               hugepages:
                 defaultHugepagesSize: 1G

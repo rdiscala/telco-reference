@@ -33,3 +33,4 @@ resources:
   - resources/policies-namespace.yaml
   - resources/managedclusterset-bindings.yaml
   - resources/sriov-config.yaml
+  - resources/hw-types.yaml
