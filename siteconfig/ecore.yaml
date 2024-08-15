@@ -54,7 +54,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:9C"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -143,7 +143,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:E4"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -232,7 +232,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:1F:60"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -321,7 +321,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:A4"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         nodeLabels:
           node-role.kubernetes.io/standard: ''
         rootDeviceHints:
@@ -412,7 +412,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:28"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         nodeLabels:
           node-role.kubernetes.io/standard: ''
         rootDeviceHints:
@@ -503,7 +503,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:E4"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         nodeLabels:
           node-role.kubernetes.io/customcnf: ''
         rootDeviceHints:
@@ -643,7 +643,7 @@ spec:
         bmcCredentialsName:
           name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:4E"
-        bootMode: "UEFI"
+        bootMode: "UEFISecureBoot"
         nodeLabels:
           node-role.kubernetes.io/customcnf: ''
         rootDeviceHints:
