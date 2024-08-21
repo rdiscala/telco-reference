@@ -176,6 +176,16 @@ policies:
       - path: source-crs/optional/other/06-kdump-worker.yaml
 
   #
+  # Configure container-mount-namespace
+  #
+  - name: configure-container-ns
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "3"
+    manifests:
+      - path: source-crs/optional/other/mount_namespace_config_master.yaml
+      - path: source-crs/optional/other/mount_namespace_config_worker.yaml
+
+  #
   # Configure custom MCPs
   #
   - name: config-nodes-mcp
