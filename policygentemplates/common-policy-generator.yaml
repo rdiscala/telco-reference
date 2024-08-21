@@ -42,6 +42,22 @@ policies:
               namespace: rds-macvlan-wlkd
               rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
               type: Raw
+            - name: ipvlan-one
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-one", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.30/26"}, {"address":"2620:0052:0000:2ebc::0030/122"}]}}'
+              type: Raw
+            - name: ipvlan-two
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-two", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.31/26"}, {"address":"2620:0052:0000:2ebc::0031/122"}]}}'
+              type: Raw
+            - name: ipvlan-three
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-three", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.32/26"}, {"address":"2620:0052:0000:2ebc::0032/122"}]}}'
+              type: Raw
+            - name: ipvlan-four
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-four", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.33/26"}, {"address":"2620:0052:0000:2ebc::0033/122"}]}}'
+              type: Raw
       - path: source-crs/required/other/icsp.yaml
         patches:
         - spec:
@@ -165,6 +181,10 @@ policies:
       patches:
       - metadata:
           name: rds-nrop-wlkd
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-ipvlan-wlkd
   #
   # Configure KDump on the cluster nodes
   #
