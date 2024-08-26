@@ -25,9 +25,9 @@ policies:
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovleftdpdkmellanox
+              name: sriovleftdpdkintel
             spec:
-              resourceName: "sriovleftdpdkmellanox"
+              resourceName: "sriovleftdpdkintel"
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-mtu" | toInt hub}}'
@@ -38,14 +38,14 @@ policies:
                 # pfNames: ['ens4f0np0', 'ens5f0np0']
                 pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-1-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
-              isRdma: True
+              isRdma: False
 
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovrightdpdkmellanox
+              name: sriovrightdpdkintel
             spec:
-              resourceName: "sriovrightdpdkmellanox"
+              resourceName: "sriovrightdpdkintel"
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-mtu" | toInt hub}}'
@@ -56,7 +56,7 @@ policies:
                 # pfNames: ['ens4f1np1', 'ens5f1np1']
                 pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-2-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
-              isRdma: True
+              isRdma: False
 
       - path: source-crs/required/networking/sriov/sriovNetwork.yaml
         patches:
@@ -67,7 +67,7 @@ policies:
               ipam: '{}'
               linkState: auto
               networkNamespace: rds-sriov-wlkd
-              resourceName: sriovleftdpdkmellanox
+              resourceName: sriovleftdpdkintel
               trust: "on"
 
       - path: source-crs/required/networking/sriov/sriovNetwork.yaml
@@ -79,7 +79,7 @@ policies:
               ipam: '{}'
               linkState: auto
               networkNamespace: rds-sriov-wlkd
-              resourceName: sriovrightdpdkmellanox
+              resourceName: sriovrightdpdkintel
               trust: "on"
 
   - name: config-perf-profile

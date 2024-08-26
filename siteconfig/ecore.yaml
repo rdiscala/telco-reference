@@ -566,8 +566,8 @@ spec:
                     miimon: "100"
                     lacp_rate: slow
                   port:
-                  - ens1f0
-                  - ens1f1
+                  - ens4f0np0
+                  - ens4f1np1
               - name: bond0.354
                 description: baremetal network
                 type: vlan
@@ -590,22 +590,22 @@ spec:
                   - ip: 2620:0052:0000:2ebb::0025
                     prefix-length: 122
               # TODO(yprokule): move this to another PGT
-              - name: ens4f0np0
-                description: HT nic 1 port 1
+              - name: ens1f0
+                description: SRIOV Intel nic 1 port 1
                 type: ethernet
                 state: up
-                mac-address: 10:70:fd:44:61:88
+                mac-address: 3c:fd:fe:b6:c8:d0
                 ipv4:
                   enabled: false
                   dhcp: false
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: ens4f1np1
-                description: HT nic 1 port 2
+              - name: ens1f1
+                description: SRIOV Intel nic 1 port 2
                 type: ethernet
                 state: up
-                mac-address: 10:70:fd:44:61:89
+                mac-address: 3c:fd:fe:b6:c8:d1
                 ipv4:
                   enabled: false
                   dhcp: false
@@ -613,7 +613,7 @@ spec:
                   enabled: false
                   dhcp: false
               - name: ens5f0np0
-                description: HT nic 2 port 1
+                description: SRIOV Mellanox nic 2 port 1
                 type: ethernet
                 state: up
                 mac-address: 10:70:fd:44:5e:28
@@ -624,7 +624,7 @@ spec:
                   enabled: false
                   dhcp: false
               - name: ens5f1np1
-                description: HT nic 2 port 2
+                description: SRIOV Mellanox nic 2 port 2
                 type: ethernet
                 state: up
                 mac-address: 10:70:fd:44:5e:29
@@ -706,8 +706,8 @@ spec:
                     miimon: "100"
                     lacp_rate: slow
                   port:
-                  - ens1f0
-                  - ens1f1
+                  - ens4f0np0
+                  - ens4f1np1
               - name: bond0.354
                 description: baremetal network
                 type: vlan
@@ -730,22 +730,22 @@ spec:
                   - ip: 2620:0052:0000:2ebb::0026
                     prefix-length: 122
               # TODO(yprokule): move to another PGT
-              - name: ens4f0np0
-                description: HT nic 1 port 1
+              - name: ens1f0
+                description: SRIOV Intel nic 1 port 1
                 type: ethernet
                 state: up
-                mac-address: 10:70:fd:44:62:48
+                mac-address: 3c:fd:fe:b4:a7:64
                 ipv4:
                   enabled: false
                   dhcp: false
                 ipv6:
                   enabled: false
                   dhcp: false
-              - name: ens4f1np1
-                description: HT nic 1 port 2
+              - name: ens1f1
+                description: SRIOV Intel nic 1 port 2
                 type: ethernet
                 state: up
-                mac-address: 10:70:fd:44:62:49
+                mac-address: 3c:fd:fe:b4:a7:65
                 ipv4:
                   enabled: false
                   dhcp: false
@@ -753,7 +753,7 @@ spec:
                   enabled: false
                   dhcp: false
               - name: ens5f0np0
-                description: HT nic 2 port 1
+                description: SRIOV Mellanox nic 2 port 1
                 type: ethernet
                 state: up
                 mac-address: 10:70:fd:44:5d:78
@@ -764,7 +764,7 @@ spec:
                   enabled: false
                   dhcp: false
               - name: ens5f1np1
-                description: HT nic 2 port 2
+                description: SRIOV Mellanox nic 2 port 2
                 type: ethernet
                 state: up
                 mac-address: 10:70:fd:44:5d:79
