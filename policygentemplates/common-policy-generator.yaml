@@ -36,11 +36,11 @@ policies:
             additionalNetworks:
             - name: mc-vlan-one
               namespace: rds-macvlan-wlkd
-              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond1", "ipam": {}}] }'
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond0.356", "ipam": {}}] }'
               type: Raw
             - name: mc-vlan-two
               namespace: rds-macvlan-wlkd
-              rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond1", "mode": "private" }]}'
+              rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond0.356", "mode": "private" }]}'
               type: Raw
             - name: ipvlan-one
               namespace: rds-ipvlan-wlkd
