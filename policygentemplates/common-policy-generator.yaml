@@ -162,6 +162,7 @@ policies:
                       requests:
                         storage: 20Gi
       - path: source-crs/optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
+
   #
   # Configure custom namespaces
   #
@@ -185,6 +186,11 @@ policies:
       patches:
       - metadata:
           name: rds-ipvlan-wlkd
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-metallb-app
+
   #
   # Configure KDump on the cluster nodes
   #

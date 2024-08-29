@@ -184,7 +184,10 @@ spec:
                 resources:
                   requests:
                     storage: 20Gi
+
+    #
     # configure custom Namespaces
+    #
     - fileName: customNamespace.yaml
       policyName: "custom-namespaces"
       metadata:
@@ -197,6 +200,11 @@ spec:
       policyName: "custom-namespaces"
       metadata:
         name: rds-nrop-wlkd
+    - fileName: customNamespace.yaml
+      policyName: "custom-namespaces"
+      metadata:
+        name: rds-metallb-app
+
     #
     # Configuration for Rootless Pods(fromRDS)
     #
