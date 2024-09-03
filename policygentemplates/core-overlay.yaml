@@ -1,0 +1,380 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: core-overlay-17
+policyDefaults:
+  namespace: ztp-core-policies
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+        - key: version
+          operator: In
+          values:
+            - "4.17"
+  remediationAction: "inform"
+policies:
+  - name: core-overlay-base-4.17
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "2"
+    manifests:
+      - path: source-crs/required/other/icsp.yaml
+        patches:
+        - spec:
+            repositoryDigestMirrors:
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+                source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+                source: registry.ci.openshift.org/ocp/release
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005
+                source: registry.redhat.io
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005
+                source: registry-proxy.engineering.redhat.com
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005
+                source: registry.stage.redhat.io
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-qe-optional-operators
+                source: quay.io/openshift-qe-optional-operators
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshifttest
+                source: quay.io/openshifttest
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/rh-nfv-int
+                source: quay.io/rh-nfv-int
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
+                source: registry.connect.redhat.com/intel
+              - mirrors:
+                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
+                source: quay.io/openshift-release-dev/ocp-release-nightly
+      - path: source-crs/optional/other/sctp_module_mc.yaml
+      - path: source-crs/optional/other/worker-load-kernel-modules.yaml
+      - path: source-crs/optional/other/control-plane-load-kernel-modules.yaml
+      - path: source-crs/optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
+
+  # Custom networking, operator and cluster configuration
+  - name: core-overlay-config-4.17
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "8"
+    manifests:
+      # Set auto sizing of control plane nodes
+      - path: source-crs/optional/tuning/control-plane-system-reserved.yaml
+      - path: source-crs/required/networking/Network.yaml
+        patches:
+        - spec:
+            defaultNetwork:
+              ovnKubernetesConfig:
+                mtu: 8900
+                gatewayConfig:
+                  ipForwarding: "Global"
+                  routingViaHost: true
+            additionalNetworks:
+            - name: mc-vlan-one
+              namespace: rds-macvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "mc-vlan-one", "plugins": [{"type": "macvlan", "master": "bond0.356", "ipam": {}}] }'
+              type: Raw
+            - name: mc-vlan-two
+              namespace: rds-macvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.4.0", "name": "mc-vlan-two", "plugins": [{"type": "macvlan", "master": "bond0.356", "mode": "private" }]}'
+              type: Raw
+            - name: ipvlan-one
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-one", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.30/26"}, {"address":"2620:0052:0000:2ebc::0030/122"}]}}'
+              type: Raw
+            - name: ipvlan-two
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-two", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.31/26"}, {"address":"2620:0052:0000:2ebc::0031/122"}]}}'
+              type: Raw
+            - name: ipvlan-three
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-three", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.32/26"}, {"address":"2620:0052:0000:2ebc::0032/122"}]}}'
+              type: Raw
+            - name: ipvlan-four
+              namespace: rds-ipvlan-wlkd
+              rawCNIConfig: '{ "cniVersion": "0.3.1", "name": "ipvlan-four", "type":"ipvlan", "master":"bond0.358", "ipam":{"type":"static", "addresses":[{"address":"10.46.188.33/26"}, {"address":"2620:0052:0000:2ebc::0033/122"}]}}'
+              type: Raw
+
+      - path: source-crs/required/scheduling/nrop.yaml
+        patches:
+        - spec:
+            nodeGroups:
+              - config:
+                  # Periodic is the default setting
+                  infoRefreshMode: Periodic
+                machineConfigPoolSelector:
+                  matchLabels:
+                    # This label must match the pool(s) you want to run NUMA-aligned workloads
+                    pools.operator.machineconfiguration.openshift.io/customcnf: ""
+
+      - path: source-crs/required/performance/PerformanceProfile.yaml
+        complianceType: mustonlyhave
+        patches:
+          - metadata:
+              name: customcnf
+            spec:
+              cpu:
+                isolated: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-isolated-cpu" .ManagedClusterName) | toLiteral hub}}'
+                reserved: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-reserved-cpu" .ManagedClusterName) | toLiteral hub}}'
+              hugepages:
+                defaultHugepagesSize: 1G
+                # TODO(yprokule): update to use hub side templating
+                pages:
+                - size: 1G
+                  count: 6
+                  node: 0
+                - size: 1G
+                  count: 6
+                  node: 1
+              machineConfigPoolSelector:
+                $patch: replace
+                pools.operator.machineconfiguration.openshift.io/customcnf: ""
+              nodeSelector:
+                $patch: replace
+                node-role.kubernetes.io/customcnf: ""
+
+      - path: source-crs/optional/logging/ClusterLogForwarder.yaml
+        patches:
+        - spec:
+            outputs:
+              - type: "kafka"
+                name: kafka-open
+                # use FQDN when DNS entries for IPv4 and IPv6 are in place
+                # only IPv4 IP address works
+                #  url: tcp://vran-qe-kafka.lab.eng.rdu2.redhat.com:9092/vran-qe
+                #url: tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe
+                url: '{{hub fromConfigMap "" "regional" (printf "%s-log-url" (index .ManagedClusterLabels "zone")) | toLiteral hub}}'
+            pipelines:
+              - inputRefs:
+                  - audit
+                  - infrastructure
+                labels:
+                  sitename: '{{hub fromConfigMap "" "regional" (printf "%s-logging-name" .ManagedClusterName) | toLiteral hub}}'
+                  siteuuid: '{{hub fromConfigMap "" "regional" (printf "%s-logging-uuid" .ManagedClusterName) | toLiteral hub}}'
+                  rds: core
+                name: all-to-default
+                outputRefs:
+                  - kafka-open
+
+      #
+      # Configure MetalLB
+      #
+      - path: source-crs/required/networking/metallb/metallb.yaml
+        patches:
+        - spec:
+            nodeSelector:
+              node-role.kubernetes.io/worker: ""
+
+      - path: source-crs/required/networking/metallb/bfd-profile.yaml
+        patches:
+          - metadata:
+              name: bfd-profile
+            spec:
+              receiveInterval: 150
+              transmitInterval: 100
+              detectMultiplier: 3
+              echoInterval: 300
+              echoMode: false
+              passiveMode: false
+              minimumTtl: 254
+
+      - path: source-crs/required/networking/metallb/bgp-peer.yaml
+        patches:
+          - metadata:
+              name: greenpeers
+            spec:
+              keepaliveTime: 0s
+              peerAddress: 10.46.188.2
+              peerASN: 65435
+              myASN: 65450
+              holdTime: 3m0s
+              bfdProfile: bfd-profile
+              peerPort: 179
+              nodeSelectors:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                        - openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
+              $patch: replace
+              routerID: null
+
+      - path: source-crs/required/networking/metallb/bgp-peer.yaml
+        patches:
+          - metadata:
+              name: greenpeers-ipv6
+            spec:
+              keepaliveTime: 0s
+              peerAddress: 2620:52:0:2ebc::5
+              peerASN: 65435
+              myASN: 65450
+              holdTime: 3m0s
+              bfdProfile: bfd-profile
+              peerPort: 179
+              nodeSelectors:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                        - openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+                        - openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
+              $patch: replace
+              routerID: null
+
+      - path: source-crs/required/networking/metallb/community.yaml
+        patches:
+          - spec:
+              communities:
+                - name: greenc
+                  value: '7003:008'
+
+      - path: source-crs/required/networking/metallb/bgp-advr.yaml
+        patches:
+          - metadata:
+              name: green
+            spec:
+              communities:
+                - greenc
+              ipAddressPools:
+                - greenips
+              peers:
+                - greenpeers
+                - greenpeers-ipv6
+
+      - path: source-crs/required/networking/metallb/addr-pool.yaml
+        patches:
+          - metadata:
+              name: greenips
+              $patch: replace
+              annotations: nul
+            spec:
+              autoAssign: false
+              # in ecore setup(registry.ecore.lab.eng.tlv2.redhat.com)
+              # this is LB-OAM vlan
+              addresses:
+                - 10.46.188.20/32
+                - 10.46.188.21/32
+                - 10.46.188.22/32
+                - 2620:0052:0000:2ebc::0020/128
+                - 2620:0052:0000:2ebc::0021/128
+                - 2620:0052:0000:2ebc::0022/128
+
+      #
+      # Configure SR-IOV Policies and Networks
+      #
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftdpdkintel
+            spec:
+              resourceName: "sriovleftdpdkintel"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-1-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: False
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightdpdkintel
+            spec:
+              resourceName: "sriovrightdpdkintel"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-2-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: False
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-net-one"
+            spec:
+              capabilities: '{ "ips": true }'
+              ipam: '{}'
+              linkState: auto
+              networkNamespace: rds-sriov-wlkd
+              resourceName: sriovleftdpdkintel
+              trust: "on"
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-net-two"
+            spec:
+              capabilities: '{ "ips": true }'
+              ipam: '{}'
+              linkState: auto
+              networkNamespace: rds-sriov-wlkd
+              resourceName: sriovrightdpdkintel
+              trust: "on"
+
+      #
+      # Configure ODF
+      #
+      - path: source-crs/required/storage/odf-external/01-rook-ceph-external-cluster-details.secret.yaml
+        patches:
+          - data:
+              external_cluster_details: W3sibmFtZSI6ICJyb29rLWNlcGgtbW9uLWVuZHBvaW50cyIsICJraW5kIjogIkNvbmZpZ01hcCIsICJkYXRhIjogeyJkYXRhIjogImNlcGguZWNvcmUubGFiLmVuZy50bHYyLnJlZGhhdC5jb209MTAuNDYuMTg3Ljk5OjY3ODkiLCAibWF4TW9uSWQiOiAiMCIsICJtYXBwaW5nIjogInt9In19LCB7Im5hbWUiOiAicm9vay1jZXBoLW1vbiIsICJraW5kIjogIlNlY3JldCIsICJkYXRhIjogeyJhZG1pbi1zZWNyZXQiOiAiYWRtaW4tc2VjcmV0IiwgImZzaWQiOiAiYzNmYTY0NTgtMmQ2Yi0xMWVmLWI0YzMtNTI1NDAwNTY0MDRlIiwgIm1vbi1zZWNyZXQiOiAibW9uLXNlY3JldCJ9fSwgeyJuYW1lIjogInJvb2stY2VwaC1vcGVyYXRvci1jcmVkcyIsICJraW5kIjogIlNlY3JldCIsICJkYXRhIjogeyJ1c2VySUQiOiAiY2xpZW50LmhlYWx0aGNoZWNrZXIiLCAidXNlcktleSI6ICJBUUFnaFhGbWhqWTdBeEFBb2tYODhQcVFXVC9HRWEzMFByMy9pQT09In19LCB7Im5hbWUiOiAibW9uaXRvcmluZy1lbmRwb2ludCIsICJraW5kIjogIkNlcGhDbHVzdGVyIiwgImRhdGEiOiB7Ik1vbml0b3JpbmdFbmRwb2ludCI6ICIxMC40Ni4xODcuOTkiLCAiTW9uaXRvcmluZ1BvcnQiOiAiOTI4MyJ9fSwgeyJuYW1lIjogImNlcGgtcmJkIiwgImtpbmQiOiAiU3RvcmFnZUNsYXNzIiwgImRhdGEiOiB7InBvb2wiOiAicmJkIn19LCB7Im5hbWUiOiAicm9vay1jc2ktcmJkLW5vZGUiLCAia2luZCI6ICJTZWNyZXQiLCAiZGF0YSI6IHsidXNlcklEIjogImNzaS1yYmQtbm9kZSIsICJ1c2VyS2V5IjogIkFRQWdoWEZtcFQ2UkF4QUFvVnRaUUxnT2ozL2thYjVSOE4zR1ZBPT0ifX0sIHsibmFtZSI6ICJyb29rLWNzaS1yYmQtcHJvdmlzaW9uZXIiLCAia2luZCI6ICJTZWNyZXQiLCAiZGF0YSI6IHsidXNlcklEIjogImNzaS1yYmQtcHJvdmlzaW9uZXIiLCAidXNlcktleSI6ICJBUUFnaFhGbUVndldBeEFBWUFaNDZPYkVaSmxpalVOUDZwQitNdz09In19LCB7Im5hbWUiOiAicm9vay1jc2ktY2VwaGZzLXByb3Zpc2lvbmVyIiwgImtpbmQiOiAiU2VjcmV0IiwgImRhdGEiOiB7ImFkbWluSUQiOiAiY3NpLWNlcGhmcy1wcm92aXNpb25lciIsICJhZG1pbktleSI6ICJBUUFVNkhObWlUN3RMUkFBVlZqL1F5NWFSQXZvN0V3MmVSbGk5UT09In19LCB7Im5hbWUiOiAicm9vay1jc2ktY2VwaGZzLW5vZGUiLCAia2luZCI6ICJTZWNyZXQiLCAiZGF0YSI6IHsiYWRtaW5JRCI6ICJjc2ktY2VwaGZzLW5vZGUiLCAiYWRtaW5LZXkiOiAiQVFBVTZITm04NnVoTFJBQWhpTGNlUyszclB2clgyMUZvSjNUMHc9PSJ9fSwgeyJuYW1lIjogInJvb2stY2VwaC1kYXNoYm9hcmQtbGluayIsICJraW5kIjogIlNlY3JldCIsICJkYXRhIjogeyJ1c2VySUQiOiAiY2VwaC1kYXNoYm9hcmQtbGluayIsICJ1c2VyS2V5IjogImh0dHBzOi8vMTAuNDYuMTg3Ljk5Ojg0NDMvIn19LCB7Im5hbWUiOiAiY2VwaGZzIiwgImtpbmQiOiAiU3RvcmFnZUNsYXNzIiwgImRhdGEiOiB7ImZzTmFtZSI6ICJ5cF9jZXBoZnMiLCAicG9vbCI6ICJ5cF9jZXBoZnNfZGF0YSJ9fV0K
+
+      - path: source-crs/required/storage/odf-external/02-ocs-external-storagecluster.yaml
+
+  - name: core-overlay-monitoring-4.17
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "9"
+    manifests:
+      - path: source-crs/optional/other/monitoring-config-cm.yaml
+        complianceType: musthave
+        # TODO(yprokule): check additionalAlertmanagerConfigs configuration
+        #               : this also should be configured after StorageClassed from ODF are available
+        patches:
+        - data:
+            config.yaml: |
+              prometheusK8s:
+                retention: 1d
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: ocs-external-storagecluster-ceph-rbd
+                    resources:
+                      requests:
+                        storage: 10Gi
+              alertmanagerMain:
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: ocs-external-storagecluster-ceph-rbd
+                    resources:
+                      requests:
+                        storage: 20Gi

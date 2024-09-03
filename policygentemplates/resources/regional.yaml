@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: regional
+  namespace: ztp-core-policies
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+data:
+  tlv2-log-url: "tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe"
+  ecore-logging-name: "rds-core-tlv2"
+  ecore-logging-uuid: "my-uuid"

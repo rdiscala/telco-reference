@@ -71,6 +71,3 @@ policies:
                     path: /etc/chrony.conf
                     user:
                       name: root
-
-      - path: source-crs/optional/other/control-plane-load-kernel-modules.yaml
-      - path: source-crs/optional/other/worker-load-kernel-modules.yaml

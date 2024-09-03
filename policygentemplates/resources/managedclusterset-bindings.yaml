@@ -30,3 +30,11 @@ metadata:
   namespace: ztp-update
 spec:
   clusterSet: global
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: global
+  namespace: ztp-core-policies
+spec:
+  clusterSet: global

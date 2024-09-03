@@ -1,0 +1,148 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: core-baseline-17
+policyDefaults:
+  namespace: ztp-core-policies
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+        - key: version
+          operator: In
+          values:
+            - "4.17"
+  remediationAction: "inform"
+policies:
+  #
+  # Base cluster configuration
+  #
+  - name: core-cluster-config-4.17
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "1"
+    manifests:
+      - path: source-crs/required/other/operator-hub.yaml
+        # TODO(yprokule): check and update telco-core repo
+        complianceType: mustonlyhave
+      - path: source-crs/required/other/catalog-source.yaml
+        patches:
+          - metadata:
+              name: redhat-operators-disconnected
+            spec:
+              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.17
+      - path: source-crs/required/scheduling/Scheduler.yaml
+        patches:
+          - spec:
+              mastersSchedulable: false
+              # TODO(yprokule): check and update telco-core repo
+              $patch: replace
+              policy: null
+
+  #
+  # Core cluster OLM operators
+  #
+  - name: core-operator-subs-4.17
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "5"
+    manifests:
+      #
+      # Install Cluster Logging
+      #
+      - path: source-crs/optional/logging/ClusterLogNS.yaml
+      - path: source-crs/optional/logging/ClusterLogOperGroup.yaml
+      - path: source-crs/optional/logging/ClusterLogSubscription.yaml
+        patches:
+          - spec:
+              # quay.io/prega/prega-operator-index:v4.17.0
+              # quay.io/prega/prega-operator-index:v4.17-20240818T200305
+              # contain only "stable" channel with "cluster-logging.v5.9.0"
+              channel: stable
+              installPlanApproval: Manual
+      #
+      # Install SR-IOV
+      #
+      - path: source-crs/required/networking/sriov/SriovSubscriptionNS.yaml
+      - path: source-crs/required/networking/sriov/SriovSubscriptionOperGroup.yaml
+      - path: source-crs/required/networking/sriov/SriovSubscription.yaml
+        patches:
+          - spec:
+              installPlanApproval: Manual
+      #
+      # Install ODF
+      #
+      - path: source-crs/required/storage/odf-external/odfNS.yaml
+      - path: source-crs/required/storage/odf-external/odfOperGroup.yaml
+      - path: source-crs/required/storage/odf-external/odfSubscription.yaml
+        patches:
+          - spec:
+              channel: stable-4.17
+              installPlanApproval: Manual
+      #
+      # Install MetalLB
+      #
+      - path: source-crs/required/networking/metallb/metallbNS.yaml
+      - path: source-crs/required/networking/metallb/metallbOperGroup.yaml
+      - path: source-crs/required/networking/metallb/metallbSubscription.yaml
+        patches:
+          - spec:
+              installPlanApproval: Manual
+      #
+      # Install NROP
+      #
+      - path: source-crs/required/scheduling/NROPSubscriptionNS.yaml
+      - path: source-crs/required/scheduling/NROPSubscriptionOperGroup.yaml
+      - path: source-crs/required/scheduling/NROPSubscription.yaml
+        patches:
+          - spec:
+              installPlanApproval: Manual
+              channel: "4.17"
+      #
+      # Install NMState
+      #
+      - path: source-crs/required/networking/NMStateNS.yaml
+      - path: source-crs/required/networking/NMStateOperGroup.yaml
+      - path: source-crs/required/networking/NMStateSubscription.yaml
+        patches:
+          - spec:
+              installPlanApproval: Manual
+
+  #
+  # Operator configuration
+  #
+  - name: core-operator-config-4.17
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "7"
+    manifests:
+      - path: source-crs/optional/logging/ClusterLogging.yaml
+        patches:
+        - spec:
+            logStore:
+              type: lokistack
+              lokistack:
+                name: logging-loki
+
+      - path: source-crs/required/networking/sriov/SriovOperatorConfig.yaml
+        # TODO(yprokule): check if this is supported by SR-IOV in the 4.17
+        #patches:
+        #- spec:
+        #    # Required for mellanox plugins running with secureboot enabled.
+        #    # Firmware MUST be pre-configured
+        #    disablePlugins:
+        #    - mellanox
+
+      - path: source-crs/required/networking/NMState.yaml
+
+      - path: source-crs/required/scheduling/sched.yaml
+        patches:
+        - spec:
+            # Image spec should be the latest for the release
+            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.17.0"

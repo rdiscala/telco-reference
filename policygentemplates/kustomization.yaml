@@ -2,8 +2,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 generators:
+  - core-baseline.yaml
+  - core-overlay.yaml
   - common-policy-generator.yaml
-  - operators-policy-generator.yaml
   - mno-update-policy-4.17.yml
   - sites/ecore-tlv2/optimize-ztp-done-generator.yaml
   # configure VLAN sub-interfaces on the cluster nodes
@@ -11,22 +12,10 @@ generators:
   - sites/ecore-tlv2/configure-lb-oam-vlan-generator.yaml
   - sites/ecore-tlv2/configure-lb-signaling-vlan-generator.yaml
   - sites/ecore-tlv2/configure-storage-vlan-generator.yaml
-  # label nodes
-  - sites/ecore-tlv2/label-nodes-generator.yaml
-  # configure HT nodes
-  - sites/ecore-tlv2/config-ht-nodes-generator.yaml
   # configure bond1 interface
   - sites/ecore-tlv2/configure-bond1-generator.yaml
-  # configure MetalLB
-  - sites/ecore-tlv2/config-metallb-networks-generator.yaml
-  # configure ODF
-  - sites/ecore-tlv2/configure-odf-generator.yaml
   # cluster validation
   - sites/ecore-tlv2/packet-core-validator-generator.yaml
-  # configure schedulable masters
-  - sites/ecore-tlv2/config-masters-generator.yaml
-  # configure non HT nodes
-  - group/n65/config-noht-nodes-generator.yaml
   # configure nodes
   - sites/ecore-tlv2/config-nodes-generator.yaml
 resources:
@@ -34,3 +23,4 @@ resources:
   - resources/managedclusterset-bindings.yaml
   - resources/sriov-config.yaml
   - resources/hw-types.yaml
+  - resources/regional.yaml
