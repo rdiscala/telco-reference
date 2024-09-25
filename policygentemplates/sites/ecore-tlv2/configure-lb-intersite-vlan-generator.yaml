@@ -145,7 +145,10 @@ policies:
                     table-id: 1001
                 route-rules:
                   config:
-                  - ip-to: 169.254.169.0/29
+                  - ip-to: 169.254.0.0/17
+                    priority: 998
+                    route-table: 254
+                  - ip-to: fd69::/112
                     priority: 998
                     route-table: 254
                   - ip-to: 10.128.0.0/14
@@ -209,7 +212,10 @@ policies:
                     table-id: 1001
                 route-rules:
                   config:
-                  - ip-to: 169.254.169.0/29
+                  - ip-to: 169.254.0.0/17
+                    priority: 998
+                    route-table: 254
+                  - ip-to: fd69::/112
                     priority: 998
                     route-table: 254
                   - ip-to: 10.128.0.0/14
