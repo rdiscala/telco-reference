@@ -204,6 +204,10 @@ spec:
       policyName: "custom-namespaces"
       metadata:
         name: rds-metallb-app
+    - fileName: customNamespace.yaml
+      policyName: "custom-namespaces"
+      metadata:
+        name: rds-egress-ns
 
     #
     # Configuration for Rootless Pods(fromRDS)
