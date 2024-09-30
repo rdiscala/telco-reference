@@ -83,8 +83,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -172,8 +170,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -261,8 +257,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -352,8 +346,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -443,8 +435,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -538,8 +528,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
@@ -678,8 +666,6 @@ spec:
               - destination: ::0/0
                 next-hop-address: 2620:0052:0000:2ebb::003d
                 next-hop-interface: bond0.354
-              # static routes for external CEPH monitoring endpoints
-              # moved to policygentemplates/sites/ecore-tlv2/configure-storage-vlan.yaml
             interfaces:
               - name: eno1
                 description: provisioning interface
