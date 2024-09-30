@@ -152,24 +152,30 @@ policies:
         patches:
         - spec:
             outputs:
-              - type: "kafka"
-                name: kafka-open
+            - type: "kafka"
+              name: kafka-open
+              kafka:
                 # use FQDN when DNS entries for IPv4 and IPv6 are in place
                 # only IPv4 IP address works
                 #  url: tcp://vran-qe-kafka.lab.eng.rdu2.redhat.com:9092/vran-qe
                 #url: tcp://vran-qe-kafka.kni-qe-11.lab.eng.rdu2.redhat.com:9092/vran-qe
                 url: '{{hub fromConfigMap "" "regional" (printf "%s-log-url" (index .ManagedClusterLabels "zone")) | toLiteral hub}}'
+            filters:
+            - name: custom-labels
+              type: openshiftLabels
+              openshiftLabels:
+                sitename: '{{hub fromConfigMap "" "regional" (printf "%s-logging-name" .ManagedClusterName) | toLiteral hub}}'
+                siteuuid: '{{hub fromConfigMap "" "regional" (printf "%s-logging-uuid" .ManagedClusterName) | toLiteral hub}}'
+                rds: core
             pipelines:
-              - inputRefs:
-                  - audit
-                  - infrastructure
-                labels:
-                  sitename: '{{hub fromConfigMap "" "regional" (printf "%s-logging-name" .ManagedClusterName) | toLiteral hub}}'
-                  siteuuid: '{{hub fromConfigMap "" "regional" (printf "%s-logging-uuid" .ManagedClusterName) | toLiteral hub}}'
-                  rds: core
-                name: all-to-default
-                outputRefs:
-                  - kafka-open
+            - name: all-to-default
+              inputRefs:
+              - audit
+              - infrastructure
+              filterRefs:
+              - custom-labels
+              outputRefs:
+              - kafka-open
 
       #
       # Configure MetalLB
@@ -243,7 +249,9 @@ policies:
 
       - path: source-crs/required/networking/metallb/community.yaml
         patches:
-          - spec:
+          - metadata:
+              name: greenc
+            spec:
               communities:
                 - name: greenc
                   value: '7003:008'

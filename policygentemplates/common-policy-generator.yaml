@@ -47,6 +47,10 @@ policies:
       patches:
       - metadata:
           name: rds-metallb-app
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-egress-ns
 
   #
   # Configure KDump on the cluster nodes
@@ -55,8 +59,8 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "3"
     manifests:
-      - path: source-crs/optional/other/06-kdump-master.yaml
-      - path: source-crs/optional/other/06-kdump-worker.yaml
+      - path: source-crs/optional/other/kdump-master.yaml
+      - path: source-crs/optional/other/kdump-worker.yaml
 
   #
   # Configure container-mount-namespace

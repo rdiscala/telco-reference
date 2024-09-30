@@ -65,7 +65,7 @@ policies:
               # quay.io/prega/prega-operator-index:v4.17.0
               # quay.io/prega/prega-operator-index:v4.17-20240818T200305
               # contain only "stable" channel with "cluster-logging.v5.9.0"
-              channel: stable
+              channel: stable-6.0
               installPlanApproval: Manual
       #
       # Install SR-IOV
@@ -104,7 +104,6 @@ policies:
         patches:
           - spec:
               installPlanApproval: Manual
-              channel: "4.17"
       #
       # Install NMState
       #
@@ -122,13 +121,9 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "7"
     manifests:
-      - path: source-crs/optional/logging/ClusterLogging.yaml
-        patches:
-        - spec:
-            logStore:
-              type: lokistack
-              lokistack:
-                name: logging-loki
+      - path: source-crs/optional/logging/ClusterLogServiceAccount.yaml
+      - path: source-crs/optional/logging/ClusterLogServiceAccountAuditBinding.yaml
+      - path: source-crs/optional/logging/ClusterLogServiceAccountInfrastructureBinding.yaml
 
       - path: source-crs/required/networking/sriov/SriovOperatorConfig.yaml
         # TODO(yprokule): check if this is supported by SR-IOV in the 4.17
