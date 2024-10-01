@@ -11,5 +11,5 @@ data:
   sriov-nncp-two-mtu: '9000'
   sriov-nncp-one-num-vfs: '10'
   sriov-nncp-two-num-vfs: '10'
-  n65-sriov-node-policy-1-pfNames: "[\"ens1f0\"]"
-  n65-sriov-node-policy-2-pfNames: "[\"ens1f1\"]"
+  rdscore-sriov-node-policy-1-pfNames: "[\"ens1f0\"]"
+  rdscore-sriov-node-policy-2-pfNames: "[\"ens1f1\"]"
