@@ -100,7 +100,7 @@ policies:
       - path: source-crs/required/scheduling/NROPSubscription.yaml
         patches:
           - spec:
-              channel: "4.17"
+              channel: "4.18"
               installPlanApproval: Manual
       #
       # Install NMState
@@ -124,7 +124,6 @@ policies:
       - path: source-crs/optional/logging/ClusterLogServiceAccountInfrastructureBinding.yaml
 
       - path: source-crs/required/networking/sriov/SriovOperatorConfig.yaml
-        # TODO(yprokule): check if this is supported by SR-IOV in the 4.17
         patches:
         - spec:
             # Required for mellanox plugins running with secureboot enabled.

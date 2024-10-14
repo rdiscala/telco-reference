@@ -605,6 +605,7 @@ spec:
                 description: SRIOV Mellanox nic 2 port 1
                 type: ethernet
                 state: up
+                mtu: 9000
                 mac-address: 10:70:fd:44:5e:28
                 ipv4:
                   enabled: false
@@ -616,6 +617,7 @@ spec:
                 description: SRIOV Mellanox nic 2 port 2
                 type: ethernet
                 state: up
+                mtu: 9000
                 mac-address: 10:70:fd:44:5e:29
                 ipv4:
                   enabled: false
@@ -743,6 +745,7 @@ spec:
                 description: SRIOV Mellanox nic 2 port 1
                 type: ethernet
                 state: up
+                mtu: 9000
                 mac-address: 10:70:fd:44:5d:78
                 ipv4:
                   enabled: false
@@ -754,6 +757,7 @@ spec:
                 description: SRIOV Mellanox nic 2 port 2
                 type: ethernet
                 state: up
+                mtu: 9000
                 mac-address: 10:70:fd:44:5d:79
                 ipv4:
                   enabled: false
