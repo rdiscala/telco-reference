@@ -51,6 +51,10 @@ policies:
       patches:
       - metadata:
           name: rds-egress-ns
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-graceful-app
 
   #
   # Configure KDump on the cluster nodes
