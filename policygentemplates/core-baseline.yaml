@@ -62,8 +62,25 @@ policies:
       - path: source-crs/optional/logging/ClusterLogSubscription.yaml
         patches:
           - spec:
-              channel: stable-6.0
+              channel: stable-6.1
               installPlanApproval: Manual
+
+      - path: source-crs/optional/logging/ClusterLogOperatorStatus.yaml
+        patches:
+        - metadata:
+            $patch: replace
+            annotations: null
+          status:
+            components:
+              refs:
+              - kind: ClusterServiceVersion
+                namespace: openshift-logging
+                # Update with specific target version
+                name: cluster-logging.v6.1.1
+                conditions:
+                  - type: Succeeded
+                    status: "True"
+                    reason: InstallSucceeded
       #
       # Install SR-IOV
       #
