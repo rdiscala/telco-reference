@@ -1,3 +1,4 @@
+---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
@@ -42,12 +43,15 @@ policies:
                     ipv4:
                       enabled: true
                       address:
-                      - ip: 10.46.187.130
-                        prefix-length: 26
+                        - ip: 10.46.187.130
+                          prefix-length: 26
                       dhcp: false
                       auto-dns: false
                     ipv6:
-                      enabled: false
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::90
+                          prefix-length: 122
                       dhcp: false
                       auto-dns: false
                     vlan:
@@ -75,12 +79,15 @@ policies:
                     ipv4:
                       enabled: true
                       address:
-                      - ip: 10.46.187.131
-                        prefix-length: 26
+                        - ip: 10.46.187.131
+                          prefix-length: 26
                       dhcp: false
                       auto-dns: false
                     ipv6:
-                      enabled: false
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::91
+                          prefix-length: 122
                       dhcp: false
                       auto-dns: false
                     vlan:
@@ -108,12 +115,15 @@ policies:
                     ipv4:
                       enabled: true
                       address:
-                      - ip: 10.46.187.132
-                        prefix-length: 26
+                        - ip: 10.46.187.132
+                          prefix-length: 26
                       dhcp: false
                       auto-dns: false
                     ipv6:
-                      enabled: false
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::92
+                          prefix-length: 122
                       dhcp: false
                       auto-dns: false
                     vlan:
@@ -141,12 +151,15 @@ policies:
                     ipv4:
                       enabled: true
                       address:
-                      - ip: 10.46.187.133
-                        prefix-length: 26
+                        - ip: 10.46.187.133
+                          prefix-length: 26
                       dhcp: false
                       auto-dns: false
                     ipv6:
-                      enabled: false
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::93
+                          prefix-length: 122
                       dhcp: false
                       auto-dns: false
                     vlan:
@@ -174,12 +187,15 @@ policies:
                     ipv4:
                       enabled: true
                       address:
-                      - ip: 10.46.187.134
-                        prefix-length: 26
+                        - ip: 10.46.187.134
+                          prefix-length: 26
                       dhcp: false
                       auto-dns: false
                     ipv6:
-                      enabled: false
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::94
+                          prefix-length: 122
                       dhcp: false
                       auto-dns: false
                     vlan:
