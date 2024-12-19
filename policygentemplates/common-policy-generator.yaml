@@ -55,6 +55,19 @@ policies:
       patches:
       - metadata:
           name: rds-graceful-app
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-egressip-ns-one
+          labels:
+            env: "sys-qa"
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-egressip-ns-two
+          labels:
+            env: "sys-qa"
+
 
   #
   # Configure KDump on the cluster nodes
@@ -75,6 +88,32 @@ policies:
     manifests:
       - path: source-crs/optional/other/mount_namespace_config_master.yaml
       - path: source-crs/optional/other/mount_namespace_config_worker.yaml
+
+  #
+  # Label nodes to be available for the assignment of egress IP addresses
+  #
+  - name: label-egress-ip-nodes
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "3"
+    manifests:
+    - path: source-crs/LabelNode.yaml
+      patches:
+      - metadata:
+          name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
+          labels:
+            k8s.ovn.org/egress-assignable: ""
+    - path: source-crs/LabelNode.yaml
+      patches:
+      - metadata:
+          name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
+          labels:
+            k8s.ovn.org/egress-assignable: ""
+    - path: source-crs/LabelNode.yaml
+      patches:
+      - metadata:
+          name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
+          labels:
+            k8s.ovn.org/egress-assignable: ""
 
   #
   # Configure custom MCPs

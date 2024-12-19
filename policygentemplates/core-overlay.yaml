@@ -414,6 +414,19 @@ policies:
               trust: "on"
 
       #
+      # Configure EgressIP object
+      #
+      - path:  qe-source-crs/egressip/egressIP.yaml
+        patches:
+          - metadata:
+              name: egressip-qe
+              $patch: replace
+            spec:
+              egressIPs:
+              - 10.46.187.90
+              - 2620:52:0:2ebb::5a
+
+      #
       # Configure ODF
       #
       - path: source-crs/required/storage/odf-external/01-rook-ceph-external-cluster-details.secret.yaml

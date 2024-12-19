@@ -1,0 +1,13 @@
+---
+apiVersion: k8s.ovn.org/v1
+kind: EgressIP
+metadata:
+  name: $name
+spec:
+  egressIPs: [$pools]
+  namespaceSelector:
+    matchLabels:
+      env: sys-qa
+  podSelector:
+    matchLabels:
+      app: web
