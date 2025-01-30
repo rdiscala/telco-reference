@@ -20,13 +20,13 @@ policyDefaults:
           operator: DoesNotExist
   remediationAction: "inform"
 policies:
-  - name: pause-mcp
+  - name: pause-cp-mcp
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "1"
     evaluationInterval:
       compliant: never
     manifests:
-      - path: source-crs/CustomMCP.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         # This policy is evaluted only once
         # so, it does not conflict with the unpause one
         patches:
@@ -35,31 +35,18 @@ policies:
             spec:
               $patch: replace
               paused: true
-      - path: source-crs/CustomMCP.yaml
-        patches:
-          - metadata:
-              name: standard
-            spec:
-              $patch: replace
-              paused: true
-      - path: source-crs/CustomMCP.yaml
-        patches:
-          - metadata:
-              name: customcnf
-            spec:
-              $patch: replace
-              paused: true
+
   #
   # we unpause, and change the max-unavailable
   # to allow reoboting more than one node at once
   #
-  - name: unpause-mcp
+  - name: custom-mcp-unpause
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "11"
     evaluationInterval:
       compliant: never
     manifests:
-      - path: source-crs/CustomMCP.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: master
@@ -69,7 +56,15 @@ policies:
               $patch: replace
               paused: false
               maxUnavailable: 1
-      - path: source-crs/CustomMCP.yaml
+            status:
+              conditions:
+              - type: Updated
+                status: "True"
+              - type: Updating
+                status: "False"
+
+      #- path: ../siteconfig/custom-manifests/50-mcp-st.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: standard
@@ -79,7 +74,18 @@ policies:
               $patch: replace
               paused: false
               maxUnavailable: 75%
-      - path: source-crs/CustomMCP.yaml
+            status:
+              conditions:
+              - type: Updated
+                status: "True"
+              - type: Updating
+                status: "False"
+
+      # Failed to load target state: failed to generate manifest for source 1 of 1: rpc error: code = Unknown desc = `kustomize build <path to cached source>/policygentemplates --enable-alpha-plugins` failed exit status 1: 
+      # Error: error processing the PolicyGenerator file '/tmp/kust-plugin-config-844016449': the manifest path ../siteconfig/custom-manifests/50-mcp-st.yaml is not in the same directory tree as the kustomization.yaml file :
+      # failure in plugin configured via /tmp/kust-plugin-config-844016449; exit status 1
+      #- path: ../siteconfig/custom-manifests/50-mcp-customcnf.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: customcnf
@@ -89,16 +95,23 @@ policies:
               $patch: replace
               paused: false
               maxUnavailable: 75%
+            status:
+              conditions:
+              - type: Updated
+                status: "True"
+              - type: Updating
+                status: "False"
   #
   # we set the MCP configuration to its default about maxUnavailable
   #
-  - name: reset-mcp
+  - name: custom-mcp-set-maxunavailable
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "10001"
     evaluationInterval:
       compliant: never
     manifests:
-      - path: source-crs/CustomMCP.yaml
+      #- path: ../siteconfig/custom-manifests/50-mcp-st.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: standard
@@ -108,7 +121,9 @@ policies:
               maxUnavailable: 1
               $patch: replace
               paused: false
-      - path: source-crs/CustomMCP.yaml
+
+      #- path: ../siteconfig/custom-manifests/50-mcp-customcnf.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: customcnf

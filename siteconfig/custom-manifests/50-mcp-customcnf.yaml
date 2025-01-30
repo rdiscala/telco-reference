@@ -19,4 +19,4 @@ spec:
   nodeSelector:
     matchLabels:
       node-role.kubernetes.io/customcnf: ""
-  paused: false
+  paused: true

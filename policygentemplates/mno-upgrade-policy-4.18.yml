@@ -35,7 +35,7 @@ policies:
     evaluationInterval:
       compliant: never
     manifests:
-      - path: source-crs/CustomMCP.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: customcnf
@@ -54,7 +54,7 @@ policies:
                   node-role.kubernetes.io/customcnf: ""
               $patch: replace
               paused: true
-      - path: source-crs/CustomMCP.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: standard
@@ -187,7 +187,7 @@ policies:
     evaluationInterval:
       compliant: never
     manifests:
-      - path: source-crs/CustomMCP.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: customcnf
@@ -206,7 +206,7 @@ policies:
                   node-role.kubernetes.io/customcnf: ""
               $patch: replace
               paused: false
-      - path: source-crs/CustomMCP.yaml
+      - path: qe-source-crs/CustomMCP.yaml
         patches:
           - metadata:
               name: standard
