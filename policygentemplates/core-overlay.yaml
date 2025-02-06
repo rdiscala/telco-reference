@@ -2,7 +2,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: core-overlay-18
+  name: core-overlay-19
 policyDefaults:
   namespace: ztp-core-policies
   policySets: []
@@ -20,10 +20,10 @@ policyDefaults:
         - key: version
           operator: In
           values:
-            - "4.18"
+            - "4.19"
   remediationAction: "inform"
 policies:
-  - name: core-overlay-base-4.18
+  - name: core-overlay-base-4.19
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "2"
     manifests:
@@ -69,7 +69,7 @@ policies:
       - path: source-crs/optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
 
   # Custom networking, operator and cluster configuration
-  - name: core-overlay-config-4.18
+  - name: core-overlay-config-4.19
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "8"
     manifests:
@@ -436,7 +436,7 @@ policies:
 
       - path: source-crs/required/storage/odf-external/02-ocs-external-storagecluster.yaml
 
-  - name: core-overlay-monitoring-4.18
+  - name: core-overlay-monitoring-4.19
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "9"
     manifests:

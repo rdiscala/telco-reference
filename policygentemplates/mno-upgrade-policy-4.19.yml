@@ -2,20 +2,20 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: update-18
+  name: upgrade-19
 policyDefaults:
   namespace: ztp-update
   policySets: []
   placement:
     clusterSelectors:
       site: "ecore"
-      yp-ztp-update: ""
+      yp-ztp-upgrade: ""
   remediationAction: "inform"
 policies:
   #
-  # Prepare for update to 4.18
+  # Prepare for upgrade to 4.19
   #
-  - name: update-prep-18-catsrc
+  - name: upgrade-prep-19-catsrc
     manifests:
       #
       # Update catalogsource to point to latest versions
@@ -28,10 +28,10 @@ policies:
               ran.openshift.io/ztp-deploy-wave: "1"
           spec:
             displayName: Red Hat Disconnected Operators Catalog
-            image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.18
+            image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.19
             publisher: Red Hat
             sourceType: grpc
-  - name: update-prep-18-mcps
+  - name: upgrade-prep-19-mcps
     evaluationInterval:
       compliant: never
     manifests:
@@ -75,7 +75,7 @@ policies:
               paused: true
       #
       # Provide admin ack for deprecated API
-      # TODO(yprokule): check if this is needed during 4.18 to 4.18 update.
+      # TODO(yprokule): check if this is needed during 4.17 to 4.18 update.
       #
       #- path: source-crs/GenericConfigMap.yaml
       #  patches:
@@ -87,7 +87,7 @@ policies:
   #
   # Update operators
   #
-  - name: update-olm-18
+  - name: upgrade-olm-19
     manifests:
       # update ODF
       - path: source-crs/required/storage/odf-external/odfSubscription.yaml
@@ -96,7 +96,7 @@ policies:
             annotations:
               ran.openshift.io/ztp-deploy-wave: "2"
           spec:
-            channel: "stable-4.18"
+            channel: "stable-4.19"
             source: redhat-operators-disconnected
             installPlanApproval: Manual
       # update SR-IOV
@@ -126,7 +126,7 @@ policies:
             annotations:
               ran.openshift.io/ztp-deploy-wave: "2"
           spec:
-            channel: "4.18"
+            channel: "4.19"
             source: redhat-operators-disconnected
             installPlanApproval: Manual
       - path: source-crs/required/scheduling/sched.yaml
@@ -137,7 +137,7 @@ policies:
           spec:
             #cacheResyncPeriod: "0"
             # Image spec should be the latest for the release
-            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.18.0"
+            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.19.0"
       # update NMState
       - path: source-crs/required/networking/NMStateSubscription.yaml
         patches:
@@ -149,41 +149,41 @@ policies:
             source: redhat-operators-disconnected
             installPlanApproval: Manual
       # udpate ClusterLogging
-      #- path: source-crs/optional/logging/ClusterLogSubscription.yaml
-      #  patches:
-      #  - metadata:
-      #      annotations:
-      #        ran.openshift.io/ztp-deploy-wave: "2"
-      #    spec:
-      #      channel: "stable"
-      #      source: redhat-operators-disconnected
-      #      installPlanApproval: Manual
+      - path: source-crs/optional/logging/ClusterLogSubscription.yaml
+        patches:
+        - metadata:
+            annotations:
+              ran.openshift.io/ztp-deploy-wave: "2"
+          spec:
+            channel: "stable"
+            source: redhat-operators-disconnected
+            installPlanApproval: Manual
   #
   # Perform cluster upgrade
   #
-  - name: update-ocp-18
+  - name: upgrade-ocp-19
     manifests:
       - path: source-crs/ClusterVersion.yaml
         patches:
         - spec:
-            channel: stable-4.18
+            channel: stable-4.19
             upstream: http://registry.ecore.lab.eng.tlv2.redhat.com:8090/yp-graph
             #
-            #
+            # TODO: update this when 4.19 builds are ready
             #
             desiredUpdate:
-              version: 4.18.0-ec.3
-              image: registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release@sha256:ea2d94a4f166d94e512d2721474eadecf2b6258b2f11ed31f8800b5106a773d0
+              version: 4.17.0-ec.2
+              image: registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release@sha256:eeaf087727b4ec3fa36bf2b1e812e48682f0415b9d2d53be83704931172a856c
               force: true
         - status:
             history:
-            - version: 4.18.0-ec.3
+            - version: 4.17.0-ec.2
               state: "Completed"
   #
   # MCPs more likely should be unpaused one by one manually so they are updated,
   # within dedicated maintenance windows.
   #
-  - name: update-unpause-mcps-18
+  - name: upgrade-unpause-mcps
     evaluationInterval:
       compliant: never
     manifests:
