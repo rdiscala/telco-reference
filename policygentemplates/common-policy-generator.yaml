@@ -67,6 +67,10 @@ policies:
           name: rds-egressip-ns-two
           labels:
             env: "sys-qa"
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-metallb-segregation
 
 
   #
