@@ -202,3 +202,75 @@ policies:
                       base-iface: bond0
                       id: 356
       # worker-1 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-2-signaling
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-2.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.356
+                    description: "This is lb-signaling VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                        - ip: 10.46.187.135
+                          prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::95
+                          prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 356
+      # worker-2 ^^^
+
+      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+        patches:
+          - metadata:
+              name: for-worker-3-signaling
+            spec:
+              nodeSelector:
+                $patch: replace
+                kubernetes.io/hostname: "openshift-worker-3.ecore.lab.eng.tlv2.redhat.com"
+              desiredState:
+                routes:
+                  $patch: replace
+                  config: []
+                interfaces:
+                  - name: bond0.356
+                    description: "This is lb-signaling VLAN"
+                    type: vlan
+                    state: up
+                    ipv4:
+                      enabled: true
+                      address:
+                        - ip: 10.46.187.136
+                          prefix-length: 26
+                      dhcp: false
+                      auto-dns: false
+                    ipv6:
+                      enabled: true
+                      address:
+                        - ip: 2620:52:0:2ebb::96
+                          prefix-length: 122
+                      dhcp: false
+                      auto-dns: false
+                    vlan:
+                      base-iface: bond0
+                      id: 356
+      # worker-3 ^^^
