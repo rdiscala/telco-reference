@@ -142,7 +142,7 @@ policies:
                     metric: 150
                     next-hop-address: 10.46.187.254
                     next-hop-interface: bond0.357
-                    table-id: 1001
+                    table-id: 999
                 route-rules:
                   config:
                   - ip-to: 169.254.0.0/17
@@ -171,7 +171,7 @@ policies:
                     vrf:
                       port:
                       - bond0.357
-                      route-table-id: 1001
+                      route-table-id: 999
                   - name: bond0.357
                     description: "This is lb-intersite VLAN"
                     type: vlan
@@ -209,7 +209,7 @@ policies:
                     metric: 150
                     next-hop-address: 10.46.187.254
                     next-hop-interface: bond0.357
-                    table-id: 1001
+                    table-id: 999
                 route-rules:
                   config:
                   - ip-to: 169.254.0.0/17
@@ -238,7 +238,7 @@ policies:
                     vrf:
                       port:
                       - bond0.357
-                      route-table-id: 1001
+                      route-table-id: 999
                   - name: bond0.357
                     description: "This is lb-intersite VLAN"
                     type: vlan
