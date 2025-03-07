@@ -39,6 +39,12 @@ policies:
               name: redhat-operators-disconnected
             spec:
               image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.19
+      - path: source-crs/required/other/catalog-source.yaml
+        patches:
+          - metadata:
+              name: yp-disconnected
+            spec:
+              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.18
       - path: source-crs/required/scheduling/Scheduler.yaml
         patches:
           - spec:
@@ -99,8 +105,9 @@ policies:
         patches:
           - spec:
               # NOTE: preGA catSrc doesn't have 4.19 version as even 4.18 wasn't released yet
-              channel: stable-4.19
+              channel: stable-4.18
               installPlanApproval: Manual
+              source: yp-disconnected
       #
       # Install MetalLB
       #
