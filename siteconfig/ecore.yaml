@@ -62,7 +62,7 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:9C"
         bootMode: "UEFISecureBoot"
-        # automatedCleaningMode: metadata
+        automatedCleaningMode: metadata
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -156,7 +156,7 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:4E:E4"
         bootMode: "UEFISecureBoot"
-        # automatedCleaningMode: metadata
+        automatedCleaningMode: metadata
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -250,7 +250,7 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:1F:60"
         bootMode: "UEFISecureBoot"
-        # automatedCleaningMode: metadata
+        automatedCleaningMode: metadata
         rootDeviceHints:
           deviceName: /dev/sdb
         nodeNetwork:
@@ -344,7 +344,7 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "B4:7A:F1:C9:5E:A4"
         bootMode: "UEFISecureBoot"
-        # automatedCleaningMode: metadata
+        automatedCleaningMode: metadata
         nodeLabels:
           node-role.kubernetes.io/standard: ''
         rootDeviceHints:
@@ -683,7 +683,7 @@ spec:
           name: ecore-bmc-secret
         bootMACAddress: "5C:BA:2C:27:6E:4E"
         bootMode: "UEFISecureBoot"
-        # automatedCleaningMode: metadata
+        automatedCleaningMode: metadata
         nodeLabels:
           node-role.kubernetes.io/customcnf: ''
         rootDeviceHints:
