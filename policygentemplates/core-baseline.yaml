@@ -155,6 +155,8 @@ policies:
             # Firmware MUST be pre-configured
             disablePlugins:
             - mellanox
+            featureGates:
+              resourceInjectorMatchCondition: true
 
       - path: source-crs/required/networking/NMState.yaml
 
