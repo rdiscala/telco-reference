@@ -18,6 +18,8 @@ generators:
   - sites/ecore-tlv2/packet-core-validator-generator.yaml
   # configure nodes
   - sites/ecore-tlv2/config-nodes-generator.yaml
+  # configure NAD
+  - sites/ecore-tlv2/configure-sriov-bond-generator.yaml
 resources:
   - resources/policies-namespace.yaml
   - resources/managedclusterset-bindings.yaml

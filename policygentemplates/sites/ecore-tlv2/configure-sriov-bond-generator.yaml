@@ -1,0 +1,60 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: telco-sriov-bonding
+policyDefaults:
+  namespace: ztp-site
+  policySets: []
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: site
+          operator: In
+          values:
+            - "ecore"
+        - key: zone
+          operator: In
+          values:
+            - tlv2
+  remediationAction: "inform"
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "10"
+policies:
+  - name: sriov-bonding
+    manifests:
+      - path: source-crs/optional/networking/networkAttachmentDefinition.yaml
+        patches:
+          - metadata:
+              name: bond-net
+              namespace: rds-bonded-sriov-wlkd
+            spec:
+              config: '{ "type": "bond",
+                "cniVersion": "0.3.1",
+                "name": "bond-net",
+                "mode": "active-backup",
+                "failOverMac": 1,
+                "linksInContainer": true,
+                "miimon": "100",
+                "mtu": 9000,
+                "links": [ {"name": "net1"}, {"name": "net2"} ],
+                "ipam": { "type": "static",
+                  "routes": [{"dst": "10.46.126.84/26", "dst": "2620:52:0:2e7e::49/122"}] } }'
+              $patch: replace
+              nodeSelector: null
+
+      - path: source-crs/optional/networking/networkAttachmentDefinition.yaml
+        patches:
+          - metadata:
+              name: pod-level-bond-vlan
+              namespace: rds-bonded-sriov-wlkd
+            spec:
+              config: '{ "type": "vlan",
+                "cniVersion": "0.3.1",
+                "name": "pod-level-bond-vlan",
+                "vlanId": 497,
+                "master": "net3",
+                "linksInContainer": true,
+                "ipam": { "type": "static",
+                  "routes": [{"dst": "10.46.126.84/26","dst": "2620:52:0:2e7e::49/122"}] } }'
+              $patch: replace
+              nodeSelector: null
