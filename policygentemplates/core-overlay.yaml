@@ -362,7 +362,7 @@ policies:
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: 9000
-              numVfs: 8
+              numVfs: 16
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
@@ -380,7 +380,7 @@ policies:
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: 9000
-              numVfs: 8
+              numVfs: 16
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
