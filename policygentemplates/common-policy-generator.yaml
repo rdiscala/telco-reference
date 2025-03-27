@@ -71,7 +71,10 @@ policies:
       patches:
       - metadata:
           name: rds-metallb-segregation
-
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-bonded-sriov-wlkd
 
   #
   # Configure KDump on the cluster nodes
