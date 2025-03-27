@@ -367,7 +367,7 @@ policies:
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f0np0', 'ens5f0np0']
-                pfNames: ['ens5f0np0']
+                pfNames: ['ens5f0np0#0-7']
               deviceType: netdevice
               isRdma: True
 
@@ -385,7 +385,7 @@ policies:
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f1np1', 'ens5f1np1']
-                pfNames: ['ens5f1np1']
+                pfNames: ['ens5f1np1#0-7']
               deviceType: netdevice
               isRdma: True
 
@@ -412,6 +412,70 @@ policies:
               networkNamespace: rds-sriov-wlkd
               resourceName: sriovrightmlx
               trust: "on"
+
+      #
+      # Create VFs on the Mellanox-NICs for pod level bonding
+      #
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftmlxbond
+            spec:
+              resourceName: "sriovleftmlxbond"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: 9000
+              numVfs: 16
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                pfNames: ['ens5f0np0#8-15']
+              deviceType: netdevice
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightmlxbond
+            spec:
+              resourceName: "sriovrightmlxbond"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: 9000
+              numVfs: 16
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames: ['ens5f1np1#8-15']
+              deviceType: netdevice
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-mlx-one-bond"
+            spec:
+              capabilities: '{ "ips": true }'
+              ipam: '{}'
+              linkState: auto
+              networkNamespace: rds-bonded-sriov-wlkd
+              resourceName: sriovleftmlxbond
+              trust: "off"
+              vlan: 497
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-mlx-two-bond"
+            spec:
+              capabilities: '{ "ips": true }'
+              ipam: '{}'
+              linkState: auto
+              networkNamespace: rds-bonded-sriov-wlkd
+              resourceName: sriovrightmlxbond
+              trust: "off"
+              vlan: 497
 
       #
       # Configure EgressIP object
