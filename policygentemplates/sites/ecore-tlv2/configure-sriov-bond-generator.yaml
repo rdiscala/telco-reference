@@ -38,7 +38,7 @@ policies:
                 "mtu": 9000,
                 "links": [ {"name": "net1"}, {"name": "net2"} ],
                 "ipam": { "type": "static",
-                  "routes": [{"dst": "10.46.126.84/26", "dst": "2620:52:0:2e7e::49/122"}] } }'
+                  "routes": [{"dst": "10.46.126.126/26", "dst": "2620:52:0:2e7e::7e/122"}] } }'
               $patch: replace
               nodeSelector: null
 
@@ -55,6 +55,6 @@ policies:
                 "master": "net3",
                 "linksInContainer": true,
                 "ipam": { "type": "static",
-                  "routes": [{"dst": "10.46.126.84/26","dst": "2620:52:0:2e7e::49/122"}] } }'
+                  "routes": [{"dst": "10.46.126.126/26","dst": "2620:52:0:2e7e::7e/122"}] } }'
               $patch: replace
               nodeSelector: null
