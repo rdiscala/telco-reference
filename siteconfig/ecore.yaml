@@ -53,10 +53,10 @@ spec:
         role: "master"
         # crSuppression:
         # - BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
@@ -147,10 +147,10 @@ spec:
         role: "master"
         # crSuppression:
         # - BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.245:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
@@ -241,10 +241,10 @@ spec:
         role: "master"
         # crSuppression:
         # - BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.246:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
@@ -335,10 +335,10 @@ spec:
         role: "worker"
         # crSuppression:
         # - BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.247:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
@@ -432,10 +432,10 @@ spec:
         role: "worker"
         #crSuppression:
         #- BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
@@ -529,10 +529,10 @@ spec:
         role: "worker"
         #crSuppression:
         #- BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
@@ -677,10 +677,10 @@ spec:
         role: "worker"
         # crSuppression:
         # - BareMetalHost
-        crAnnotations:
-          add:
-            BareMetalHost:
-              bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+        #crAnnotations:
+        #  add:
+        #    BareMetalHost:
+        #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
         bmcAddress: ilo5-virtualmedia://10.46.61.243:443/redfish/v1/Systems/1
         bmcCredentialsName:
           name: ecore-bmc-secret
