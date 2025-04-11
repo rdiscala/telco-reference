@@ -27,42 +27,42 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "2"
     manifests:
-      - path: source-crs/required/other/icsp.yaml
+      - path: qe-source-crs/idms.yaml
         patches:
         - spec:
-            repositoryDigestMirrors:
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
-                source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
-                source: registry.ci.openshift.org/ocp/release
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005
-                source: registry.redhat.io
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005
-                source: registry-proxy.engineering.redhat.com
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005
-                source: registry.stage.redhat.io
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-qe-optional-operators
-                source: quay.io/openshift-qe-optional-operators
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshifttest
-                source: quay.io/openshifttest
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/rh-nfv-int
-                source: quay.io/rh-nfv-int
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
-                source: registry.connect.redhat.com/intel
-              - mirrors:
-                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
-                source: quay.io/openshift-release-dev/ocp-release-nightly
+            imageDigestMirrors:
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+               source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-v4.0-art-dev
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/ocp/release
+               source: registry.ci.openshift.org/ocp/release
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005
+               source: registry.redhat.io
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005
+               source: registry-proxy.engineering.redhat.com
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005
+               source: registry.stage.redhat.io
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-qe-optional-operators
+               source: quay.io/openshift-qe-optional-operators
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshifttest
+               source: quay.io/openshifttest
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/rh-nfv-int
+               source: quay.io/rh-nfv-int
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
+               source: registry.connect.redhat.com/intel
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
+               source: quay.io/openshift-release-dev/ocp-release-nightly
       - path: source-crs/optional/other/sctp_module_mc.yaml
       - path: source-crs/optional/other/worker-load-kernel-modules.yaml
       - path: source-crs/optional/other/control-plane-load-kernel-modules.yaml
