@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - bmc-credentials.yaml
   - pull-secret.yaml
+  - ns.yaml
