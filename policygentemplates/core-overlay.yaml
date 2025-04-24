@@ -27,7 +27,7 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "2"
     manifests:
-      - path: qe-source-crs/idms.yaml
+      - path: source-crs/required/other/idms.yaml
         patches:
         - spec:
             imageDigestMirrors:

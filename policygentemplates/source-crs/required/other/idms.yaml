@@ -1,8 +1,10 @@
+# required
+# count: 1
 ---
 apiVersion: config.openshift.io/v1
 kind: ImageDigestMirrorSet
 metadata:
-  name: rh-disconnected-icsp
+  name: disconnected-internal-idms
 spec:
   imageDigestMirrors: []
 #    - $mirrors
