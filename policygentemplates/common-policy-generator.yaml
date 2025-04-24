@@ -84,7 +84,16 @@ policies:
       ran.openshift.io/ztp-deploy-wave: "3"
     manifests:
       - path: source-crs/optional/other/kdump-master.yaml
+        patches:
+          - spec:
+              kernelArguments:
+              - crashkernel=1024M
+
       - path: source-crs/optional/other/kdump-worker.yaml
+        patches:
+          - spec:
+              kernelArguments:
+              - crashkernel=1024M
 
   #
   # Configure container-mount-namespace
