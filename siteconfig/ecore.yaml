@@ -356,6 +356,9 @@ spec:
       bootMACAddress: "B4:7A:F1:C9:5E:A4"
       bootMode: "UEFISecureBoot"
       automatedCleaningMode: metadata
+      extraAnnotations:
+        BareMetalHost:
+          bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
       nodeLabels:
         node-role.kubernetes.io/standard: ''
       rootDeviceHints:
