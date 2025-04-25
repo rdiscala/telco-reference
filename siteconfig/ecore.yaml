@@ -344,6 +344,9 @@ spec:
     #
     - hostName: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
       role: "worker"
+      #
+      # This is for siteconfig-v1
+      #
       # crSuppression:
       # - BareMetalHost
       #crAnnotations:
@@ -356,11 +359,14 @@ spec:
       bootMACAddress: "B4:7A:F1:C9:5E:A4"
       bootMode: "UEFISecureBoot"
       automatedCleaningMode: metadata
-      extraAnnotations:
-        BareMetalHost:
-          bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
-      suppressedManifests:
-        - BareMetalHost
+      #
+      # This is for siteConfig-v2 (ClusterInstance)
+      #
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #suppressedManifests:
+      #  - BareMetalHost
       nodeLabels:
         node-role.kubernetes.io/standard: ''
       rootDeviceHints:
