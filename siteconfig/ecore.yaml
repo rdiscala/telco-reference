@@ -359,6 +359,8 @@ spec:
       extraAnnotations:
         BareMetalHost:
           bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      suppressedManifests:
+        - BareMetalHost
       nodeLabels:
         node-role.kubernetes.io/standard: ''
       rootDeviceHints:
