@@ -362,7 +362,7 @@ policies:
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: 9000
-              numVfs: 16
+              numVfs: 24
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
@@ -380,7 +380,7 @@ policies:
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: 9000
-              numVfs: 16
+              numVfs: 24
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
@@ -425,7 +425,7 @@ policies:
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: 9000
-              numVfs: 16
+              numVfs: 24
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
@@ -442,7 +442,7 @@ policies:
               nodeSelector:
                 node-role.kubernetes.io/customcnf: ""
               mtu: 9000
-              numVfs: 16
+              numVfs: 24
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
@@ -476,6 +476,74 @@ policies:
               resourceName: sriovrightmlxbond
               trust: "off"
               vlan: 497
+
+      #
+      # SR-IOV for Rootless DPDK
+      #
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftmlxrootless
+            spec:
+              resourceName: "sriovleftmlxrootless"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-left-rootless-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-left-num-rootless-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames:
+                - '{{hub fromConfigMap "" "sriov-config" "sriov-mlx-left-nic-1-rootless" | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+              needVhostNet: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightmlxrootless
+            spec:
+              resourceName: "sriovrightmlxrootless"
+              nodeSelector:
+                node-role.kubernetes.io/customcnf: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-right-rootless-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-right-num-rootless-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames:
+                - '{{hub fromConfigMap "" "sriov-config" "sriov-mlx-right-nic-1-rootless" | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+              needVhostNet: False
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-mlx-rootless-dpdk-one"
+            spec:
+              capabilities: '{ "mac": true, "ips": true }'
+              ipam: '{"type": "host-local","ranges": [[{"subnet": "10.46.126.192/26", "rangeStart":"10.46.126.210", "rangeEnd":"10.46.126.215"}]],"dataDir": "/run/my-orchestrator/container-ipam-state"}'
+              linkState: auto
+              networkNamespace: rds-rootless-dpdk-wlkd
+              resourceName: sriovleftmlxrootless
+              trust: "on"
+
+      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
+        patches:
+          - metadata:
+              name: "sriov-mlx-rootless-dpdk-two"
+            spec:
+              capabilities: '{ "mac": true, "ips": true }'
+              ipam: '{"type": "host-local","ranges": [[{"subnet": "10.46.126.192/26", "rangeStart":"10.46.126.216", "rangeEnd":"10.46.126.220"}]],"dataDir": "/run/my-orchestrator/container-ipam-state"}'
+              linkState: auto
+              networkNamespace: rds-rootless-dpdk-wlkd
+              resourceName: sriovrightmlxrootless
+              trust: "on"
+              vlan: 499
 
       #
       # Configure EgressIP object

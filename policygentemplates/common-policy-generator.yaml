@@ -75,6 +75,10 @@ policies:
       patches:
       - metadata:
           name: rds-bonded-sriov-wlkd
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-rootless-dpdk-wlkd
 
   #
   # Configure KDump on the cluster nodes

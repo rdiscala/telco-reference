@@ -13,3 +13,15 @@ data:
   sriov-nncp-two-num-vfs: '10'
   rdscore-sriov-node-policy-1-pfNames: "[\"ens1f0\"]"
   rdscore-sriov-node-policy-2-pfNames: "[\"ens1f1\"]"
+  #
+  # SR-IOV for rootless DPDK
+  #
+  sriov-nnp-mlx-left-rootless-mtu: '9000'
+  sriov-nnp-mlx-left-num-rootless-vfs: '24'
+  sriov-mlx-left-nic-1-rootless: 'ens5f0np0#15-24'
+  #
+  # SR-IOV for rootless DPDK
+  #
+  sriov-nnp-mlx-right-rootless-mtu: '9000'
+  sriov-nnp-mlx-right-num-rootless-vfs: '24'
+  sriov-mlx-right-nic-1-rootless: 'ens5f1np1#16-24'
