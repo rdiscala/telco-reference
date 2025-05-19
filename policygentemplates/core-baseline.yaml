@@ -104,10 +104,10 @@ policies:
       - path: source-crs/required/storage/odf-external/odfSubscription.yaml
         patches:
           - spec:
-              # NOTE: preGA catSrc has 4.19 version that has issues with CephFS
-              channel: stable-4.18
+              # NOTE: preGA catSrc doesn't have 4.19 version as even 4.18 wasn't released yet
+              channel: stable-4.19
               installPlanApproval: Manual
-              source: yp-disconnected
+              source: redhat-operators-disconnected
       #
       # Install MetalLB
       #
