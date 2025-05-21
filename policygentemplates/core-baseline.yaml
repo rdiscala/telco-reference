@@ -2,7 +2,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: core-baseline-19
+  name: core-baseline-20
 policyDefaults:
   namespace: ztp-core-policies
   policySets: []
@@ -20,13 +20,13 @@ policyDefaults:
         - key: version
           operator: In
           values:
-            - "4.19"
+            - "4.20"
   remediationAction: "inform"
 policies:
   #
   # Base cluster configuration
   #
-  - name: core-cluster-config-4.19
+  - name: core-cluster-config-4.20
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "1"
     manifests:
@@ -38,7 +38,7 @@ policies:
           - metadata:
               name: redhat-operators-disconnected
             spec:
-              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.19
+              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.20
       - path: source-crs/required/other/catalog-source.yaml
         patches:
           - metadata:
@@ -56,7 +56,7 @@ policies:
   #
   # Core cluster OLM operators
   #
-  - name: core-operator-subs-4.19
+  - name: core-operator-subs-4.20
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "5"
     manifests:
@@ -104,7 +104,7 @@ policies:
       - path: source-crs/required/storage/odf-external/odfSubscription.yaml
         patches:
           - spec:
-              # NOTE: preGA catSrc doesn't have 4.19 version as even 4.18 wasn't released yet
+              # NOTE: preGA catSrc has 4.19 version that has issues with CephFS
               channel: stable-4.18
               installPlanApproval: Manual
               source: yp-disconnected
@@ -140,7 +140,7 @@ policies:
   #
   # Operator configuration
   #
-  - name: core-operator-config-4.19
+  - name: core-operator-config-4.20
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "7"
     manifests:
@@ -164,4 +164,4 @@ policies:
         patches:
         - spec:
             # Image spec should be the latest for the release
-            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.19.0"
+            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.20.0"
