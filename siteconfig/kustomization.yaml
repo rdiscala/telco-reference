@@ -19,6 +19,8 @@ configMapGenerator:
     - mno-extra-manifests/mount_namespace_config_worker.yaml
     - mno-extra-manifests/sctp_module_mc.yaml
     - mno-extra-manifests/worker-load-kernel-modules.yaml
+    - mno-extra-manifests/configure-core-pass-compute.yaml
+    - mno-extra-manifests/configure-core-pass-cp.yaml
     name: extra-manifests-cm
     namespace: ecore
   - files:

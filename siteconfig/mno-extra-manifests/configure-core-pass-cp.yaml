@@ -1,0 +1,15 @@
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: set-core-user-password-cp
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    passwd:
+      users:
+      - name: core
+        passwordHash: $6$jSbZxPaKvavx6yLk$hq24RYtkVcXCbs.qXt/n/szot/Fi0Yo9nDoNnQEzDwlLkpz9dRZE6JjL6PcNpLaFp0/QsGKRPCc6dHVyL25kr0
