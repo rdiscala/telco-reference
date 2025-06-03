@@ -105,3 +105,26 @@ policies:
                   users:
                   - name: core
                     passwordHash: $6$jSbZxPaKvavx6yLk$hq24RYtkVcXCbs.qXt/n/szot/Fi0Yo9nDoNnQEzDwlLkpz9dRZE6JjL6PcNpLaFp0/QsGKRPCc6dHVyL25kr0
+
+      #
+      # Configure custom IP forwarding instead of GlobalForwarding
+      #
+      - path: source-crs/MachineConfigGeneric.yaml
+        patches:
+          - metadata:
+              name: 98-config-ip-forwarding
+              $patch: replace
+              labels:
+                machineconfiguration.openshift.io/role: worker
+            spec:
+              config:
+                # Release info found in https://github.com/coreos/butane/releases
+                ignition:
+                  version: 3.2.0
+                storage:
+                  files:
+                  - contents:
+                      source: data:text/plain;charset=utf-8;base64,bmV0LmlwdjQuY29uZi5ib25kMC8zNTUuZm9yd2FyZGluZyA9IDEKbmV0LmlwdjQuY29uZi5ib25kMC8zNTYuZm9yd2FyZGluZyA9IDEKbmV0LmlwdjQuY29uZi5ib25kMC8zNTcuZm9yd2FyZGluZyA9IDEKbmV0LmlwdjQuY29uZi5ib25kMC8zNTguZm9yd2FyZGluZyA9IDEKbmV0LmlwdjYuY29uZi5ib25kMC8zNTUuZm9yd2FyZGluZyA9IDEKbmV0LmlwdjYuY29uZi5ib25kMC8zNTYuZm9yd2FyZGluZyA9IDEKbmV0LmlwdjYuY29uZi5ib25kMC8zNTcuZm9yd2FyZGluZyA9IDEKbmV0LmlwdjYuY29uZi5ib25kMC8zNTguZm9yd2FyZGluZyA9IDEK
+                    filesystem: root
+                    mode: 420
+                    path: /etc/sysctl.d/qe-forwarding.conf

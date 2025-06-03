@@ -82,7 +82,6 @@ policies:
               ovnKubernetesConfig:
                 mtu: 8900
                 gatewayConfig:
-                  ipForwarding: "Global"
                   routingViaHost: true
             additionalNetworks:
             - name: mc-vlan-one
