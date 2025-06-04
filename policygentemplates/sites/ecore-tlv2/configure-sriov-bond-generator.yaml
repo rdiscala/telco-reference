@@ -53,6 +53,7 @@ policies:
                 "name": "pod-level-bond-vlan",
                 "vlanId": 497,
                 "master": "net3",
+                "mtu": 9000,
                 "linksInContainer": true,
                 "ipam": { "type": "static",
                   "routes": [{"dst": "10.46.126.126/26","dst": "2620:52:0:2e7e::7e/122"}] } }'
