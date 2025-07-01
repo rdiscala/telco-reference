@@ -73,7 +73,7 @@ policies:
             spec:
               $patch: replace
               paused: false
-              maxUnavailable: 75%
+              maxUnavailable: 100%
             status:
               conditions:
               - type: Updated
@@ -94,7 +94,7 @@ policies:
             spec:
               $patch: replace
               paused: false
-              maxUnavailable: 75%
+              maxUnavailable: 100%
             status:
               conditions:
               - type: Updated

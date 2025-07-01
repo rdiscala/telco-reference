@@ -8,7 +8,7 @@ metadata:
     pools.operator.machineconfiguration.openshift.io/customcnf: ""
 spec:
   # TODO(yprokule): revise it later
-  maxUnavailable: 90%
+  maxUnavailable: 100%
   machineConfigSelector:
     matchExpressions:
       - key: machineconfiguration.openshift.io/role
