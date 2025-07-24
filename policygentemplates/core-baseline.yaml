@@ -39,12 +39,6 @@ policies:
               name: redhat-operators-disconnected
             spec:
               image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.20
-      - path: source-crs/required/other/catalog-source.yaml
-        patches:
-          - metadata:
-              name: yp-disconnected
-            spec:
-              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.18
       - path: source-crs/required/scheduling/Scheduler.yaml
         patches:
           - spec:
