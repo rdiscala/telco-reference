@@ -12,6 +12,7 @@ generators:
   - sites/ecore-tlv2/configure-lb-oam-vlan-generator.yaml
   - sites/ecore-tlv2/configure-lb-signaling-vlan-generator.yaml
   - sites/ecore-tlv2/configure-storage-vlan-generator.yaml
+  - sites/ecore-tlv2/configure-vlan-496.yaml
   # configure bond1 interface
   - sites/ecore-tlv2/configure-bond1-generator.yaml
   # cluster validation
