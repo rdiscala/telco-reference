@@ -79,6 +79,10 @@ policies:
       patches:
       - metadata:
           name: rds-rootless-dpdk-wlkd
+    - path: source-crs/customNamespace.yaml
+      patches:
+      - metadata:
+          name: rds-whereabouts
 
   #
   # Configure KDump on the cluster nodes
