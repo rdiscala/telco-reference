@@ -95,13 +95,13 @@ policies:
         patches:
           - spec:
               kernelArguments:
-              - crashkernel=1024M
+              - crashkernel=2048M
 
       - path: source-crs/optional/other/kdump-worker.yaml
         patches:
           - spec:
               kernelArguments:
-              - crashkernel=1024M
+              - crashkernel=2048M
 
   #
   # Configure container-mount-namespace
