@@ -35,5 +35,8 @@ spec:
         - registry.ecore.lab.eng.tlv2.redhat.com:5005/intel
       source: registry.connect.redhat.com/intel
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5005
+      source: quay.io/prega/test
+    - mirrors:
         - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
       source: quay.io/openshift-release-dev/ocp-release-nightly

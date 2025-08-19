@@ -63,6 +63,9 @@ policies:
              - mirrors:
                - registry.ecore.lab.eng.tlv2.redhat.com:5005/openshift-release-dev/ocp-release-nightly
                source: quay.io/openshift-release-dev/ocp-release-nightly
+             - mirrors:
+               - registry.ecore.lab.eng.tlv2.redhat.com:5005
+               source: quay.io/prega/test
       - path: source-crs/optional/other/sctp_module_mc.yaml
       - path: source-crs/optional/other/worker-load-kernel-modules.yaml
       - path: source-crs/optional/other/control-plane-load-kernel-modules.yaml
