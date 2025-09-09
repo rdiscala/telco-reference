@@ -135,6 +135,12 @@ policies:
                 - mirrors:
                     - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-external-snapshotter-operator-bundle
                   source: quay.io/prega/test/rhceph-dev/odf4-odf-external-snapshotter-operator-bundle
+                - mirrors:
+                    - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-snapshotter-rhel9
+                  source: registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9
+                - mirrors:
+                    - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/rhceph-8-rhel9
+                  source: registry.redhat.io/rhceph/rhceph-8-rhel9
       - path: source-crs/optional/other/sctp_module_mc.yaml
       - path: source-crs/optional/other/worker-load-kernel-modules.yaml
       - path: source-crs/optional/other/control-plane-load-kernel-modules.yaml
