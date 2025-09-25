@@ -369,6 +369,7 @@ spec:
       #  - BareMetalHost
       nodeLabels:
         node-role.kubernetes.io/standard: ''
+        cluster.ocs.openshift.io/openshift-storage: ''
       rootDeviceHints:
         deviceName: /dev/disk/by-path/pci-0000:5c:00.0-sas-0x58ce38ee220a82fe-lun-0
       templateRefs:
@@ -469,6 +470,7 @@ spec:
       automatedCleaningMode: metadata
       nodeLabels:
         node-role.kubernetes.io/standard: ''
+        cluster.ocs.openshift.io/openshift-storage: ''
       rootDeviceHints:
         deviceName: /dev/disk/by-path/pci-0000:5c:00.0-sas-0x58ce38ee220a830e-lun-0
       templateRefs:
@@ -569,6 +571,7 @@ spec:
       automatedCleaningMode: metadata
       nodeLabels:
         node-role.kubernetes.io/customcnf: ''
+        cluster.ocs.openshift.io/openshift-storage: ''
       rootDeviceHints:
         deviceName: /dev/disk/by-path/pci-0000:5c:00.0-sas-0x58ce38ee21fc7072-lun-0
       templateRefs:
@@ -720,6 +723,7 @@ spec:
       automatedCleaningMode: metadata
       nodeLabels:
         node-role.kubernetes.io/customcnf: ''
+        cluster.ocs.openshift.io/openshift-storage: ''
       rootDeviceHints:
         deviceName: /dev/disk/by-path/pci-0000:5c:00.0-sas-0x58ce38ee21fc705e-lun-0
       templateRefs:
