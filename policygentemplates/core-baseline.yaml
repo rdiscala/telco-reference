@@ -98,8 +98,8 @@ policies:
       - path: source-crs/required/storage/odf-external/odfSubscription.yaml
         patches:
           - spec:
-              # NOTE: preGA catSrc doesn't have 4.20 version but 4.19 so using it
-              channel: stable-4.20
+              # NOTE: production catSrc doesn't have 4.20 version but 4.19 so using it
+              channel: stable-4.19
               installPlanApproval: Manual
               source: redhat-operators-disconnected
       #
