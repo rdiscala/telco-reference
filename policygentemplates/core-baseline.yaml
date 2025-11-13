@@ -2,7 +2,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: core-baseline-20
+  name: core-baseline-21
 policyDefaults:
   namespace: ztp-core-policies
   policySets: []
@@ -20,13 +20,13 @@ policyDefaults:
         - key: version
           operator: In
           values:
-            - "4.20"
+            - "4.21"
   remediationAction: "inform"
 policies:
   #
   # Base cluster configuration
   #
-  - name: core-cluster-config-4.20
+  - name: core-cluster-config-4.21
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "1"
     manifests:
@@ -38,7 +38,7 @@ policies:
           - metadata:
               name: redhat-operators-disconnected
             spec:
-              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.20
+              image: registry.ecore.lab.eng.tlv2.redhat.com:5000/olm/redhat-operators:v4.21
       - path: source-crs/required/scheduling/Scheduler.yaml
         patches:
           - spec:
@@ -50,7 +50,7 @@ policies:
   #
   # Core cluster OLM operators
   #
-  - name: core-operator-subs-4.20
+  - name: core-operator-subs-4.21
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "5"
     manifests:
@@ -98,8 +98,8 @@ policies:
       - path: source-crs/required/storage/odf-external/odfSubscription.yaml
         patches:
           - spec:
-              # NOTE: production catSrc doesn't have 4.20 version but 4.19 so using it
-              channel: stable-4.19
+              # NOTE: prega has 4.21 channel
+              channel: stable-4.21
               installPlanApproval: Manual
               source: redhat-operators-disconnected
       #
@@ -119,6 +119,7 @@ policies:
       - path: source-crs/required/scheduling/NROPSubscription.yaml
         patches:
           - spec:
+              # NOTE: prega has 4.20 channel, eventually we will update to 4.21
               channel: "4.20"
               installPlanApproval: Manual
       #
@@ -134,7 +135,7 @@ policies:
   #
   # Operator configuration
   #
-  - name: core-operator-config-4.20
+  - name: core-operator-config-4.21
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "7"
     manifests:
@@ -158,4 +159,4 @@ policies:
         patches:
         - spec:
             # Image spec should be the latest for the release
-            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.20.0"
+            imageSpec: "registry.ecore.lab.eng.tlv2.redhat.com:5000/nrop/noderesourcetopology-scheduler-rhel9:v4.21.0"

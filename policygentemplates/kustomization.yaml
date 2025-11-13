@@ -5,7 +5,6 @@ generators:
   - core-baseline.yaml
   - core-overlay.yaml
   - common-policy-generator.yaml
-  - mno-update-policy-4.20.yml
   - core-finish.yaml
   # configure VLAN sub-interfaces on the cluster nodes
   - sites/ecore-tlv2/configure-lb-intersite-vlan-generator.yaml

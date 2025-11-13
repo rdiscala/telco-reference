@@ -8,7 +8,7 @@ spec:
   additionalNTPSources:
     - registry.ecore.lab.eng.tlv2.redhat.com
   baseDomain: lab.eng.tlv2.redhat.com
-  clusterImageSetNameRef: "4.20"
+  clusterImageSetNameRef: "4.21"
   clusterName: "ecore"
   clusterType: "HighlyAvailable"
   # Pod's SDN network range
@@ -36,7 +36,7 @@ spec:
       site: "ecore"
       zone: "tlv2"
       group: "rdscore"
-      version: "4.20"
+      version: "4.21"
   extraManifestsRefs:
     - name: extra-manifests-cm
     - name: custom-manifests-cm
