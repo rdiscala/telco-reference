@@ -584,6 +584,9 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-oauth-proxy-rhel9
       source: registry.redhat.io/rhceph-dev/openshift-ose-oauth-proxy-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-oauth-proxy-rhel9
+      source: registry.redhat.io/openshift4/ose-oauth-proxy-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-kubevirt-velero-plugin-rhel9
       source: registry.redhat.io/oadp/oadp-kubevirt-velero-plugin-rhel9
     - mirrors:
@@ -647,7 +650,7 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/metrics-collector-rhel9
       source: registry.redhat.io/acm-d/metrics-collector-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/ose-kube-rbac-proxy-rhel9
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-kube-rbac-proxy-rhel9
       source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhem/flightctl-alert-exporter-rhel9
@@ -1053,9 +1056,6 @@ spec:
       source: registry.redhat.io/openshift4/ingress-node-firewall-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/kubernetes-nmstate-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
@@ -1063,9 +1063,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/nmstate-console-plugin-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-kubernetes-nmstate-handler-rhel9
@@ -1080,9 +1077,6 @@ spec:
       source: registry.redhat.io/openshift4/metallb-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-metallb-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
@@ -1094,17 +1088,14 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-aws-efs-csi-driver-rhel9-operator
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-provisioner-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
       source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-tools-rhel9
@@ -1154,19 +1145,19 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-dpu-rhel9-operator
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-provisioner-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-resizer-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-resizer-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-snapshotter-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
       source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
@@ -1177,12 +1168,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-gcp-filestore-csi-driver-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-local-storage-diskmaker-rhel9
@@ -1200,9 +1185,6 @@ spec:
       source: registry.redhat.io/openshift4/ose-cloud-event-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-ptp-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
@@ -1214,7 +1196,7 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
       source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
@@ -1226,17 +1208,14 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-secrets-store-csi-driver-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-provisioner-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
       source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-smb-csi-driver-operator-bundle
@@ -1246,9 +1225,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-smb-csi-driver-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-sriov-dp-admission-controller-rhel9
@@ -1297,9 +1273,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-vertical-pod-autoscaler-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/pf-status-relay-operator-bundle
