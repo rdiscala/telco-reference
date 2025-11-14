@@ -62,7 +62,7 @@ policies:
       - path: source-crs/optional/logging/ClusterLogSubscription.yaml
         patches:
           - spec:
-              channel: stable-6.3
+              channel: stable-6.4
               installPlanApproval: Manual
 
       - path: source-crs/optional/logging/ClusterLogOperatorStatus.yaml
@@ -76,7 +76,7 @@ policies:
               - kind: ClusterServiceVersion
                 namespace: openshift-logging
                 # Update with specific target version
-                name: cluster-logging.v6.3.1
+                name: cluster-logging.v6.4.0
                 conditions:
                   - type: Succeeded
                     status: "True"
