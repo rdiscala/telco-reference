@@ -23,7 +23,7 @@ policyDefaults:
 policies:
   - name: add-lb-signaling-vlan
     manifests:
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-0-signaling
@@ -59,7 +59,7 @@ policies:
                       id: 356
       # master-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-1-signaling
@@ -95,7 +95,7 @@ policies:
                       id: 356
       # master-1 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-2-signaling
@@ -131,7 +131,7 @@ policies:
                       id: 356
       # master-2 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-0-signaling
@@ -167,7 +167,7 @@ policies:
                       id: 356
       # worker-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-1-signaling
@@ -203,7 +203,7 @@ policies:
                       id: 356
       # worker-1 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-2-signaling
@@ -239,7 +239,7 @@ policies:
                       id: 356
       # worker-2 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-3-signaling

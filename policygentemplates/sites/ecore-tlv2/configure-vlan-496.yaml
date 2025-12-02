@@ -23,7 +23,7 @@ policyDefaults:
 policies:
   - name: add-ocp-pc-up-media-vlan
     manifests:
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-0-496
@@ -59,7 +59,7 @@ policies:
                       id: 496
       # worker-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-1-496
@@ -95,7 +95,7 @@ policies:
                       id: 496
       # worker-1 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-2-496
@@ -131,7 +131,7 @@ policies:
                       id: 496
       # worker-2 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-3-496

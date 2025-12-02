@@ -22,7 +22,7 @@ policyDefaults:
 policies:
   - name: add-bond1-macvlan
     manifests:
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: openshift-master-0-bond1-macvlan
@@ -55,7 +55,7 @@ policies:
                       - ens2f1
       # master-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: openshift-master-1-bond1-macvlan
@@ -88,7 +88,7 @@ policies:
                       - ens2f1
       # master-1 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: openshift-master-2-bond1-macvlan
@@ -121,7 +121,7 @@ policies:
                       - ens2f1
       # master-2 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: openshift-worker-0-bond1-macvlan
@@ -154,7 +154,7 @@ policies:
                       - ens2f1
       # worker-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: openshift-worker-1-bond1-macvlan

@@ -22,7 +22,7 @@ policyDefaults:
 policies:
   - name: add-ceph-vlan
     manifests:
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-0-storage
@@ -69,7 +69,7 @@ policies:
                       next-hop-address: 10.46.187.126
       # master-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-1-storage
@@ -116,7 +116,7 @@ policies:
                       next-hop-address: 10.46.187.126
       # master-1 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-2-storage
@@ -163,7 +163,7 @@ policies:
                       next-hop-address: 10.46.187.126
       # master-2 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-0-storage
@@ -210,7 +210,7 @@ policies:
                       next-hop-address: 10.46.187.126
       # worker-0 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-1-storage
@@ -257,7 +257,7 @@ policies:
                       next-hop-address: 10.46.187.126
       # worker-1 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-2-storage
@@ -304,7 +304,7 @@ policies:
                       next-hop-address: 10.46.187.126
       # worker-2 ^^^
 
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-3-storage

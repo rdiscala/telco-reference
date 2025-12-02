@@ -1425,6 +1425,47 @@ policies:
                 $patch: replace
                 node-role.kubernetes.io/customcnf: ""
 
+      - path: source-crs/required/performance/TunedPerformancePatch.yaml
+        patches:
+        - metadata:
+            name: custom-telco-core-performance-patch
+          spec:
+            profile:
+              - name: qe-control-plane-profile
+                data: |
+                  [main]
+                  summary=Custom control plane performance tuning overrides
+                  include=openshift-control-plane
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+              - name: qe-customcnf-profile
+                data: |
+                  [main]
+                  summary=Custom compute core performance tuning overrides
+                  include=openshift-node-performance-customcnf
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+              - name: qe-standard-profile
+                data: |
+                  [main]
+                  summary=Custom compute core performance tuning overrides
+                  include=openshift-node
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+            recommend:
+              - machineConfigLabels:
+                  machineconfiguration.openshift.io/role: master
+                priority: 18
+                profile: qe-control-plane-profile
+              - machineConfigLabels:
+                  machineconfiguration.openshift.io/role: customcnf
+                priority: 18
+                profile: qe-customcnf-profile
+              - machineConfigLabels:
+                  machineconfiguration.openshift.io/role: standard
+                priority: 18
+                profile: qe-standard-profile
+
       - path: source-crs/optional/logging/ClusterLogForwarder.yaml
         patches:
         - spec:

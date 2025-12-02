@@ -22,7 +22,7 @@ policyDefaults:
 policies:
   - name: add-lb-intersite
     manifests:
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-0-intersite
@@ -57,7 +57,7 @@ policies:
                       base-iface: bond0
                       id: 357
       # master-0 ^^^
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-1-intersite
@@ -92,7 +92,7 @@ policies:
                       base-iface: bond0
                       id: 357
       # master-1 end ^^^
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-master-2-intersite
@@ -127,7 +127,7 @@ policies:
                       base-iface: bond0
                       id: 357
       # master-2 end ^^^
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-0-intersite
@@ -194,7 +194,7 @@ policies:
                       base-iface: bond0
                       id: 357
       # worker-0 ^^^
-      - path: source-crs/required/networking/nodeNetworkConfigurationPolicy.yaml
+      - path: source-crs/optional/networking/nodeNetworkConfigurationPolicy.yaml
         patches:
           - metadata:
               name: for-worker-1-intersite
