@@ -119,8 +119,7 @@ policies:
       - path: source-crs/required/scheduling/NROPSubscription.yaml
         patches:
           - spec:
-              # NOTE: prega has 4.20 channel, eventually we will update to 4.21
-              channel: "4.20"
+              channel: "4.21"
               installPlanApproval: Manual
       #
       # Install NMState
