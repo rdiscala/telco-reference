@@ -40,9 +40,13 @@ spec:
     #
     # PreGA entries
     #
+
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/klusterlet-addon-controller-rhel9
       source: registry.redhat.io/acm-d/klusterlet-addon-controller-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/klusterlet-addon-controller-rhel9
+      source: registry.redhat.io/rhacm2/klusterlet-addon-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/compliance/openshift-compliance-openscap-rhel8
       source: registry.redhat.io/compliance/openshift-compliance-openscap-rhel8
@@ -95,11 +99,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/console-plugin-rhel8
       source: registry.redhat.io/openshift-gitops-1/console-plugin-rhel8
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-container-security-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-container-security-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/submariner-addon-rhel9
       source: registry.redhat.io/acm-d/submariner-addon-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/submariner-addon-rhel9
+      source: registry.redhat.io/rhacm2/submariner-addon-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhem/flightctl-ui-rhel9
       source: registry.redhat.io/rhem/flightctl-ui-rhel9
@@ -109,9 +113,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-26/controller-rhel9-operator
       source: registry.redhat.io/ansible-automation-platform-26/controller-rhel9-operator
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-mcg-core-rhel9
       source: registry.redhat.io/odf4/mcg-core-rhel9
@@ -125,9 +126,6 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-ui-rhel9
       source: registry.redhat.io/mta/mta-ui-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/lifecycle-agent-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/lifecycle-agent-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-26/platform-resource-runner-rhel9
       source: registry.redhat.io/ansible-automation-platform-26/platform-resource-runner-rhel9
     - mirrors:
@@ -137,8 +135,8 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-operators-application-rhel9
       source: registry.redhat.io/acm-d/multicluster-operators-application-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-operator-bundle
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-operators-application-rhel9
+      source: registry.redhat.io/rhacm2/multicluster-operators-application-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/cert-manager/jetstack-cert-manager-acmesolver-rhel9
       source: registry.redhat.io/cert-manager/jetstack-cert-manager-acmesolver-rhel9
@@ -191,14 +189,14 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/console-rhel9
       source: registry.redhat.io/acm-d/console-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/console-rhel9
+      source: registry.redhat.io/rhacm2/console-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/hive-rhel9
       source: registry.redhat.io/acm-d/hive-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-grafana-rhel9
       source: registry.redhat.io/acm-d/acm-grafana-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/workload-availability/self-node-remediation-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/workload-availability/self-node-remediation-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-service-mesh/ratelimit-rhel8
       source: registry.redhat.io/openshift-service-mesh/ratelimit-rhel8
@@ -215,23 +213,17 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-analyzer-addon-rhel9
       source: registry.redhat.io/mta/mta-analyzer-addon-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/gitops-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/gitops-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-virt-v2v-rhel9
       source: registry.redhat.io/migration-toolkit-virtualization/mtv-virt-v2v-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform/cloud-addons-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform/cloud-addons-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/backplane-rhel9-operator
-      source: registry.redhat.io/acm-d/backplane-rhel9-operator
+      source: registry.redhat.io/multicluster-engine/backplane-rhel9-operator
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-cluster-permission-rhel9
       source: registry.redhat.io/acm-d/acm-cluster-permission-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-operator-bundle
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-cluster-permission-rhel9
+      source: registry.redhat.io/rhacm2/acm-cluster-permission-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-26/controller-rhel9
       source: registry.redhat.io/ansible-automation-platform-26/controller-rhel9
@@ -241,6 +233,9 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-search-v2-api-rhel9
       source: registry.redhat.io/acm-d/acm-search-v2-api-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-search-v2-api-rhel9
+      source: registry.redhat.io/rhacm2/acm-search-v2-api-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-rhel9-operator
       source: registry.redhat.io/migration-toolkit-virtualization/mtv-rhel9-operator
@@ -263,9 +258,6 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhem/flightctl-api-rhel9
       source: registry.redhat.io/rhem/flightctl-api-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-dependencies-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-dependencies-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-mcg-rhel9-operator
       source: registry.redhat.io/odf4/mcg-rhel9-operator
     - mirrors:
@@ -275,20 +267,20 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/governance-policy-propagator-rhel9
       source: registry.redhat.io/acm-d/governance-policy-propagator-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/governance-policy-propagator-rhel9
+      source: registry.redhat.io/rhacm2/governance-policy-propagator-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/topology-aware-lifecycle-manager-precache-rhel9
       source: registry.redhat.io/openshift4/topology-aware-lifecycle-manager-precache-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/managedcluster-import-controller-rhel9
-      source: registry.redhat.io/acm-d/managedcluster-import-controller-rhel9
+      source: registry.redhat.io/multicluster-engine/managedcluster-import-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/hypershift-cli-rhel9
       source: registry.redhat.io/acm-d/hypershift-cli-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mtr/mtr-web-container-rhel8
       source: registry.redhat.io/mtr/mtr-web-container-rhel8
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-prometheus-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-prometheus-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhbk/keycloak-rhel9
       source: registry.redhat.io/rhbk/keycloak-rhel9
@@ -299,26 +291,23 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-26/hub-rhel9-operator
       source: registry.redhat.io/ansible-automation-platform-26/hub-rhel9-operator
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-cluster-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-cluster-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-siteconfig-rhel9
       source: registry.redhat.io/acm-d/acm-siteconfig-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-siteconfig-rhel9
+      source: registry.redhat.io/rhacm2/acm-siteconfig-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-operators-channel-rhel9
       source: registry.redhat.io/acm-d/multicluster-operators-channel-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-operators-channel-rhel9
+      source: registry.redhat.io/rhacm2/multicluster-operators-channel-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-service-mesh/grafana-rhel8
       source: registry.redhat.io/openshift-service-mesh/grafana-rhel8
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/workload-availability/self-node-remediation-rhel9-operator
       source: registry.redhat.io/workload-availability/self-node-remediation-rhel9-operator
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/lvms4/lvms-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/lvms4/lvms-operator-bundle
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/workload-availability/node-healthcheck-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/workload-availability/node-healthcheck-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/cluster-api-provider-aws-rhel9
       source: registry.redhat.io/acm-d/cluster-api-provider-aws-rhel9
@@ -327,10 +316,7 @@ spec:
       source: registry.redhat.io/acm-d/node-exporter-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/hypershift-addon-rhel9-operator
-      source: registry.redhat.io/acm-d/hypershift-addon-rhel9-operator
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/cluster-logging-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/cluster-logging-operator-bundle
+      source: registry.redhat.io/multicluster-engine/hypershift-addon-rhel9-operator
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/lifecycle-agent-rhel9-operator
       source: registry.redhat.io/openshift4/lifecycle-agent-rhel9-operator
@@ -344,17 +330,17 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-bridge-operator-rhel8
       source: registry.redhat.io/quay/quay-bridge-operator-rhel8
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-hub-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-hub-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-governance-policy-addon-controller-rhel9
       source: registry.redhat.io/acm-d/acm-governance-policy-addon-controller-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-governance-policy-addon-controller-rhel9
+      source: registry.redhat.io/rhacm2/acm-governance-policy-addon-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-csi-addons-sidecar-rhel9
       source: registry.redhat.io/odf4/odf-csi-addons-sidecar-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/clusterclaims-controller-rhel9
-      source: registry.redhat.io/acm-d/clusterclaims-controller-rhel9
+      source: registry.redhat.io/multicluster-engine/clusterclaims-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-ova-provider-server-rhel9
       source: registry.redhat.io/migration-toolkit-virtualization/mtv-ova-provider-server-rhel9
@@ -374,14 +360,8 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rh-sso-7/sso76-openshift-rhel8
       source: registry.redhat.io/rh-sso-7/sso76-openshift-rhel8
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/topology-aware-lifecycle-manager-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/topology-aware-lifecycle-manager-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-26/eda-controller-rhel9
       source: registry.redhat.io/ansible-automation-platform-26/eda-controller-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/compliance/openshift-compliance-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/compliance/openshift-compliance-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/opa-openshift-rhel9
       source: registry.redhat.io/openshift-logging/opa-openshift-rhel9
@@ -398,17 +378,8 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/ose-cluster-api-rhel9
       source: registry.redhat.io/openshift4/ose-cluster-api-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/mce-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/mce-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-25/aap-cloud-billing-rhel8-operator
       source: registry.redhat.io/ansible-automation-platform-25/aap-cloud-billing-rhel8-operator
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/o-cloud-manager-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/o-cloud-manager-operator-bundle
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhbk/keycloak-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhbk/keycloak-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-console-plugin-rhel9
       source: registry.redhat.io/migration-toolkit-virtualization/mtv-console-plugin-rhel9
@@ -431,9 +402,6 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/cluster-logging-rhel9-operator
       source: registry.redhat.io/openshift-logging/cluster-logging-rhel9-operator
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/kmm/kernel-module-management-hub-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/kmm/kernel-module-management-hub-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/observatorium-rhel9
       source: registry.redhat.io/acm-d/observatorium-rhel9
     - mirrors:
@@ -455,11 +423,17 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/insights-client-rhel9
       source: registry.redhat.io/acm-d/insights-client-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/insights-client-rhel9
+      source: registry.redhat.io/rhacm2/insights-client-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-cloudnative-pg-rhel9-operator
       source: registry.redhat.io/odf4/odf-cloudnative-pg-rhel9-operator
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-volsync-addon-controller-rhel9
       source: registry.redhat.io/acm-d/acm-volsync-addon-controller-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-volsync-addon-controller-rhel9
+      source: registry.redhat.io/rhacm2/acm-volsync-addon-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/ose-haproxy-router
       source: registry.redhat.io/openshift4/ose-haproxy-router
@@ -469,6 +443,9 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/config-policy-controller-rhel9
       source: registry.redhat.io/acm-d/config-policy-controller-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/config-policy-controller-rhel9
+      source: registry.redhat.io/rhacm2/config-policy-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/dex-rhel8
       source: registry.redhat.io/openshift-gitops-1/dex-rhel8
@@ -491,9 +468,6 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/recert-rhel9
       source: registry.redhat.io/openshift4/recert-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-mcg-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-mcg-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-generic-external-provider-rhel9
       source: registry.redhat.io/mta/mta-generic-external-provider-rhel9
     - mirrors:
@@ -505,6 +479,9 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-search-v2-rhel9
       source: registry.redhat.io/acm-d/acm-search-v2-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-search-v2-rhel9
+      source: registry.redhat.io/rhacm2/acm-search-v2-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/cert-manager/cert-manager-operator-rhel9
       source: registry.redhat.io/cert-manager/cert-manager-operator-rhel9
@@ -521,6 +498,9 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicloud-integrations-rhel9
       source: registry.redhat.io/acm-d/multicloud-integrations-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicloud-integrations-rhel9
+      source: registry.redhat.io/rhacm2/multicloud-integrations-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-velero-plugin-rhel9
       source: registry.redhat.io/oadp/oadp-velero-plugin-rhel9
     - mirrors:
@@ -532,9 +512,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
       source: registry.redhat.io/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-rook-ceph-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-rook-ceph-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/ose-prometheus
       source: registry.redhat.io/openshift4/ose-prometheus
@@ -593,14 +570,14 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-cli-rhel9
       source: registry.redhat.io/acm-d/acm-cli-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-operator-bundle
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-cli-rhel9
+      source: registry.redhat.io/rhacm2/acm-cli-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/assisted-installer-agent-rhel9
-      source: registry.redhat.io/acm-d/assisted-installer-agent-rhel9
+      source: registry.redhat.io/multicluster-engine/assisted-installer-agent-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/cluster-proxy-rhel9
-      source: registry.redhat.io/acm-d/cluster-proxy-rhel9
+      source: registry.redhat.io/multicluster-engine/cluster-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-service-mesh/pilot-rhel8
       source: registry.redhat.io/openshift-service-mesh/pilot-rhel8
@@ -627,16 +604,10 @@ spec:
       source: registry.redhat.io/openshift-logging/vector-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/assisted-installer-rhel9
-      source: registry.redhat.io/acm-d/assisted-installer-rhel9
+      source: registry.redhat.io/multicluster-engine/assisted-installer-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/kmm/kernel-module-management-webhook-server-rhel9
       source: registry.redhat.io/kmm/kernel-module-management-webhook-server-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/kmm/kernel-module-management-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/kmm/kernel-module-management-operator-bundle
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhosdt/tempo-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhosdt/tempo-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-update-service/openshift-update-service-rhel8-operator
       source: registry.redhat.io/openshift-update-service/openshift-update-service-rhel8-operator
@@ -662,11 +633,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-builder-rhel8
       source: registry.redhat.io/quay/quay-builder-rhel8
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/insights-metrics-rhel9
-      source: registry.redhat.io/acm-d/insights-metrics-rhel9
+      source: registry.redhat.io/rhacm2/insights-metrics-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-governance-policy-framework-addon-rhel9
+      source: registry.redhat.io/rhacm2/acm-governance-policy-framework-addon-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhem/flightctl-alertmanager-proxy-rhel9
       source: registry.redhat.io/rhem/flightctl-alertmanager-proxy-rhel9
@@ -689,14 +660,14 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-multicluster-rhel9-operator
       source: registry.redhat.io/odf4/odf-multicluster-rhel9-operator
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-bridge-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/quay/quay-bridge-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-search-indexer-rhel9
       source: registry.redhat.io/acm-d/acm-search-indexer-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-search-indexer-rhel9
+      source: registry.redhat.io/rhacm2/acm-search-indexer-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/cluster-image-set-controller-rhel9
-      source: registry.redhat.io/acm-d/cluster-image-set-controller-rhel9
+      source: registry.redhat.io/multicluster-engine/cluster-image-set-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhem/flightctl-cli-artifacts-rhel9
       source: registry.redhat.io/rhem/flightctl-cli-artifacts-rhel9
@@ -709,6 +680,9 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-operators-subscription-rhel9
       source: registry.redhat.io/acm-d/multicluster-operators-subscription-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-operators-subscription-rhel9
+      source: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/migration-toolkit-virtualization/mtv-controller-rhel9
       source: registry.redhat.io/migration-toolkit-virtualization/mtv-controller-rhel9
@@ -724,6 +698,9 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/kube-rbac-proxy-rhel9
       source: registry.redhat.io/acm-d/kube-rbac-proxy-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/kube-rbac-proxy-rhel9
+      source: registry.redhat.io/rhacm2/kube-rbac-proxy-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-client-console-rhel9
       source: registry.redhat.io/odf4/ocs-client-console-rhel9
@@ -742,9 +719,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-cli-rhel9
       source: registry.redhat.io/mta/mta-cli-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-cephcsi-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-cephcsi-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhel8/postgresql-12
       source: registry.redhat.io/rhel8/postgresql-12
@@ -772,9 +746,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/cert-policy-controller-rhel9
       source: registry.redhat.io/acm-d/cert-policy-controller-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-csi-addons-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-csi-addons-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-must-gather-rhel9
       source: registry.redhat.io/acm-d/acm-must-gather-rhel9
@@ -812,11 +783,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/acm-prometheus-rhel9
       source: registry.redhat.io/acm-d/acm-prometheus-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/compliance/openshift-file-integrity-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/compliance/openshift-file-integrity-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-observability-rhel9-operator
       source: registry.redhat.io/acm-d/multicluster-observability-rhel9-operator
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicluster-observability-rhel9-operator
+      source: registry.redhat.io/rhacm2/multicluster-observability-rhel9-operator
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/cert-manager/jetstack-cert-manager-rhel9
       source: registry.redhat.io/cert-manager/jetstack-cert-manager-rhel9
@@ -824,11 +795,8 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-service-mesh/istio-cni-rhel8
       source: registry.redhat.io/openshift-service-mesh/istio-cni-rhel8
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-client-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-client-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/cluster-curator-controller-rhel9
-      source: registry.redhat.io/acm-d/cluster-curator-controller-rhel9
+      source: registry.redhat.io/multicluster-engine/cluster-curator-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/argocd-agent-rhel8
       source: registry.redhat.io/openshift-gitops-1/argocd-agent-rhel8
@@ -839,20 +807,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-25/aap-cloud-ui-rhel8
       source: registry.redhat.io/ansible-automation-platform-25/aap-cloud-ui-rhel8
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-external-snapshotter-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-external-snapshotter-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/managed-serviceaccount-rhel9
       source: registry.redhat.io/acm-d/managed-serviceaccount-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-platform-addon-rhel9
       source: registry.redhat.io/mta/mta-platform-addon-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rh-sso-7/sso7-rhel8-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rh-sso-7/sso7-rhel8-operator-bundle
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-multicluster-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-multicluster-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/loki-rhel9-operator
       source: registry.redhat.io/openshift-logging/loki-rhel9-operator
@@ -863,14 +822,8 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-26/lightspeed-rhel9
       source: registry.redhat.io/ansible-automation-platform-26/lightspeed-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-update-service/cincinnati-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-update-service/cincinnati-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/log-file-metric-exporter-rhel9
       source: registry.redhat.io/openshift-logging/log-file-metric-exporter-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform/platform-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform/platform-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/work-rhel9
       source: registry.redhat.io/acm-d/work-rhel9
@@ -883,9 +836,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/registration-operator-rhel9
       source: registry.redhat.io/acm-d/registration-operator-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mta/mta-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/ansible-automation-platform-25/aap-cloud-metrics-collector-rhel8
       source: registry.redhat.io/ansible-automation-platform-25/aap-cloud-metrics-collector-rhel8
@@ -902,6 +852,9 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/provider-credential-controller-rhel9
       source: registry.redhat.io/acm-d/provider-credential-controller-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/provider-credential-controller-rhel9
+      source: registry.redhat.io/multicluster-engine/provider-credential-controller-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/gitops-rhel8
       source: registry.redhat.io/openshift-gitops-1/gitops-rhel8
     - mirrors:
@@ -917,14 +870,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/search-collector-rhel9
       source: registry.redhat.io/acm-d/search-collector-rhel9
     - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/search-collector-rhel9
+      source: registry.redhat.io/rhacm2/search-collector-rhel9
+    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-prometheus-rhel9
       source: registry.redhat.io/rhceph-dev/openshift-ose-prometheus-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/loki-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/loki-operator-bundle
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/noo/node-observability-operator-bundle-rhel8
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/noo/node-observability-operator-bundle-rhel8
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhem/flightctl-periodic-rhel9
       source: registry.redhat.io/rhem/flightctl-periodic-rhel9
@@ -961,6 +911,24 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-gitops-1/argo-rollouts-rhel8
       source: registry.redhat.io/openshift-gitops-1/argo-rollouts-rhel8
+    #
+    # OpenShift GitOps IDMS entries for 4.21 (alternative mirror paths)
+    #
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/rh-openshift-gitops-tenant/argocd-rhel8
+      source: registry.redhat.io/openshift-gitops-1/argocd-rhel8
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/rh-openshift-gitops-tenant/console-plugin-rhel8
+      source: registry.redhat.io/openshift-gitops-1/console-plugin-rhel8
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/rh-openshift-gitops-tenant/dex-rhel8
+      source: registry.redhat.io/openshift-gitops-1/dex-rhel8
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/rh-openshift-gitops-tenant/gitops-rhel8
+      source: registry.redhat.io/openshift-gitops-1/gitops-rhel8
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/rh-openshift-gitops-tenant/gitops-rhel8-operator
+      source: registry.redhat.io/openshift-gitops-1/gitops-rhel8-operator
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicloud-manager-rhel9
       source: registry.redhat.io/acm-d/multicloud-manager-rhel9
@@ -974,20 +942,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/logging-loki-rhel9
       source: registry.redhat.io/openshift-logging/logging-loki-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-service-mesh/istio-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-service-mesh/istio-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-velero-plugin-for-microsoft-azure-rhel9
       source: registry.redhat.io/oadp/oadp-velero-plugin-for-microsoft-azure-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhel8/postgresql-13
       source: registry.redhat.io/rhel8/postgresql-13
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/numaresources-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/numaresources-operator-bundle
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mtr/mtr-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/mtr/mtr-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-velero-plugin-for-gcp-rhel9
       source: registry.redhat.io/oadp/oadp-velero-plugin-for-gcp-rhel9
@@ -1001,29 +960,68 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/placement-rhel9
       source: registry.redhat.io/acm-d/placement-rhel9
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/cert-manager/cert-manager-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/cert-manager/cert-manager-operator-bundle
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-resizer-rhel9
       source: registry.redhat.io/rhceph-dev/openshift-ose-csi-external-resizer-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/console-mce-rhel9
       source: registry.redhat.io/acm-d/console-mce-rhel9
+    #
+    # MultiCluster Engine (MCE) IDMS entries for 4.21
+    #
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/assisted-service-9-rhel9
+      source: registry.redhat.io/multicluster-engine/assisted-service-9-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/console-mce-rhel9
+      source: registry.redhat.io/multicluster-engine/console-mce-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/discovery-rhel9
+      source: registry.redhat.io/multicluster-engine/discovery-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/hive-rhel9
+      source: registry.redhat.io/multicluster-engine/hive-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multicloud-manager-rhel9
+      source: registry.redhat.io/multicluster-engine/multicloud-manager-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/registration-operator-rhel9
+      source: registry.redhat.io/multicluster-engine/registration-operator-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/addon-manager-rhel9
+      source: registry.redhat.io/multicluster-engine/addon-manager-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/hypershift-cli-rhel9
+      source: registry.redhat.io/multicluster-engine/hypershift-cli-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/managed-serviceaccount-rhel9
+      source: registry.redhat.io/multicluster-engine/managed-serviceaccount-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/placement-rhel9
+      source: registry.redhat.io/multicluster-engine/placement-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/registration-rhel9
+      source: registry.redhat.io/multicluster-engine/registration-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/work-rhel9
+      source: registry.redhat.io/multicluster-engine/work-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/assisted-image-service-rhel9
+      source: registry.redhat.io/multicluster-engine/assisted-image-service-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-attacher-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-attacher-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhel8/redis-6
       source: registry.redhat.io/rhel8/redis-6
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/assisted-installer-controller-rhel9
-      source: registry.redhat.io/acm-d/assisted-installer-controller-rhel9
+      source: registry.redhat.io/multicluster-engine/assisted-installer-controller-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multiclusterhub-rhel9
       source: registry.redhat.io/acm-d/multiclusterhub-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/multiclusterhub-rhel9
+      source: registry.redhat.io/rhacm2/multiclusterhub-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-cephcsi-rhel9
       source: registry.redhat.io/odf4/cephcsi-rhel9
@@ -1032,7 +1030,7 @@ spec:
       source: registry.redhat.io/odf4/odf-lightspeed-rag-content-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/acm-d/clusterlifecycle-state-metrics-rhel9
-      source: registry.redhat.io/acm-d/clusterlifecycle-state-metrics-rhel9
+      source: registry.redhat.io/multicluster-engine/clusterlifecycle-state-metrics-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/kmm/kernel-module-management-hub-rhel9-operator
       source: registry.redhat.io/kmm/kernel-module-management-hub-rhel9-operator
@@ -1042,9 +1040,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/lvms4/lvms-must-gather-rhel9
       source: registry.redhat.io/lvms4/lvms-must-gather-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-recipe-operator-bundle
-      source: registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-recipe-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/oadp/oadp-mustgather-rhel9
       source: registry.redhat.io/oadp/oadp-mustgather-rhel9
@@ -1148,20 +1143,11 @@ spec:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-dpu-rhel9-operator
     - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
-      source: registry.redhat.io/openshift4/ose-csi-external-provisioner-rhel9
-    - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-resizer-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-resizer-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-snapshotter-rhel9
       source: registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
-      source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-gcp-filestore-csi-driver-operator-bundle
@@ -1197,12 +1183,6 @@ spec:
       source: registry.redhat.io/openshift4/ose-ptp-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
-      source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-secrets-store-csi-driver-operator-bundle
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
@@ -1210,15 +1190,6 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-secrets-store-csi-driver-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-external-provisioner-rhel9
-      source: registry.redhat.io/openshift4/ose-csi-external-provisioner-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
-      source: registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9
-    - mirrors:
-      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/openshift-ose-csi-node-driver-registrar-rhel9
-      source: registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: registry.redhat.io/openshift4/ose-smb-csi-driver-operator-bundle
@@ -1288,3 +1259,45 @@ spec:
     - mirrors:
       - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
       source: quay.io/prega/test/redhat-user-workloads/ocp-art-tenant/art-images-share
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-blackbox-exporter-rhel9
+      source: registry.redhat.io/odf4/odf-blackbox-exporter-rhel9
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-csi-addons-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-odf-csi-addons-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-mcg-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-mcg-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odr-recipe-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-odr-recipe-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-rook-ceph-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-rook-ceph-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-ocs-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-external-snapshotter-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-odf-external-snapshotter-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-cephcsi-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-cephcsi-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-prometheus-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-odf-prometheus-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-ocs-client-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-ocs-client-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-dependencies-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-odf-dependencies-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/rhceph-dev/odf4-odf-operator-bundle
+      source: quay.io/prega/test/rhceph-dev/odf4-odf-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/cluster-logging-operator-bundle
+      source: quay.io/prega/test/openshift-logging/cluster-logging-operator-bundle
+    - mirrors:
+      - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift4/numaresources-operator-bundle
+      source: quay.io/prega/test/openshift4/numaresources-operator-bundle
