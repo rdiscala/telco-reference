@@ -98,8 +98,8 @@ policies:
       - path: source-crs/required/storage/odf-external/odfSubscription.yaml
         patches:
           - spec:
-              # NOTE: prega has 4.21 channel
-              channel: stable-4.21
+              # NOTE: official catalgo doesn't have 4.21 channel
+              channel: stable-4.20
               installPlanApproval: Manual
               source: redhat-operators-disconnected
       #
