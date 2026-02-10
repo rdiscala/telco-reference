@@ -1,0 +1,9 @@
+apiVersion: config.openshift.io/v1
+kind: ImageTagMirrorSet
+metadata:
+  name: cluster-logging-mirror
+spec:
+  imageTagMirrors:
+  - mirrors:
+    - registry.ecore.lab.eng.tlv2.redhat.com:5000/prega/test/openshift-logging/cluster-logging-operator-bundle
+    source: quay.io/prega/test/openshift-logging/cluster-logging-operator-bundle
