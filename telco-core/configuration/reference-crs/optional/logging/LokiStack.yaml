@@ -1,0 +1,29 @@
+# Important: do not reuse the same LokiStack that is used for logging
+# See: https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/network_observability/installing-network-observability-operators
+---
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: logging-loki
+  namespace: openshift-logging
+spec:
+  managementState: Managed
+  limits:
+    global:
+      retention:
+        days: 5 # Default retention period. User-configurable.
+  # Sizing: uses Loki's built-in defaults for PVC sizing, which are determined
+  # by the operator based on the size profile.
+  # Important: sufficient storage must be provided according to data
+  # requirements and the retention period configured above.
+  size: 1x.extra-small # 14 vCPUs, 31Gi memory, 430Gi disk, 100GB/day
+  storage:
+    schemas:
+    - version: v13
+      effectiveDate: "<yyyy>-<mm>-<dd>" # Set to approximately two months before deployment date
+    secret:
+      name: logging-loki-s3
+      type: s3
+  storageClassName: "ocs-storagecluster-ceph-rbd" # Set to the cluster's available StorageClass
+  tenants:
+    mode: openshift-logging
