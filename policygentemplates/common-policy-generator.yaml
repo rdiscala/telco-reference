@@ -136,44 +136,46 @@ policies:
   #
   # Configure custom MCPs
   #
-  - name: config-nodes-mcp
-    policyAnnotations:
-      ran.openshift.io/ztp-deploy-wave: 2
-    manifests:
-      - path: source-crs/MachineConfigPool.yaml
-        patches:
-          - metadata:
-              name: customcnf
-              labels:
-                machineconfiguration.openshift.io/role: customcnf
-                pools.operator.machineconfiguration.openshift.io/customcnf: ""
-            spec:
-              machineConfigSelector:
-                matchExpressions:
-                  - key: machineconfiguration.openshift.io/role
-                    operator: In
-                    values: [worker, customcnf]
-              nodeSelector:
-                matchLabels:
-                  $patch: replace
-                  node-role.kubernetes.io/customcnf: ""
-      - path: source-crs/MachineConfigPool.yaml
-        patches:
-          - metadata:
-              name: standard
-              labels:
-                machineconfiguration.openshift.io/role: standard
-                pools.operator.machineconfiguration.openshift.io/standard: ""
-            spec:
-              machineConfigSelector:
-                matchExpressions:
-                  - key: machineconfiguration.openshift.io/role
-                    operator: In
-                    values: [worker, standard]
-              nodeSelector:
-                matchLabels:
-                  $patch: replace
-                  node-role.kubernetes.io/standard: ""
+  #- name: config-nodes-mcp
+  #  policyAnnotations:
+  #    ran.openshift.io/ztp-deploy-wave: 2
+  #  manifests:
+  #    - path: source-crs/MachineConfigPool.yaml
+  #      patches:
+  #        - metadata:
+  #            name: standard
+  #            labels:
+  #              machineconfiguration.openshift.io/role: standard
+  #              pools.operator.machineconfiguration.openshift.io/standard: ""
+  #          spec:
+  #            machineConfigSelector:
+  #              matchExpressions:
+  #                - key: machineconfiguration.openshift.io/role
+  #                  operator: In
+  #                  values: [worker, standard]
+  #            nodeSelector:
+  #              matchLabels:
+  #                $patch: replace
+  #                node-role.kubernetes.io/standard: ""
+
+  #    - path: source-crs/MachineConfigPool.yaml
+  #      patches:
+  #        - metadata:
+  #            name: customcnf
+  #            labels:
+  #              machineconfiguration.openshift.io/role: customcnf
+  #              pools.operator.machineconfiguration.openshift.io/customcnf: ""
+  #          spec:
+  #            machineConfigSelector:
+  #              matchExpressions:
+  #                - key: machineconfiguration.openshift.io/role
+  #                  operator: In
+  #                  values: [worker, customcnf]
+  #            nodeSelector:
+  #              matchLabels:
+  #                $patch: replace
+  #                node-role.kubernetes.io/customcnf: ""
+
 
   #
   # Configure EgressIP
