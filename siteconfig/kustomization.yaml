@@ -29,6 +29,5 @@ configMapGenerator:
     - custom-manifests/50-mcp-st.yaml
     name: custom-manifests-cm
     namespace: ecore
-
 generatorOptions:
   disableNameSuffixHash: true

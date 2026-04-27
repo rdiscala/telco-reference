@@ -6,19 +6,17 @@ generators:
   - core-overlay.yaml
   - common-policy-generator.yaml
   - core-finish.yaml
-  # configure VLAN sub-interfaces on the cluster nodes
+  ## configure VLAN sub-interfaces on the cluster nodes
   - sites/ecore-tlv2/configure-lb-intersite-vlan-generator.yaml
   - sites/ecore-tlv2/configure-lb-oam-vlan-generator.yaml
   - sites/ecore-tlv2/configure-lb-signaling-vlan-generator.yaml
   - sites/ecore-tlv2/configure-storage-vlan-generator.yaml
   - sites/ecore-tlv2/configure-vlan-496.yaml
-  # configure bond1 interface
-  - sites/ecore-tlv2/configure-bond1-generator.yaml
-  # cluster validation
+  ## cluster validation
   - sites/ecore-tlv2/packet-core-validator-generator.yaml
-  # configure nodes
+  ## configure nodes
   - sites/ecore-tlv2/config-nodes-generator.yaml
-  # configure NAD
+  # Configure NADs
   - sites/ecore-tlv2/configure-sriov-bond-generator.yaml
 resources:
   - resources/policies-namespace.yaml
