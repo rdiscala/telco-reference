@@ -53,8 +53,8 @@ policies:
               - tlv2
           - key: ztp-done
             operator: DoesNotExist
-    #evaluationInterval:
-    #  compliant: never
+    evaluationInterval:
+      compliant: never
     manifests:
       #
       # master MCP must be already unpaused in the cluster as it's not paused by default
@@ -105,7 +105,6 @@ policies:
   - name: core-custom-mcp-set-maxavailable-22
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "201"
-      ran.openshift.io/soak-seconds: "30"
     #evaluationInterval:
     #  compliant: never
     manifests:
