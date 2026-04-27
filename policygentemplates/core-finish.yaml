@@ -40,8 +40,8 @@ policies:
   - name: custom-mcp-unpause-22
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "200"
-    #evaluationInterval:
-    #  compliant: never
+    evaluationInterval:
+      compliant: never
     manifests:
       #
       # master MCP must be already unpaused in the cluster as it's not paused by default
