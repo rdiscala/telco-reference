@@ -63,15 +63,9 @@ policies:
               - type: Updating
                 status: "False"
 
-      #- path: ../siteconfig/custom-manifests/50-mcp-st.yaml
-      - path: qe-source-crs/CustomMCP.yaml
+      - path: custom-manifests/standard-mcp.yaml
         patches:
-          - metadata:
-              name: standard
-              annotations:
-                ran.openshift.io/ztp-unpause-done: ""
-            spec:
-              $patch: replace
+          - spec:
               paused: false
               maxUnavailable: 100%
             status:
@@ -81,18 +75,9 @@ policies:
               - type: Updating
                 status: "False"
 
-      # Failed to load target state: failed to generate manifest for source 1 of 1: rpc error: code = Unknown desc = `kustomize build <path to cached source>/policygentemplates --enable-alpha-plugins` failed exit status 1: 
-      # Error: error processing the PolicyGenerator file '/tmp/kust-plugin-config-844016449': the manifest path ../siteconfig/custom-manifests/50-mcp-st.yaml is not in the same directory tree as the kustomization.yaml file :
-      # failure in plugin configured via /tmp/kust-plugin-config-844016449; exit status 1
-      #- path: ../siteconfig/custom-manifests/50-mcp-customcnf.yaml
-      - path: qe-source-crs/CustomMCP.yaml
+      - path: custom-manifests/customcnf-mcp.yaml
         patches:
-          - metadata:
-              name: customcnf
-              annotations:
-                ran.openshift.io/ztp-unpause-done: ""
-            spec:
-              $patch: replace
+          - spec:
               paused: false
               maxUnavailable: 100%
             status:
@@ -110,26 +95,12 @@ policies:
     evaluationInterval:
       compliant: never
     manifests:
-      #- path: ../siteconfig/custom-manifests/50-mcp-st.yaml
-      - path: qe-source-crs/CustomMCP.yaml
+      - path: custom-manifests/standard-mcp.yaml
         patches:
-          - metadata:
-              name: standard
-              annotations:
-                ran.openshift.io/ztp-unpause-done: ""
-            spec:
+          - spec:
               maxUnavailable: 1
-              $patch: replace
-              paused: false
 
-      #- path: ../siteconfig/custom-manifests/50-mcp-customcnf.yaml
-      - path: qe-source-crs/CustomMCP.yaml
+      - path: custom-manifests/customcnf-mcp.yaml
         patches:
-          - metadata:
-              name: customcnf
-              annotations:
-                ran.openshift.io/ztp-unpause-done: ""
-            spec:
+          - spec:
               maxUnavailable: 1
-              $patch: replace
-              paused: false
