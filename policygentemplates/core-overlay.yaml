@@ -8,19 +8,13 @@ policyDefaults:
   policySets: []
   placement:
     labelSelector:
-      matchExpressions:
-        - key: site
-          operator: In
-          values:
-            - "ecore"
-        - key: zone
-          operator: In
-          values:
-            - tlv2
-        - key: version
-          operator: In
-          values:
-            - "4.22"
+      matchLabels:
+        site: "ecore"
+        zone: "tlv2"
+        version: "4.22"
+      # matchExpressions:
+      #   - key: ztp-done
+      #     operator: DoesNotExist
   remediationAction: "inform"
 policies:
   - name: core-overlay-base-4.22
@@ -1877,19 +1871,6 @@ policies:
               vlan: 499
 
       #
-      # Configure EgressIP object
-      #
-      - path:  qe-source-crs/egressip/egressIP.yaml
-        patches:
-          - metadata:
-              name: egressip-qe
-              $patch: replace
-            spec:
-              egressIPs:
-              - 10.46.187.90
-              - 2620:52:0:2ebb::5a
-
-      #
       # Configure ODF
       #
       - path: source-crs/required/storage/odf-external/01-rook-ceph-external-cluster-details.secret.yaml
@@ -1899,9 +1880,9 @@ policies:
 
       - path: source-crs/required/storage/odf-external/02-ocs-external-storagecluster.yaml
 
-  - name: core-overlay-monitoring-4.22
+  - name: config-monitoring-4.22
     policyAnnotations:
-      ran.openshift.io/ztp-deploy-wave: "9"
+      ran.openshift.io/ztp-deploy-wave: "10"
     manifests:
       - path: source-crs/optional/other/monitoring-config-cm.yaml
         complianceType: musthave

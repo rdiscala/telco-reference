@@ -1,71 +1,70 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: telco-optimize-ztp
+  name: core-customer-policies-22
 policyDefaults:
-  namespace: ztp-group
+  namespace: ztp-core-policies
   policySets: []
   placement:
     labelSelector:
-      matchExpressions:
-        - key: site
-          operator: In
-          values:
-            - "ecore"
-        - key: zone
-          operator: In
-          values:
-            - tlv2
-        - key: ztp-done
-          operator: DoesNotExist
+      matchLabels:
+        site: "ecore"
+        zone: "tlv2"
+      # matchExpressions:
+      #   - key: ztp-done
+      #     operator: DoesNotExist
   remediationAction: "inform"
 policies:
-  - name: pause-cp-mcp
-    policyAnnotations:
-      ran.openshift.io/ztp-deploy-wave: "1"
-    evaluationInterval:
-      compliant: never
-    manifests:
-      - path: qe-source-crs/CustomMCP.yaml
-        # This policy is evaluted only once
-        # so, it does not conflict with the unpause one
-        patches:
-          - metadata:
-              name: master
-            spec:
-              $patch: replace
-              paused: true
+  # Local-only policy - pause master MCP at deployment start
+  # Not in telco-reference (assumes MCPs paused via extra-manifests at install time)
+  #- name: pause-cp-mcp
+  #  policyAnnotations:
+  #    ran.openshift.io/ztp-deploy-wave: "1"
+  #  evaluationInterval:
+  #    compliant: never
+  #  manifests:
+  #    - path: qe-source-crs/CustomMCP.yaml
+  #      # This policy is evaluted only once
+  #      # so, it does not conflict with the unpause one
+  #      patches:
+  #        - metadata:
+  #            name: master
+  #          spec:
+  #            $patch: replace
+  #            paused: true
 
   #
   # we unpause, and change the max-unavailable
   # to allow reoboting more than one node at once
   #
-  - name: custom-mcp-unpause
+  - name: custom-mcp-unpause-22
     policyAnnotations:
-      ran.openshift.io/ztp-deploy-wave: "11"
-    evaluationInterval:
-      compliant: never
+      ran.openshift.io/ztp-deploy-wave: "200"
+    #evaluationInterval:
+    #  compliant: never
     manifests:
-      - path: qe-source-crs/CustomMCP.yaml
-        patches:
-          - metadata:
-              name: master
-              annotations:
-                ran.openshift.io/ztp-unpause-done: ""
-            spec:
-              $patch: replace
-              paused: false
-              maxUnavailable: 1
-            status:
-              conditions:
-              - type: Updated
-                status: "True"
-              - type: Updating
-                status: "False"
+      #
+      # master MCP must be already unpaused in the cluster as it's not paused by default
+      #
+      #- path: qe-source-crs/CustomMCP.yaml
+      #  patches:
+      #    - metadata:
+      #        name: master
+      #      spec:
+      #        #$patch: replace
+      #        paused: false
+      #        maxUnavailable: 1
+      #      status:
+      #        conditions:
+      #        - type: Updated
+      #          status: "True"
+      #        - type: Updating
+      #          status: "False"
 
       - path: custom-manifests/standard-mcp.yaml
         patches:
           - spec:
+              #$patch: replace
               paused: false
               maxUnavailable: 100%
             status:
@@ -78,6 +77,7 @@ policies:
       - path: custom-manifests/customcnf-mcp.yaml
         patches:
           - spec:
+              #$patch: replace
               paused: false
               maxUnavailable: 100%
             status:
@@ -89,11 +89,11 @@ policies:
   #
   # we set the MCP configuration to its default about maxUnavailable
   #
-  - name: custom-mcp-set-maxunavailable
+  - name: core-custom-mcp-set-maxavailable-22
     policyAnnotations:
-      ran.openshift.io/ztp-deploy-wave: "10001"
-    evaluationInterval:
-      compliant: never
+      ran.openshift.io/ztp-deploy-wave: "201"
+    #evaluationInterval:
+    #  compliant: never
     manifests:
       - path: custom-manifests/standard-mcp.yaml
         patches:

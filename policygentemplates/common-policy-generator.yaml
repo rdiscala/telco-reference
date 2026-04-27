@@ -7,15 +7,9 @@ policyDefaults:
   policySets: []
   placement:
     labelSelector:
-      matchExpressions:
-        - key: site
-          operator: In
-          values:
-            - "ecore"
-        - key: zone
-          operator: In
-          values:
-            - tlv2
+      matchLabels:
+        site: "ecore"
+        zone: "tlv2"
   remediationAction: "inform"
   policyAnnotations:
     ran.openshift.io/ztp-deploy-wave: "1"
@@ -180,3 +174,20 @@ policies:
                 matchLabels:
                   $patch: replace
                   node-role.kubernetes.io/standard: ""
+
+  #
+  # Configure EgressIP
+  #
+  - name: configure-egressip
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "8"
+    manifests:
+      - path: qe-source-crs/egressip/egressIP.yaml
+        patches:
+          - metadata:
+              name: egressip-qe
+              $patch: replace
+            spec:
+              egressIPs:
+              - 10.46.187.90
+              - 2620:52:0:2ebb::5a
