@@ -42,10 +42,15 @@ policies:
       ran.openshift.io/ztp-deploy-wave: "200"
     placement:
       labelSelector:
-        matchLabels:
-          site: "ecore"
-          zone: "tlv2"
         matchExpressions:
+          - key: site
+            operator: In
+            values:
+              - ecore
+          - key: zone
+            operator: In
+            values:
+              - tlv2
           - key: ztp-done
             operator: DoesNotExist
     #evaluationInterval:
