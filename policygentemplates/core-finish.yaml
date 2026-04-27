@@ -77,7 +77,6 @@ policies:
       - path: custom-manifests/standard-mcp.yaml
         patches:
           - spec:
-              #$patch: replace
               paused: false
               maxUnavailable: 100%
             status:
@@ -90,7 +89,6 @@ policies:
       - path: custom-manifests/customcnf-mcp.yaml
         patches:
           - spec:
-              #$patch: replace
               paused: false
               maxUnavailable: 100%
             status:
