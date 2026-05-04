@@ -41,6 +41,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.5
                         prefix-length: 26
@@ -76,6 +77,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.6
                         prefix-length: 26
@@ -111,6 +113,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.7
                         prefix-length: 26
@@ -146,6 +149,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.8
                         prefix-length: 26
@@ -181,6 +185,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.9
                         prefix-length: 26
@@ -216,6 +221,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.10
                         prefix-length: 26
@@ -251,6 +257,7 @@ policies:
                     state: up
                     ipv4:
                       enabled: true
+                      forwarding: true
                       address:
                       - ip: 10.46.188.11
                         prefix-length: 26
