@@ -1403,110 +1403,34 @@ policies:
                 machineConfigPoolSelector:
                   matchLabels:
                     # This label must match the pool(s) you want to run NUMA-aligned workloads
-                    pools.operator.machineconfiguration.openshift.io/amd-turin: ""
-              - config:
-                  # Periodic is the default setting
-                  infoRefreshMode: Periodic
-                machineConfigPoolSelector:
-                  matchLabels:
-                    # This label must match the pool(s) you want to run NUMA-aligned workloads
-                    pools.operator.machineconfiguration.openshift.io/intel-sierra: ""
+                    pools.operator.machineconfiguration.openshift.io/customcnf: ""
 
-      #- path: source-crs/required/performance/PerformanceProfile.yaml
-      #  complianceType: mustonlyhave
-      #  patches:
-      #    - metadata:
-      #        name: customcnf
-      #      spec:
-      #        cpu:
-      #          #
-      #          # TODO: update configMap
-      #          #
-      #          #
-      #          # NUMA:
-      #          #   NUMA node(s):           2
-      #          #   NUMA node0 CPU(s):      0-127,256-383
-      #          #   NUMA node1 CPU(s):      128-255,384-511
-      #          #
-      #          # reserved: 0,1,256,257,128,129,384,385
-      #          # isolated: 2-127,130-255,258-383,386-511
-      #          isolated: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-isolated-cpu" .ManagedClusterName) | toLiteral hub}}'
-      #          reserved: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-reserved-cpu" .ManagedClusterName) | toLiteral hub}}'
-      #        hugepages:
-      #          defaultHugepagesSize: 1G
-      #          # TODO(yprokule): update to use hub side templating
-      #          pages:
-      #          - size: 1G
-      #            count: 16
-      #            node: 0
-      #          - size: 1G
-      #            count: 16
-      #            node: 1
-      #        machineConfigPoolSelector:
-      #          $patch: replace
-      #          pools.operator.machineconfiguration.openshift.io/customcnf: ""
-      #        nodeSelector:
-      #          $patch: replace
-      #          node-role.kubernetes.io/customcnf: ""
-
-      #
-      # AMD-TURIN
-      #
       - path: source-crs/required/performance/PerformanceProfile.yaml
         complianceType: mustonlyhave
         patches:
           - metadata:
-              name: amd-turin
+              name: customcnf
             spec:
               cpu:
-                #
-                # TODO(yprokule): update to use hub side templating
-                #
-                isolated: 8-319
-                reserved: 0-7
+                isolated: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-isolated-cpu" .ManagedClusterName) | toLiteral hub}}'
+                reserved: '{{hub fromConfigMap "" "hw-types" (printf "%s-cnf-reserved-cpu" .ManagedClusterName) | toLiteral hub}}'
               hugepages:
                 defaultHugepagesSize: 1G
-                pages:
-                - size: 1G
-                  count: 32
-                  node: 0
-              machineConfigPoolSelector:
-                $patch: replace
-                pools.operator.machineconfiguration.openshift.io/amd-turin: ""
-              nodeSelector:
-                $patch: replace
-                node-role.kubernetes.io/amd-turin: ""
-
-      #
-      # INTEL-SIERRA
-      #
-      - path: source-crs/required/performance/PerformanceProfile.yaml
-        complianceType: mustonlyhave
-        patches:
-          - metadata:
-              name: intel-sierra
-            spec:
-              cpu:
-                #
                 # TODO(yprokule): update to use hub side templating
-                #
-                isolated: 2-71,74-143,146-215,218-287
-                reserved: 0,1,72,73,144,145,216,217
-              hugepages:
-                defaultHugepagesSize: 1G
                 pages:
                 - size: 1G
-                  count: 32
+                  count: 6
                   node: 0
                 - size: 1G
-                  count: 32
+                  count: 6
                   node: 1
               machineConfigPoolSelector:
                 $patch: replace
-                pools.operator.machineconfiguration.openshift.io/intel-sierra: ""
+                pools.operator.machineconfiguration.openshift.io/customcnf: ""
               nodeSelector:
                 $patch: replace
-                node-role.kubernetes.io/intel-sierra: ""
+                node-role.kubernetes.io/customcnf: ""
+
 
       - path: source-crs/required/performance/TunedPerformancePatch.yaml
         patches:
