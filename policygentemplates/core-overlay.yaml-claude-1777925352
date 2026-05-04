@@ -1695,106 +1695,79 @@ policies:
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovleftdpdkintel
+              name: sriovleftmlx-turin
             spec:
-              resourceName: "sriovleftdpdkintel"
+              resourceName: "sriovleftmlx"
               nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-mtu" | toInt hub}}'
-              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-num-vfs" | toInt hub}}'
+                node-role.kubernetes.io/amd-turin: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-amd-turin-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-amd-turin-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f0np0', 'ens5f0np0']
-                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-1-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-1-amd-turin-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
-              isRdma: False
+              isRdma: True
 
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovrightdpdkintel
+              name: sriovrightmlx-turin
             spec:
-              resourceName: "sriovrightdpdkintel"
+              resourceName: "sriovrightmlx"
               nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-mtu" | toInt hub}}'
-              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-num-vfs" | toInt hub}}'
+                node-role.kubernetes.io/amd-turin: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-amd-turin-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-amd-turin-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f1np1', 'ens5f1np1']
-                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-2-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-2-amd-turin-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
-              isRdma: False
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftmlx-intel-sierra
+            spec:
+              resourceName: "sriovleftmlx"
+              nodeSelector:
+                node-role.kubernetes.io/intel-sierra: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-intel-sierra-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-one-intel-sierra-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-1-intel-sierra-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightmlx-intel-sierra
+            spec:
+              resourceName: "sriovrightmlx"
+              nodeSelector:
+                node-role.kubernetes.io/intel-sierra: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-intel-sierra-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-two-intel-sierra-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-node-policy-2-intel-sierra-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
 
       - path: source-crs/required/networking/sriov/sriovNetwork.yaml
         patches:
           - metadata:
               name: "sriov-net-one"
-            spec:
-              capabilities: '{ "ips": true }'
-              ipam: '{}'
-              linkState: auto
-              networkNamespace: rds-sriov-wlkd
-              resourceName: sriovleftdpdkintel
-              trust: "on"
-
-      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
-        patches:
-          - metadata:
-              name: "sriov-net-two"
-            spec:
-              capabilities: '{ "ips": true }'
-              ipam: '{}'
-              linkState: auto
-              networkNamespace: rds-sriov-wlkd
-              resourceName: sriovrightdpdkintel
-              trust: "on"
-
-      #
-      # Create VFs on the Mellanox-NICs with SecureBoot
-      #
-      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
-        patches:
-          - metadata:
-              name: sriovleftmlx
-            spec:
-              resourceName: "sriovleftmlx"
-              nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: 9000
-              numVfs: 24
-              priority: 99
-              nicSelector:
-                # consider switching to PCI paths
-                # pfNames: ['ens4f0np0', 'ens5f0np0']
-                pfNames: ['ens5f0np0#0-7']
-              deviceType: netdevice
-              isRdma: True
-
-      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
-        patches:
-          - metadata:
-              name: sriovrightmlx
-            spec:
-              resourceName: "sriovrightmlx"
-              nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: 9000
-              numVfs: 24
-              priority: 99
-              nicSelector:
-                # consider switching to PCI paths
-                # pfNames: ['ens4f1np1', 'ens5f1np1']
-                pfNames: ['ens5f1np1#0-7']
-              deviceType: netdevice
-              isRdma: True
-
-      - path: source-crs/required/networking/sriov/sriovNetwork.yaml
-        patches:
-          - metadata:
-              name: "sriov-mlx-one"
             spec:
               capabilities: '{ "ips": true }'
               ipam: '{}'
@@ -1806,7 +1779,7 @@ policies:
       - path: source-crs/required/networking/sriov/sriovNetwork.yaml
         patches:
           - metadata:
-              name: "sriov-mlx-two"
+              name: "sriov-net-two"
             spec:
               capabilities: '{ "ips": true }'
               ipam: '{}'
@@ -1821,37 +1794,75 @@ policies:
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovleftmlxbond
+              name: sriovleftmlxbond-amd-turin
             spec:
               resourceName: "sriovleftmlxbond"
               nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: 9000
-              numVfs: 24
+                node-role.kubernetes.io/amd-turin: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-one-amd-turin-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-one-amd-turin-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
-                pfNames: ['ens5f0np0#8-15']
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-bond-policy-1-amd-turin-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
               isRdma: True
 
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovrightmlxbond
+              name: sriovrightmlxbond-amd-turin
             spec:
               resourceName: "sriovrightmlxbond"
               nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: 9000
-              numVfs: 24
+                node-role.kubernetes.io/amd-turin: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-two-amd-turin-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-two-amd-turin-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f1np1', 'ens5f1np1']
-                pfNames: ['ens5f1np1#8-15']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-bond-policy-2-amd-turin-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
               isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftmlxbond-intel-sierra
+            spec:
+              resourceName: "sriovleftmlxbond"
+              nodeSelector:
+                node-role.kubernetes.io/intel-sierra: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-one-intel-sierra-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-one-intel-sierra-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-bond-policy-1-intel-sierra-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightmlxbond-intel-sierra
+            spec:
+              resourceName: "sriovrightmlxbond"
+              nodeSelector:
+                node-role.kubernetes.io/intel-sierra: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-two-intel-sierra-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-bond-two-intel-sierra-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-bond-policy-2-intel-sierra-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+
 
       - path: source-crs/required/networking/sriov/sriovNetwork.yaml
         patches:
@@ -1864,7 +1875,7 @@ policies:
               networkNamespace: rds-bonded-sriov-wlkd
               resourceName: sriovleftmlxbond
               trust: "off"
-              vlan: 497
+              vlan: 3003
 
       - path: source-crs/required/networking/sriov/sriovNetwork.yaml
         patches:
@@ -1877,27 +1888,26 @@ policies:
               networkNamespace: rds-bonded-sriov-wlkd
               resourceName: sriovrightmlxbond
               trust: "off"
-              vlan: 497
+              vlan: 3003
 
       #
-      # SR-IOV for Rootless DPDK
+      # Create VFs on the Mellanox-NICs for pod DPDK
       #
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovleftmlxrootless
+              name: sriovleftmlxrootless-amd-turin
             spec:
               resourceName: "sriovleftmlxrootless"
               nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-left-rootless-mtu" | toInt hub}}'
-              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-left-num-rootless-vfs" | toInt hub}}'
+                node-role.kubernetes.io/amd-turin: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-one-amd-turin-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-one-amd-turin-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f0np0', 'ens5f0np0']
-                pfNames:
-                - '{{hub fromConfigMap "" "sriov-config" "sriov-mlx-left-nic-1-rootless" | toLiteral hub}}'
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-rootless-policy-1-amd-turin-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
               isRdma: True
               needVhostNet: True
@@ -1905,19 +1915,56 @@ policies:
       - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
           - metadata:
-              name: sriovrightmlxrootless
+              name: sriovrightmlxrootless-amd-turin
             spec:
               resourceName: "sriovrightmlxrootless"
               nodeSelector:
-                node-role.kubernetes.io/customcnf: ""
-              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-right-rootless-mtu" | toInt hub}}'
-              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nnp-mlx-right-num-rootless-vfs" | toInt hub}}'
+                node-role.kubernetes.io/amd-turin: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-two-amd-turin-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-two-amd-turin-num-vfs" | toInt hub}}'
               priority: 99
               nicSelector:
                 # consider switching to PCI paths
                 # pfNames: ['ens4f1np1', 'ens5f1np1']
-                pfNames:
-                - '{{hub fromConfigMap "" "sriov-config" "sriov-mlx-right-nic-1-rootless" | toLiteral hub}}'
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-rootless-policy-2-amd-turin-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+              needVhostNet: False
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovleftmlxrootless-intel-sierra
+            spec:
+              resourceName: "sriovleftmlxrootless"
+              nodeSelector:
+                node-role.kubernetes.io/intel-sierra: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-one-intel-sierra-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-one-intel-sierra-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f0np0', 'ens5f0np0']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-rootless-policy-1-intel-sierra-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
+              deviceType: netdevice
+              isRdma: True
+              needVhostNet: True
+
+      - path: source-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+          - metadata:
+              name: sriovrightmlxrootless-intel-sierra
+            spec:
+              resourceName: "sriovrightmlxrootless"
+              nodeSelector:
+                node-role.kubernetes.io/intel-sierra: ""
+              mtu: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-two-intel-sierra-mtu" | toInt hub}}'
+              numVfs: '{{hub fromConfigMap "" "sriov-config" "sriov-nncp-rootless-two-intel-sierra-num-vfs" | toInt hub}}'
+              priority: 99
+              nicSelector:
+                # consider switching to PCI paths
+                # pfNames: ['ens4f1np1', 'ens5f1np1']
+                pfNames: '{{hub fromConfigMap "" "sriov-config" (printf "%s-sriov-rootless-policy-2-intel-sierra-pfNames" (index .ManagedClusterLabels "group")) | toLiteral hub}}'
               deviceType: netdevice
               isRdma: True
               needVhostNet: False
@@ -1928,8 +1975,7 @@ policies:
               name: "sriov-mlx-rootless-dpdk-one"
             spec:
               capabilities: '{ "mac": true, "ips": true }'
-              ipam: '{"type": "host-local","ranges": [[{"subnet": "10.46.126.192/26", "rangeStart":"10.46.126.210", "rangeEnd":"10.46.126.215"}]],"dataDir": "/run/my-orchestrator/container-ipam-state"}'
-              linkState: auto
+              ipam: '{"type": "host-local","ranges": [[{"subnet": "192.168.33.0/24", "rangeStart": "192.168.33.90", "rangeEnd":"192.168.33.95"}]],"dataDir": "/run/my-orchestrator/container-ipam-state"}'
               networkNamespace: rds-rootless-dpdk-wlkd
               resourceName: sriovleftmlxrootless
               trust: "on"
@@ -1940,26 +1986,13 @@ policies:
               name: "sriov-mlx-rootless-dpdk-two"
             spec:
               capabilities: '{ "mac": true, "ips": true }'
-              ipam: '{"type": "host-local","ranges": [[{"subnet": "10.46.126.192/26", "rangeStart":"10.46.126.216", "rangeEnd":"10.46.126.220"}]],"dataDir": "/run/my-orchestrator/container-ipam-state"}'
-              linkState: auto
+              ipam: '{"type": "host-local","ranges": [[{"subnet": "192.168.33.0/24", "rangeStart": "192.168.33.96", "rangeEnd":"192.168.33.100"}]],"dataDir": "/run/my-orchestrator/container-ipam-state"}'
               networkNamespace: rds-rootless-dpdk-wlkd
               resourceName: sriovrightmlxrootless
               trust: "on"
-              vlan: 499
+              vlan: 3003
 
       #
-      # Configure EgressIP object
-      #
-      - path:  qe-source-crs/egressip/egressIP.yaml
-        patches:
-          - metadata:
-              name: egressip-qe
-              $patch: replace
-            spec:
-              egressIPs:
-              - 10.46.187.90
-              - 2620:52:0:2ebb::5a
-
       # Configure ODF
       #
       - path: source-crs/required/storage/odf-external/01-rook-ceph-external-cluster-details.secret.yaml
