@@ -1604,14 +1604,15 @@ policies:
               annotations: nul
             spec:
               autoAssign: false
+              # in ecore setup(registry.ecore.lab.eng.tlv2.redhat.com)
               # this is LB-OAM vlan
               addresses:
-                - 192.168.192.20/32
-                - 192.168.192.21/32
-                - 192.168.192.22/32
-                - fd12:2233:3344:4455:5566:6677::20/128
-                - fd12:2233:3344:4455:5566:6677::21/128
-                - fd12:2233:3344:4455:5566:6677::22/128
+                - 10.46.188.20/32
+                - 10.46.188.21/32
+                - 10.46.188.22/32
+                - 2620:0052:0000:2ebc::0020/128
+                - 2620:0052:0000:2ebc::0021/128
+                - 2620:0052:0000:2ebc::0022/128
 
       #
       # Configure SR-IOV Policies and Networks
