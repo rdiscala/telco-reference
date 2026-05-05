@@ -1530,13 +1530,12 @@ policies:
               name: greenpeers
             spec:
               keepaliveTime: 0s
-              peerAddress: 192.168.34.5
+              peerAddress: 10.46.188.2
               peerASN: 65435
               myASN: 65450
               holdTime: 3m0s
               bfdProfile: bfd-profile
               peerPort: 179
-              disableMP: false
               nodeSelectors:
                 - matchExpressions:
                     - key: kubernetes.io/hostname
@@ -1555,13 +1554,12 @@ policies:
               name: greenpeers-ipv6
             spec:
               keepaliveTime: 0s
-              peerAddress: fd55:5555:4444:3333:2222:1111:0:5
+              peerAddress: 2620:52:0:2ebc::5
               peerASN: 65435
               myASN: 65450
               holdTime: 3m0s
               bfdProfile: bfd-profile
               peerPort: 179
-              disableMP: false
               nodeSelectors:
                 - matchExpressions:
                     - key: kubernetes.io/hostname
@@ -1595,6 +1593,7 @@ policies:
               peers:
                 - greenpeers
                 - greenpeers-ipv6
+
 
       - path: source-crs/required/networking/metallb/addr-pool.yaml
         patches:
