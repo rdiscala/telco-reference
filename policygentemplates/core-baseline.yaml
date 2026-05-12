@@ -64,6 +64,14 @@ policies:
                   - type: Succeeded
                     status: "True"
                     reason: InstallSucceeded
+
+      #
+      # Cert-manager operator (optional component)
+      #
+      - path: source-crs/optional/cert-manager/certManagerNS.yaml
+      - path: source-crs/optional/cert-manager/certManagerOperatorgroup.yaml
+      - path: source-crs/optional/cert-manager/certManagerSubscription.yaml
+
       #
       # Install SR-IOV
       #
