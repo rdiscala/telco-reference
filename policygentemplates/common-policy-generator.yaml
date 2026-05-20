@@ -21,59 +21,59 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "3"
     manifests:
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-macvlan-wlkd
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-sriov-wlkd
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-nrop-wlkd
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-ipvlan-wlkd
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-metallb-app
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-egress-ns
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-graceful-app
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-egressip-ns-one
           labels:
             env: "sys-qa"
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-egressip-ns-two
           labels:
             env: "sys-qa"
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-metallb-segregation
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-bonded-sriov-wlkd
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-rootless-dpdk-wlkd
-    - path: source-crs/customNamespace.yaml
+    - path: qe-source-crs/customNamespace.yaml
       patches:
       - metadata:
           name: rds-whereabouts
@@ -115,19 +115,19 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "3"
     manifests:
-    - path: source-crs/LabelNode.yaml
+    - path: qe-source-crs/LabelNode.yaml
       patches:
       - metadata:
           name: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
           labels:
             k8s.ovn.org/egress-assignable: ""
-    - path: source-crs/LabelNode.yaml
+    - path: qe-source-crs/LabelNode.yaml
       patches:
       - metadata:
           name: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
           labels:
             k8s.ovn.org/egress-assignable: ""
-    - path: source-crs/LabelNode.yaml
+    - path: qe-source-crs/LabelNode.yaml
       patches:
       - metadata:
           name: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com

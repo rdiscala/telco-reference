@@ -145,6 +145,9 @@ policies:
       # NMState initialization (CRD installation must complete before NNCPs)
       - path: source-crs/required/networking/NMState.yaml
 
+      # Firewall node disruption policy
+      - path: source-crs/optional/networking/firewall/node-disruption-policy.yaml
+
       # NROP scheduler configuration
       - path: source-crs/required/scheduling/sched.yaml
         patches:
