@@ -44,9 +44,6 @@ policies:
       - path: source-crs/optional/logging/ClusterLogNS.yaml
       - path: source-crs/optional/logging/ClusterLogOperGroup.yaml
       - path: source-crs/optional/logging/ClusterLogSubscription.yaml
-        patches:
-          - spec:
-              channel: stable-6.5
 
       - path: source-crs/optional/logging/ClusterLogOperatorStatus.yaml
         patches:
@@ -109,7 +106,6 @@ policies:
         patches:
           - spec:
               installPlanApproval: Manual
-              channel: "4.22"
       #
       # Install NMState
       #
