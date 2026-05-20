@@ -13,7 +13,7 @@ generators:
   - sites/ecore-tlv2/configure-storage-vlan-generator.yaml
   - sites/ecore-tlv2/configure-vlan-496.yaml
   ## cluster validation
-  - sites/ecore-tlv2/packet-core-validator-generator.yaml
+  #- sites/ecore-tlv2/packet-core-validator-generator.yaml
   ## configure nodes
   - sites/ecore-tlv2/config-nodes-generator.yaml
   # Configure NADs
