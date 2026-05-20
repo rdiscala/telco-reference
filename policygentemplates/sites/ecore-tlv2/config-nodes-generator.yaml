@@ -22,7 +22,7 @@ policyDefaults:
 policies:
   - name: config-mc
     manifests:
-      - path: source-crs/MachineConfigGeneric.yaml
+      - path: qe-source-crs/MachineConfigGeneric.yaml
         patches:
           - metadata:
               name: 98-master-etc-chrony-conf
@@ -47,7 +47,7 @@ policies:
                     user:
                       name: root
 
-      - path: source-crs/MachineConfigGeneric.yaml
+      - path: qe-source-crs/MachineConfigGeneric.yaml
         patches:
           - metadata:
               name: 98-worker-etc-chrony-conf
@@ -72,7 +72,7 @@ policies:
                     user:
                       name: root
 
-      - path: source-crs/MachineConfigGeneric.yaml
+      - path: qe-source-crs/MachineConfigGeneric.yaml
         patches:
           - metadata:
               name: set-core-user-password-cp
@@ -89,7 +89,7 @@ policies:
                   - name: core
                     passwordHash: $6$jSbZxPaKvavx6yLk$hq24RYtkVcXCbs.qXt/n/szot/Fi0Yo9nDoNnQEzDwlLkpz9dRZE6JjL6PcNpLaFp0/QsGKRPCc6dHVyL25kr0
 
-      - path: source-crs/MachineConfigGeneric.yaml
+      - path: qe-source-crs/MachineConfigGeneric.yaml
         patches:
           - metadata:
               name: set-core-user-password-compute
