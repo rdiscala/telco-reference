@@ -63,6 +63,28 @@ policies:
                     reason: InstallSucceeded
 
       #
+      # Install Loki Operator (optional component)
+      #
+      - path: source-crs/optional/logging/LokiOperatorNS.yaml
+      - path: source-crs/optional/logging/LokiOperatorGroup.yaml
+      - path: source-crs/optional/logging/LokiSubscription.yaml
+        patches:
+        - spec:
+            channel: stable-6.6
+
+      - path: source-crs/optional/logging/LokiOperatorStatus.yaml
+        patches:
+        - status:
+            components:
+              refs:
+              - kind: ClusterServiceVersion
+                namespace: openshift-operators-redhat
+                conditions:
+                  - type: Succeeded
+                    status: "True"
+                    reason: InstallSucceeded
+
+      #
       # Cert-manager operator (optional component)
       #
       - path: source-crs/optional/cert-manager/certManagerNS.yaml
@@ -128,6 +150,10 @@ policies:
       - path: source-crs/optional/logging/ClusterLogServiceAccount.yaml
       - path: source-crs/optional/logging/ClusterLogServiceAccountAuditBinding.yaml
       - path: source-crs/optional/logging/ClusterLogServiceAccountInfrastructureBinding.yaml
+
+      # LokiStack log storage (optional component)
+      - path: source-crs/optional/logging/LokiSecret.yaml
+      - path: source-crs/optional/logging/LokiStack.yaml
 
       # SR-IOV operator configuration
       - path: source-crs/required/networking/sriov/SriovOperatorConfig.yaml

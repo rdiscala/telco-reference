@@ -193,10 +193,14 @@ policies:
                 priority: 18
                 profile: qe-standard-profile
 
+      # The base ClusterLogForwarder.yaml includes local Loki storage by default.
+      # This example patch adds external Kafka forwarding with custom labels.
       - path: source-crs/optional/logging/ClusterLogForwarder.yaml
         patches:
         - spec:
             outputs:
+            # Loki output is already configured in the base CR
+            # Add external output for OSS/BSS systems
             - type: "kafka"
               name: kafka-open
               kafka:
@@ -213,7 +217,9 @@ policies:
                 siteuuid: '{{hub fromConfigMap "" "regional" (printf "%s-logging-uuid" .ManagedClusterName) | toLiteral hub}}'
                 rds: core
             pipelines:
-            - name: all-to-default
+            # Loki pipeline is already configured in the base CR
+            # Add pipeline for external forwarding
+            - name: all-to-external
               inputRefs:
               - audit
               - infrastructure
