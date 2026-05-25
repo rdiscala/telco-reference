@@ -1323,8 +1323,11 @@ policies:
                 source: quay.io/prega/test/openshift4/numaresources-operator-bundle
 
       - path: source-crs/optional/other/sctp_module_mc.yaml
+        complianceType: mustonlyhave
       - path: source-crs/optional/other/worker-load-kernel-modules.yaml
+        complianceType: mustonlyhave
       - path: source-crs/optional/other/control-plane-load-kernel-modules.yaml
+        complianceType: mustonlyhave
       - path: source-crs/optional/networking/multus/tap_cni/mc_rootless_pods_selinux.yaml
   # Custom networking, operator and cluster configuration
   - name: core-overlay-config-4.22
