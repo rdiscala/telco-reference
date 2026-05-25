@@ -19,7 +19,7 @@ policyDefaults:
             - tlv2
   remediationAction: "inform"
   policyAnnotations:
-    ran.openshift.io/ztp-deploy-wave: "10"
+    ran.openshift.io/ztp-deploy-wave: "7"
 policies:
   - name: add-ocp-pc-up-media-vlan
     manifests:

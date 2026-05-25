@@ -194,3 +194,12 @@ policies:
               egressIPs:
               - 10.46.187.90
               - 2620:52:0:2ebb::5a
+
+  #
+  # Ensure that all MachineConfigPools are updated before final stages
+  #
+  - name: core-mcp-validate-22
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: "500"
+    manifests:
+      - path: qe-source-crs/mcp-validator.yaml

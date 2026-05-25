@@ -1,0 +1,19 @@
+# This policy validates that all MachineConfigPools have completed their updates
+# and are not currently updating. Each pool is checked for Updated=True and
+# Updating=False conditions to ensure stability before proceeding.
+---
+object-templates-raw: |
+  {{- range (lookup "machineconfiguration.openshift.io/v1" "MachineConfigPool" "" "").items }}
+  - complianceType: musthave
+    objectDefinition:
+      apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfigPool
+      metadata:
+        name: {{ .metadata.name }}
+      status:
+        conditions:
+        - type: Updated
+          status: "True"
+        - type: Updating
+          status: "False"
+  {{- end }}
