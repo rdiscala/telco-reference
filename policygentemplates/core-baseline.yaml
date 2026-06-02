@@ -47,10 +47,7 @@ policies:
 
       - path: source-crs/optional/logging/ClusterLogOperatorStatus.yaml
         patches:
-        - metadata:
-            $patch: replace
-            annotations: null
-          status:
+        - status:
             components:
               refs:
               - kind: ClusterServiceVersion
@@ -140,9 +137,6 @@ policies:
 
       # NMState initialization (CRD installation must complete before NNCPs)
       - path: source-crs/required/networking/NMState.yaml
-
-      # Firewall node disruption policy
-      - path: source-crs/optional/networking/firewall/node-disruption-policy.yaml
 
       # NROP scheduler configuration
       - path: source-crs/required/scheduling/sched.yaml

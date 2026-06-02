@@ -10,29 +10,8 @@ policyDefaults:
       matchLabels:
         site: "ecore"
         zone: "tlv2"
-      # matchExpressions:
-      #   - key: ztp-done
-      #     operator: DoesNotExist
   remediationAction: "inform"
 policies:
-  # Local-only policy - pause master MCP at deployment start
-  # Not in telco-reference (assumes MCPs paused via extra-manifests at install time)
-  #- name: pause-cp-mcp
-  #  policyAnnotations:
-  #    ran.openshift.io/ztp-deploy-wave: "1"
-  #  evaluationInterval:
-  #    compliant: never
-  #  manifests:
-  #    - path: qe-source-crs/CustomMCP.yaml
-  #      # This policy is evaluted only once
-  #      # so, it does not conflict with the unpause one
-  #      patches:
-  #        - metadata:
-  #            name: master
-  #          spec:
-  #            $patch: replace
-  #            paused: true
-
   #
   # we unpause, and change the max-unavailable
   # to allow reoboting more than one node at once
@@ -53,27 +32,15 @@ policies:
               - tlv2
           - key: ztp-done
             operator: DoesNotExist
+    # The policy unpauses MCPs that were paused during initial creation
+    # and sets 'maxUnavailable' parameter to 100% to speed up the deployment.
+    # This is only required once as part of the deployment optimization
+    # therefore it's not required to re-evaluate it after initial deployment.
     evaluationInterval:
       compliant: never
     manifests:
-      #
-      # master MCP must be already unpaused in the cluster as it's not paused by default
-      #
-      #- path: qe-source-crs/CustomMCP.yaml
-      #  patches:
-      #    - metadata:
-      #        name: master
-      #      spec:
-      #        #$patch: replace
-      #        paused: false
-      #        maxUnavailable: 1
-      #      status:
-      #        conditions:
-      #        - type: Updated
-      #          status: "True"
-      #        - type: Updating
-      #          status: "False"
-
+      # The MCPs should be added as extra manifests at installation time. Their
+      # inclusion here will reset the pause to false, allowing the MCPs to update
       - path: custom-manifests/standard-mcp.yaml
         patches:
           - spec:
@@ -103,8 +70,6 @@ policies:
   - name: core-custom-mcp-set-maxavailable-22
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "201"
-    #evaluationInterval:
-    #  compliant: never
     manifests:
       - path: custom-manifests/standard-mcp.yaml
         patches:

@@ -9,8 +9,8 @@ configMapGenerator:
     - mno-extra-manifests/00-debug-networkmanager-master.yaml
     - mno-extra-manifests/00-debug-networkmanager-worker.yaml
     - mno-extra-manifests/05-disconnected-idms.yaml
-    - mno-extra-manifests/06-kdump-master.yaml
-    - mno-extra-manifests/06-kdump-worker.yaml
+    - mno-extra-manifests/kdump-master.yaml
+    - mno-extra-manifests/kdump-worker.yaml
     - mno-extra-manifests/98-master-etc-chrony-conf.yaml
     - mno-extra-manifests/98-worker-etc-chrony-conf.yaml
     - mno-extra-manifests/control-plane-load-kernel-modules.yaml
@@ -21,6 +21,7 @@ configMapGenerator:
     - mno-extra-manifests/worker-load-kernel-modules.yaml
     - mno-extra-manifests/configure-core-pass-compute.yaml
     - mno-extra-manifests/configure-core-pass-cp.yaml
+    - mno-extra-manifests/Network.yaml
     name: extra-manifests-cm
     namespace: ecore
   - files:

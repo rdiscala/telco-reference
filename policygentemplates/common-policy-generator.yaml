@@ -198,8 +198,8 @@ policies:
   #
   # Ensure that all MachineConfigPools are updated before final stages
   #
-  - name: core-mcp-validate-22
-    policyAnnotations:
-      ran.openshift.io/ztp-deploy-wave: "500"
-    manifests:
-      - path: qe-source-crs/mcp-validator.yaml
+  #- name: core-mcp-validate-22
+  #  policyAnnotations:
+  #    ran.openshift.io/ztp-deploy-wave: "500"
+  #  manifests:
+  #    - path: qe-source-crs/mcp-validator.yaml
