@@ -12,10 +12,7 @@ policyDefaults:
         zone: "tlv2"
   remediationAction: "inform"
 policies:
-  #
-  # we unpause, and change the max-unavailable
-  # to allow reoboting more than one node at once
-  #
+  # unpause baseline configuration
   - name: custom-mcp-unpause-22
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "200"
@@ -71,6 +68,7 @@ policies:
     policyAnnotations:
       ran.openshift.io/ztp-deploy-wave: "201"
     manifests:
+      # This sets the desired maxUnavailable on the customMCPs
       - path: custom-manifests/standard-mcp.yaml
         patches:
           - spec:

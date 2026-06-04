@@ -1394,9 +1394,6 @@ policies:
                 {"range":"fd12:2222:3333:5588::30/124"}]}} ]}'
               type: Raw
 
-
-
-
       - path: source-crs/required/scheduling/nrop.yaml
         patches:
         - spec:
