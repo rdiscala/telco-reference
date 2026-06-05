@@ -1339,11 +1339,6 @@ policies:
       - path: source-crs/required/networking/Network.yaml
         patches:
         - spec:
-            defaultNetwork:
-              ovnKubernetesConfig:
-                mtu: 8900
-                gatewayConfig:
-                  routingViaHost: true
             additionalNetworks:
             - name: mc-vlan-one
               namespace: rds-macvlan-wlkd

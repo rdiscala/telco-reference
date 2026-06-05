@@ -25,7 +25,6 @@ configMapGenerator:
     name: extra-manifests-cm
     namespace: ecore
   - files:
-    # - custom-manifests/50-clo-imagetagmirrorset.yaml
     - custom-manifests/50-mcp-customcnf.yaml
     - custom-manifests/50-mcp-st.yaml
     name: custom-manifests-cm
