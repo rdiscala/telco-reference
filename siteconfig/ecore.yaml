@@ -53,12 +53,16 @@ spec:
   nodes:
     - hostName: openshift-master-0.ecore.lab.eng.tlv2.redhat.com
       role: "master"
-      # crSuppression:
-      # - BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       bmcAddress: ilo5-virtualmedia://10.46.61.244:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
@@ -150,12 +154,16 @@ spec:
     #
     - hostName: openshift-master-1.ecore.lab.eng.tlv2.redhat.com
       role: "master"
-      # crSuppression:
-      # - BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       bmcAddress: ilo5-virtualmedia://10.46.61.245:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
@@ -247,12 +255,16 @@ spec:
     #
     - hostName: openshift-master-2.ecore.lab.eng.tlv2.redhat.com
       role: "master"
-      # crSuppression:
-      # - BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       bmcAddress: ilo5-virtualmedia://10.46.61.246:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
@@ -344,29 +356,22 @@ spec:
     #
     - hostName: openshift-worker-0.ecore.lab.eng.tlv2.redhat.com
       role: "worker"
-      #
-      # This is for siteconfig-v1
-      #
-      # crSuppression:
-      # - BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
       bmcAddress: ilo5-virtualmedia://10.46.61.247:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
       bootMACAddress: "B4:7A:F1:C9:5E:A4"
       bootMode: "UEFISecureBoot"
       automatedCleaningMode: metadata
-      #
-      # This is for siteConfig-v2 (ClusterInstance)
-      #
       #extraAnnotations:
       #  BareMetalHost:
       #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
-      #suppressedManifests:
-      #  - BareMetalHost
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       nodeLabels:
         node-role.kubernetes.io/standard: ''
         cluster.ocs.openshift.io/openshift-storage: ''
@@ -456,12 +461,16 @@ spec:
     #
     - hostName: openshift-worker-1.ecore.lab.eng.tlv2.redhat.com
       role: "worker"
-      #crSuppression:
-      #- BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       bmcAddress: ilo5-virtualmedia://10.46.61.248:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
@@ -557,12 +566,16 @@ spec:
     #
     - hostName: openshift-worker-2.ecore.lab.eng.tlv2.redhat.com
       role: "worker"
-      #crSuppression:
-      #- BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       bmcAddress: ilo5-virtualmedia://10.46.61.242:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
@@ -709,12 +722,16 @@ spec:
     #
     - hostName: openshift-worker-3.ecore.lab.eng.tlv2.redhat.com
       role: "worker"
-      # crSuppression:
-      # - BareMetalHost
-      #crAnnotations:
-      #  add:
-      #    BareMetalHost:
-      #      bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: true
+      #extraAnnotations:
+      #  BareMetalHost:
+      #    bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: 'true'
+      #pruneManifests:
+      #  - apiVersion: metal3.io/v1alpha1
+      #    kind: BareMetalHost
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: InfraEnv
+      #  - apiVersion: agent-install.openshift.io/v1beta1
+      #    kind: NMStateConfig
       bmcAddress: ilo5-virtualmedia://10.46.61.243:443/redfish/v1/Systems/1
       bmcCredentialsName:
         name: ecore-bmc-secret
