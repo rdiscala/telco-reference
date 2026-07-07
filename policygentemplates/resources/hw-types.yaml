@@ -7,5 +7,5 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: Replace=true
 data:
-  ecore-cnf-isolated-cpu: "1-25,27-51,53-77,79-103"
-  ecore-cnf-reserved-cpu: "0,26,52,78"
+  ecore-cnf-isolated-cpu: "4-25,30-51,56-77,82-103"
+  ecore-cnf-reserved-cpu: "0-3,26-29,52-55,78-81"
