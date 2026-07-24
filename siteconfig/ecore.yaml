@@ -41,7 +41,7 @@ spec:
     - name: extra-manifests-cm
     - name: custom-manifests-cm
   holdInstallation: false
-  ignitionConfigOverride: '{"ignition": {"version":"3.2.0"},"passwd": {"users": [{"groups": ["sudo"],"name": "core","passwordHash":"$6$E0dnxLH4UZAg1WSf$OaihmegAp5/MqHTprEBJAlf9e6p.lKhT2w3rn09uYlQ99Z6jwOw9qst4wictonF7KugFFCEQUGQwF2knPhrpy/"}]}, "storage": {"files": [{"overwrite": true, "path": "/etc/containers/policy.json", "contents": {"source":"data:text/plain;base64,ewogICAgImRlZmF1bHQiOiBbCiAgICAgICAgewogICAgICAgICAgICAidHlwZSI6ICJpbnNlY3VyZUFjY2VwdEFueXRoaW5nIgogICAgICAgIH0KICAgIF0sCiAgICAidHJhbnNwb3J0cyI6CiAgICAgICAgewogICAgICAgICAgICAiZG9ja2VyLWRhZW1vbiI6CiAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgIiI6IFt7InR5cGUiOiJpbnNlY3VyZUFjY2VwdEFueXRoaW5nIn1dCiAgICAgICAgICAgICAgICB9CiAgICAgICAgfQp9Cgo="}}]}}'
+  ignitionConfigOverride: '{"ignition": {"version":"3.2.0"},"passwd": {"users": [{"groups": ["sudo"],"name": "core","passwordHash":"$6$E0dnxLH4UZAg1WSf$OaihmegAp5/MqHTprEBJAlf9e6p.lKhT2w3rn09uYlQ99Z6jwOw9qst4wictonF7KugFFCEQUGQwF2knPhrpy/"}]}}'
   networkType: "OVNKubernetes"
   pullSecretRef:
     name: ecore-pull-secret
