@@ -44,6 +44,9 @@ policies:
       - path: source-crs/optional/logging/ClusterLogNS.yaml
       - path: source-crs/optional/logging/ClusterLogOperGroup.yaml
       - path: source-crs/optional/logging/ClusterLogSubscription.yaml
+        patches:
+        - spec:
+            channel: stable-6.6
 
       - path: source-crs/optional/logging/ClusterLogOperatorStatus.yaml
         patches:
@@ -53,7 +56,7 @@ policies:
               - kind: ClusterServiceVersion
                 namespace: openshift-logging
                 # Update with specific target version
-                name: cluster-logging.v6.5.1
+                name: cluster-logging.v6.6.0
                 conditions:
                   - type: Succeeded
                     status: "True"
@@ -84,7 +87,7 @@ policies:
         patches:
           - spec:
               installPlanApproval: Manual
-              channel: stable-4.21
+              channel: stable-4.22
       #
       # Install MetalLB
       #
